@@ -1,4 +1,6 @@
-pywin32
-pypiwin32
-pyttsx3
-comtypes
+Django==5.0.14
+gunicorn==23.0.0
+google-genai==2.18.1
+python-dotenv==1.2.3
+Pillow==12.3.0
+scipy==1.17.1
