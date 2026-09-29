@@ -1,0 +1,2410 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>
+Create Account | Festival Wishes
+</title>
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+
+<link
+    rel="stylesheet"
+    href="{% static 'dashboard/css/festival-toast.css' %}"
+>
+
+<style>
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255,179,71,.18),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(106,20,52,.14),
+            transparent 30%
+        ),
+
+        #faf7f2;
+
+    color:#32104f;
+
+}
+
+
+/* =========================================================
+   BACKGROUND DOTS
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.035;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            #6a1434 1px,
+            transparent 1px
+        );
+
+    background-size:
+        24px 24px;
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.auth-page{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* =========================================================
+   LEFT FESTIVAL SECTION
+========================================================= */
+
+.festival-side{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,179,71,.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            160deg,
+            #210842,
+            #35105f 50%,
+            #4d116b
+        );
+
+    color:white;
+
+}
+
+
+/* =========================================================
+   SIDEBAR DECORATION
+========================================================= */
+
+.festival-side::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    top:-150px;
+
+    left:-120px;
+
+    border:
+
+        1px solid
+        rgba(255,179,71,.15);
+
+    box-shadow:
+
+        0 0 0 40px
+        rgba(255,179,71,.03),
+
+        0 0 0 80px
+        rgba(255,179,71,.02);
+
+}
+
+
+.festival-side::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    right:-120px;
+
+    bottom:-100px;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,122,0,.16),
+            transparent 70%
+        );
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+
+    position:absolute;
+
+    top:35px;
+
+    left:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.brand-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff7a00
+        );
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(255,122,0,.25);
+
+}
+
+
+.brand-text h2{
+
+    margin:0;
+
+    font-family:
+
+        'Libre Baskerville',
+        serif;
+
+    font-size:16px;
+
+}
+
+
+.brand-text small{
+
+    color:#ffcf83;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.festival-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:500px;
+
+}
+
+
+.welcome-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+
+        8px 14px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:#ffd08b;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.10);
+
+    margin-bottom:25px;
+
+}
+
+
+.festival-content h1{
+
+    margin:0;
+
+    font-family:
+
+        'Libre Baskerville',
+        serif;
+
+    font-size:42px;
+
+    line-height:1.35;
+
+}
+
+
+.festival-content h1 span{
+
+    color:#ffb347;
+
+}
+
+
+.festival-content p{
+
+    color:
+
+        rgba(255,255,255,.68);
+
+    font-size:13px;
+
+    line-height:1.9;
+
+    margin:
+
+        20px 0
+        28px;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:
+
+        rgba(255,255,255,.8);
+
+    font-size:12px;
+
+}
+
+
+.feature-icon{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+   FESTIVAL QUOTE
+========================================================= */
+
+.festival-quote{
+
+    margin-top:35px;
+
+    padding:
+
+        15px 18px;
+
+    border-left:
+
+        3px solid #ffb347;
+
+    background:
+
+        rgba(255,255,255,.05);
+
+    border-radius:
+
+        0 12px 12px 0;
+
+}
+
+
+.festival-quote strong{
+
+    display:block;
+
+    color:#ffcf83;
+
+    font-family:
+
+        'Kalam',
+        cursive;
+
+    font-size:15px;
+
+}
+
+
+.festival-quote small{
+
+    color:
+
+        rgba(255,255,255,.55);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   RIGHT AUTH SECTION
+========================================================= */
+
+.auth-side{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+
+        35px 25px;
+
+}
+
+
+/* =========================================================
+   SIGNUP CARD
+========================================================= */
+
+.card{
+
+    width:100%;
+
+    max-width:470px;
+
+    background:
+
+        rgba(255,255,255,.97);
+
+    padding:
+
+        38px;
+
+    border-radius:28px;
+
+    border:
+
+        1px solid
+        #eee4f1;
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(56,19,77,.10);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* TOP FESTIVE LINE */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff8a00,
+            #ffb347,
+            #6a1434
+        );
+
+}
+
+
+/* =========================================================
+   MOBILE LOGO
+========================================================= */
+
+.mobile-brand{
+
+    display:none;
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+}
+
+
+.mobile-logo{
+
+    width:58px;
+
+    height:58px;
+
+    margin:auto auto 10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    font-size:27px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff7a00
+        );
+
+}
+
+
+/* =========================================================
+   FORM HEADER
+========================================================= */
+
+.form-header{
+
+    margin-bottom:28px;
+
+}
+
+
+.form-header h1{
+
+    margin:0 0 8px;
+
+    font-family:
+
+        'Libre Baskerville',
+        serif;
+
+    font-size:24px;
+
+    color:#32104f;
+
+}
+
+
+.form-header p{
+
+    margin:0;
+
+    font-size:12px;
+
+    color:#8a7892;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:
+
+        #fff0f0;
+
+    color:#c62828;
+
+    padding:
+
+        13px 15px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    margin-bottom:20px;
+
+    border:
+
+        1px solid
+        #ffd7d7;
+
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:
+
+        #effaf3;
+
+    color:#1d7a46;
+
+    padding:
+
+        13px 15px;
+
+    border-radius:12px;
+
+    font-size:11px;
+
+    margin-bottom:20px;
+
+    border:
+
+        1px solid
+        #d4f0df;
+
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.group{
+
+    margin-bottom:17px;
+
+}
+
+
+label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+    color:#4b2164;
+
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.input-wrapper{
+
+    position:relative;
+
+}
+
+
+.input-icon{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+
+        translateY(-50%);
+
+    font-size:15px;
+
+    opacity:.55;
+
+}
+
+
+input{
+
+    width:100%;
+
+    height:48px;
+
+    padding:
+
+        0 45px;
+
+    border:
+
+        1px solid #eadfea;
+
+    border-radius:13px;
+
+    outline:none;
+
+    font-family:
+
+        'Poppins',
+        sans-serif;
+
+    font-size:12px;
+
+    color:#32104f;
+
+    background:
+
+        #fffdfb;
+
+    transition:.25s;
+
+}
+
+
+input:focus{
+
+    border-color:#ff8a00;
+
+    background:white;
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(255,138,0,.08);
+
+}
+
+
+input::placeholder{
+
+    color:#b7a8bc;
+
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+.password-toggle{
+
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:
+
+        translateY(-50%);
+
+    border:0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    opacity:.6;
+
+    padding:5px;
+
+}
+
+
+.password-toggle:hover{
+
+    opacity:1;
+
+}
+
+
+/* =========================================================
+   PASSWORD STRENGTH
+========================================================= */
+
+.password-strength{
+
+    margin-top:9px;
+
+}
+
+
+.strength-bars{
+
+    display:flex;
+
+    gap:4px;
+
+}
+
+
+.strength-bar{
+
+    height:4px;
+
+    flex:1;
+
+    border-radius:10px;
+
+    background:#eee6ec;
+
+    transition:.3s;
+
+}
+
+
+.strength-text{
+
+    margin-top:5px;
+
+    font-size:9px;
+
+    color:#9a899f;
+
+}
+
+
+/* =========================================================
+   PASSWORD REQUIREMENTS
+========================================================= */
+
+.password-requirements{
+
+    margin-top:8px;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:6px;
+
+}
+
+
+.requirement{
+
+    font-size:9px;
+
+    color:#a091a5;
+
+}
+
+
+.requirement.valid{
+
+    color:#228b55;
+
+}
+
+
+/* =========================================================
+   TERMS
+========================================================= */
+
+.terms{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    margin-top:18px;
+
+    font-size:10px;
+
+    color:#89778f;
+
+    line-height:1.6;
+
+}
+
+
+.terms input{
+
+    width:15px;
+
+    height:15px;
+
+    padding:0;
+
+    margin-top:2px;
+
+    accent-color:#6a1434;
+
+}
+
+
+.terms a{
+
+    color:#e87508;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+
+/* =========================================================
+   SIGNUP BUTTON
+========================================================= */
+
+.submit-btn{
+
+    width:100%;
+
+    margin-top:23px;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:700;
+
+    font-family:
+
+        'Poppins',
+        sans-serif;
+
+    font-size:12px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #a23a50,
+            #ff8a00
+        );
+
+    box-shadow:
+
+        0 10px 25px
+        rgba(106,20,52,.20);
+
+    transition:.3s;
+
+}
+
+
+.submit-btn:hover{
+
+    transform:
+
+        translateY(-2px);
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(106,20,52,.28);
+
+}
+
+
+.submit-btn:active{
+
+    transform:
+
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:
+
+        24px 0
+        18px;
+
+    color:#b3a4b8;
+
+    font-size:10px;
+
+}
+
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    height:1px;
+
+    flex:1;
+
+    background:#eee5eb;
+
+}
+
+
+/* =========================================================
+   LOGIN LINK
+========================================================= */
+
+.login-link{
+
+    text-align:center;
+
+    font-size:11px;
+
+    color:#8d7b92;
+
+}
+
+
+.login-link a{
+
+    color:#e87508;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+
+.login-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.security-note{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    font-size:9px;
+
+    color:#b0a1b5;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .auth-page{
+
+        grid-template-columns:
+            42% 58%;
+
+    }
+
+
+    .festival-side{
+
+        padding:35px;
+
+    }
+
+
+    .festival-content h1{
+
+        font-size:30px;
+
+    }
+
+
+    .brand{
+
+        left:30px;
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .auth-page{
+
+        display:block;
+
+    }
+
+
+    .festival-side{
+
+        display:none;
+
+    }
+
+
+    .auth-side{
+
+        min-height:100vh;
+
+        padding:25px 15px;
+
+    }
+
+
+    .card{
+
+        padding:30px 22px;
+
+        border-radius:23px;
+
+    }
+
+
+    .mobile-brand{
+
+        display:block;
+
+    }
+
+
+    .password-requirements{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:400px){
+
+    .card{
+
+        padding:27px 17px;
+
+    }
+
+
+    .form-header h1{
+
+        font-size:21px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="auth-page">
+
+<!-- =====================================================
+     LEFT FESTIVAL SIDE
+===================================================== -->
+
+<section class="festival-side">
+
+<div class="brand">
+
+<div class="brand-icon">
+
+🪔
+
+</div>
+
+<div class="brand-text">
+
+<h2>
+Festival Wishes
+</h2>
+
+<small>
+ADMIN DASHBOARD
+</small>
+
+</div>
+
+</div>
+
+<div class="festival-content">
+
+<div class="welcome-badge">
+
+✨ CREATE YOUR ACCOUNT
+
+</div>
+
+<h1>
+
+Manage Every
+
+<span>
+
+Festival
+
+</span>
+
+From One Place
+
+</h1>
+
+<p>
+
+Create your Festival Wishes dashboard account and manage
+festivals, personalized wishes, images, music and visitor
+activity from one beautiful dashboard.
+
+</p>
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">
+
+🎉
+
+</div>
+
+<div>
+
+<strong>
+Manage Festivals
+</strong>
+
+<br>
+
+<small>
+Create and update unlimited festival pages
+</small>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+💌
+
+</div>
+
+<div>
+
+<strong>
+Manage Wishes
+</strong>
+
+<br>
+
+<small>
+View personalized wishes created by visitors
+</small>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<div>
+
+<strong>
+Dashboard Analytics
+</strong>
+
+<br>
+
+<small>
+Track your festivals and website activity
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="festival-quote">
+
+<strong>
+
+खुशियाँ बाँटने का सफर यहीं से शुरू होता है ✨
+
+</strong>
+
+<small>
+
+Festival Wishes Dashboard
+
+</small>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     SIGNUP SIDE
+===================================================== -->
+
+<section class="auth-side">
+
+<div class="card">
+
+<!-- MOBILE BRAND -->
+
+<div class="mobile-brand">
+
+<div class="mobile-logo">
+
+🪔
+
+</div>
+
+<strong>
+
+Festival Wishes
+
+</strong>
+
+</div>
+
+<!-- =====================================================
+     FORM HEADER
+===================================================== -->
+
+<div class="form-header">
+
+<h1>
+
+Create Your Account ✨
+
+</h1>
+
+<p>
+
+Create your dashboard account and start managing
+your Festival Wishes website.
+
+</p>
+
+</div>
+
+<!-- =====================================================
+     ERROR
+===================================================== -->
+
+{% if error %}
+
+<div class="error">
+
+⚠️
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+{% if success %}
+
+<div class="success">
+
+✅
+
+{{ success }}
+
+</div>
+
+{% endif %}
+
+<!-- =====================================================
+     SIGNUP FORM
+===================================================== -->
+
+<form
+    method="POST"
+    id="signupForm"
+>
+
+{% csrf_token %}
+
+<!-- USERNAME -->
+
+<div class="group">
+
+<label>
+
+👤
+
+Username
+
+</label>
+
+<div class="input-wrapper">
+
+<span class="input-icon">
+
+👤
+
+</span>
+
+<input
+type="text"
+name="username"
+id="username"
+placeholder="Choose a username"
+value="{{ form_data.username|default:'' }}"
+required
+minlength="3"
+maxlength="30"
+autocomplete="username"
+
+>
+
+</div>
+
+</div>
+
+<!-- EMAIL -->
+
+<div class="group">
+
+<label>
+
+📧
+
+Email Address
+
+</label>
+
+<div class="input-wrapper">
+
+<span class="input-icon">
+
+📧
+
+</span>
+
+<input
+type="email"
+name="email"
+id="email"
+placeholder="Enter your email address"
+value="{{ form_data.email|default:'' }}"
+required
+autocomplete="email"
+
+>
+
+</div>
+
+</div>
+
+<!-- PASSWORD -->
+
+<div class="group">
+
+<label>
+
+🔒
+
+Password
+
+</label>
+
+<div class="input-wrapper">
+
+<span class="input-icon">
+
+🔒
+
+</span>
+
+<input
+type="password"
+name="password"
+id="password"
+placeholder="Create a strong password"
+required
+minlength="8"
+autocomplete="new-password"
+
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('password', this)"
+
+>
+
+👁
+
+</button>
+
+</div>
+
+<!-- PASSWORD STRENGTH -->
+
+<div class="password-strength">
+
+<div class="strength-bars">
+
+<div class="strength-bar"></div>
+
+<div class="strength-bar"></div>
+
+<div class="strength-bar"></div>
+
+<div class="strength-bar"></div>
+
+</div>
+
+<div
+    class="strength-text"
+    id="strengthText"
+>
+
+Password strength
+
+</div>
+
+</div>
+
+<div class="password-requirements">
+
+<div
+    class="requirement"
+    id="lengthRequirement"
+>
+
+○ Minimum 8 characters
+
+</div>
+
+<div
+    class="requirement"
+    id="upperRequirement"
+>
+
+○ One uppercase letter
+
+</div>
+
+<div
+    class="requirement"
+    id="numberRequirement"
+>
+
+○ One number
+
+</div>
+
+<div
+    class="requirement"
+    id="specialRequirement"
+>
+
+○ One special character
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CONFIRM PASSWORD -->
+
+<div class="group">
+
+<label>
+
+🔐
+
+Confirm Password
+
+</label>
+
+<div class="input-wrapper">
+
+<span class="input-icon">
+
+🔐
+
+</span>
+
+<input
+type="password"
+name="confirm_password"
+id="confirmPassword"
+placeholder="Repeat your password"
+required
+autocomplete="new-password"
+
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('confirmPassword', this)"
+
+>
+
+👁
+
+</button>
+
+</div>
+
+<div
+    id="passwordMatch"
+    style="
+        font-size:9px;
+        margin-top:6px;
+    "
+>
+
+</div>
+
+</div>
+
+<!-- TERMS -->
+
+<div class="terms">
+
+<input
+type="checkbox"
+id="terms"
+required
+
+>
+
+<label
+for="terms"
+style="
+margin:0;
+font-size:10px;
+font-weight:400;
+color:#89778f;
+line-height:1.6;
+"
+
+>
+
+I agree to the
+
+<a href="#">
+
+Terms of Service
+
+</a>
+
+and
+
+<a href="#">
+
+Privacy Policy
+
+</a>
+
+</label>
+
+</div>
+
+<!-- SUBMIT -->
+
+<button
+type="submit"
+class="submit-btn"
+
+>
+
+✨ Create Dashboard Account
+
+</button>
+
+</form>
+
+<!-- DIVIDER -->
+
+<div class="divider">
+
+<span>
+
+ALREADY REGISTERED?
+
+</span>
+
+</div>
+
+<!-- LOGIN -->
+
+<div class="login-link">
+
+Already have a dashboard account?
+
+<a
+href="{% url 'dashboard:login' %}"
+
+>
+
+Login Now →
+
+</a>
+
+</div>
+
+<!-- SECURITY -->
+
+<div class="security-note">
+
+🔒 Your account information is securely stored.
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =========================================================
+   SHOW / HIDE PASSWORD
+========================================================= */
+
+function togglePassword(
+
+    inputId,
+    button
+
+){
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+
+    if(
+
+        input.type === "password"
+
+    ){
+
+        input.type = "text";
+
+        button.innerHTML =
+            "🙈";
+
+    }
+
+    else{
+
+        input.type =
+            "password";
+
+        button.innerHTML =
+            "👁";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PASSWORD STRENGTH
+========================================================= */
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+
+const strengthBars =
+    document.querySelectorAll(
+        ".strength-bar"
+    );
+
+
+const strengthText =
+    document.getElementById(
+        "strengthText"
+    );
+
+
+passwordInput.addEventListener(
+
+    "input",
+
+    function(){
+
+        const password =
+            this.value;
+
+
+        let score = 0;
+
+
+        const hasLength =
+            password.length >= 8;
+
+
+        const hasUpper =
+            /[A-Z]/.test(
+                password
+            );
+
+
+        const hasNumber =
+            /[0-9]/.test(
+                password
+            );
+
+
+        const hasSpecial =
+            /[^A-Za-z0-9]/.test(
+                password
+            );
+
+
+        if(hasLength)
+            score++;
+
+
+        if(hasUpper)
+            score++;
+
+
+        if(hasNumber)
+            score++;
+
+
+        if(hasSpecial)
+            score++;
+
+
+        /* RESET */
+
+        strengthBars.forEach(
+
+            bar => {
+
+                bar.style.background =
+                    "#eee6ec";
+
+            }
+
+        );
+
+
+        /* UPDATE BARS */
+
+        for(
+
+            let i = 0;
+
+            i < score;
+
+            i++
+
+        ){
+
+            if(
+
+                score === 1
+
+            ){
+
+                strengthBars[i]
+                    .style.background =
+                        "#d9534f";
+
+            }
+
+
+            else if(
+
+                score === 2
+
+            ){
+
+                strengthBars[i]
+                    .style.background =
+                        "#f0ad4e";
+
+            }
+
+
+            else if(
+
+                score === 3
+
+            ){
+
+                strengthBars[i]
+                    .style.background =
+                        "#e87508";
+
+            }
+
+
+            else{
+
+                strengthBars[i]
+                    .style.background =
+                        "#2e9b5f";
+
+            }
+
+        }
+
+
+        /* TEXT */
+
+        if(
+
+            password.length === 0
+
+        ){
+
+            strengthText.innerHTML =
+                "Password strength";
+
+        }
+
+
+        else if(
+
+            score === 1
+
+        ){
+
+            strengthText.innerHTML =
+                "Weak password";
+
+        }
+
+
+        else if(
+
+            score === 2
+
+        ){
+
+            strengthText.innerHTML =
+                "Fair password";
+
+        }
+
+
+        else if(
+
+            score === 3
+
+        ){
+
+            strengthText.innerHTML =
+                "Good password";
+
+        }
+
+
+        else{
+
+            strengthText.innerHTML =
+                "Strong password ✓";
+
+        }
+
+
+        /* REQUIREMENTS */
+
+        updateRequirement(
+
+            "lengthRequirement",
+
+            hasLength
+
+        );
+
+
+        updateRequirement(
+
+            "upperRequirement",
+
+            hasUpper
+
+        );
+
+
+        updateRequirement(
+
+            "numberRequirement",
+
+            hasNumber
+
+        );
+
+
+        updateRequirement(
+
+            "specialRequirement",
+
+            hasSpecial
+
+        );
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   REQUIREMENT UPDATE
+========================================================= */
+
+function updateRequirement(
+
+    id,
+
+    valid
+
+){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(valid){
+
+        element.classList.add(
+            "valid"
+        );
+
+        element.innerHTML =
+            "✓ " +
+            element.textContent
+                .replace(
+                    "○ ",
+                    ""
+                )
+                .replace(
+                    "✓ ",
+                    ""
+                );
+
+    }
+
+    else{
+
+        element.classList.remove(
+            "valid"
+        );
+
+        element.innerHTML =
+            "○ " +
+            element.textContent
+                .replace(
+                    "✓ ",
+                    ""
+                )
+                .replace(
+                    "○ ",
+                    ""
+                );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PASSWORD MATCH
+========================================================= */
+
+const confirmPassword =
+    document.getElementById(
+        "confirmPassword"
+    );
+
+
+const passwordMatch =
+    document.getElementById(
+        "passwordMatch"
+    );
+
+
+confirmPassword.addEventListener(
+
+    "input",
+
+    function(){
+
+        if(
+
+            !this.value
+
+        ){
+
+            passwordMatch.innerHTML =
+                "";
+
+            return;
+
+        }
+
+
+        if(
+
+            this.value ===
+            passwordInput.value
+
+        ){
+
+            passwordMatch.innerHTML =
+                "✓ Passwords match";
+
+            passwordMatch.style.color =
+                "#228b55";
+
+        }
+
+        else{
+
+            passwordMatch.innerHTML =
+                "✕ Passwords do not match";
+
+            passwordMatch.style.color =
+                "#d9534f";
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================================================
+   FORM VALIDATION
+========================================================= */
+
+document
+    .getElementById(
+        "signupForm"
+    )
+    .addEventListener(
+
+        "submit",
+
+        function(event){
+
+            const password =
+                passwordInput.value;
+
+
+            const confirm =
+                confirmPassword.value;
+
+
+            if(
+
+                password !== confirm
+
+            ){
+
+                event.preventDefault();
+
+
+                passwordMatch.innerHTML =
+                    "✕ Passwords do not match";
+
+
+                passwordMatch.style.color =
+                    "#d9534f";
+
+
+                confirmPassword.focus();
+
+
+                return;
+
+            }
+
+
+            if(
+
+                password.length < 8
+
+            ){
+
+                event.preventDefault();
+
+                alert(
+                    "Password must contain at least 8 characters."
+                );
+
+                passwordInput.focus();
+
+            }
+
+        }
+
+    );
+
+
+</script>
+
+
+<script
+    src="{% static 'dashboard/js/festival-toast.js' %}"
+></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,960 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us | Festival Wishes</title>
+
+ <link rel="shortcut icon"
+          type="image/webp"
+          href="{% static 'favicon.webp' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+ <link rel="stylesheet"
+          href="{% static 'assets/css/main.css' %}"><link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- MAIN CSS -->
+
+    <link rel="stylesheet"
+          href="{% static 'assets/css/main.css' %}">
+
+
+
+
+<style>
+
+.info-page {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 60px;
+}
+
+.info-hero {
+    text-align:center;
+    padding:65px 20px 45px;
+    color:white;
+}
+
+.info-badge {
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:50px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.2);
+    color:#FA8112;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.info-hero h1 {
+    font-size:clamp(32px,5vw,50px);
+    font-weight:800;
+}
+
+.info-hero h1 span {
+    background:linear-gradient(
+        90deg,
+        #FA8112,
+        #ffb347,
+        #EA2F14
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.info-hero p {
+    max-width:650px;
+    margin:auto;
+    color:rgba(255,255,255,.78);
+    font-size:14px;
+}
+
+.contact-container {
+    width:92%;
+    max-width:1050px;
+    margin:auto;
+}
+
+.contact-grid {
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:25px;
+}
+
+.info-card {
+    background:rgba(255,255,255,.97);
+    border-radius:28px;
+    padding:30px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.info-card h2 {
+    color:#24105f;
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.info-card h2 span {
+    color:#FA8112;
+}
+
+.contact-item {
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+    padding:16px 0;
+    border-bottom:1px solid #eee;
+}
+
+.contact-item:last-child {
+    border-bottom:0;
+}
+
+.contact-icon {
+    width:45px;
+    height:45px;
+    min-width:45px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(
+        135deg,
+        #FA8112,
+        #EA2F14
+    );
+    color:white;
+    font-size:20px;
+}
+
+.contact-item h4 {
+    margin:0 0 4px;
+    color:#24105f;
+    font-size:14px;
+    font-weight:800;
+}
+
+.contact-item p {
+    margin:0;
+    color:#777;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.form-group {
+    margin-bottom:18px;
+}
+
+.form-group label {
+    display:block;
+    color:#24105f;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea {
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:13px;
+    padding:12px 14px;
+    font-family:Poppins,sans-serif;
+    font-size:13px;
+    outline:none;
+    transition:.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color:#FA8112;
+    box-shadow:0 0 0 4px rgba(250,129,18,.10);
+}
+
+.form-group textarea {
+    min-height:150px;
+    resize:vertical;
+}
+
+.submit-btn {
+    width:100%;
+    border:0;
+    border-radius:14px;
+    padding:13px;
+    background:linear-gradient(
+        135deg,
+        #FA8112,
+        #EA2F14
+    );
+    color:white;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(250,129,18,.3);
+}
+
+@media(max-width:750px) {
+
+    .contact-grid {
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="festive-background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+
+<nav class="main-nav">
+
+    <a href="/" class="logo">
+
+         <img src="{% static 'main_logo.png' %}"
+             alt="Festival Wishes">
+
+
+    </a>
+
+    <a class="menu-trigger"
+       onclick="toggleMenu()">
+
+        ☰ Menu
+
+    </a>
+
+    <ul class="festival-nav" id="festivalNav">
+
+        <li>
+            <a href="/" class="nav-link-custom">
+                🏠 Home
+            </a>
+        </li>
+
+        <li>
+            <a href="/festivals/" class="nav-link-custom">
+                🎉 Festivals
+            </a>
+        </li>
+
+        <li>
+            <a href="/create-wish/" class="nav-link-custom">
+                ✨ Create Wish
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<main class="info-page">
+
+<section class="info-hero">
+
+    <div class="info-badge">
+        📩 WE'D LOVE TO HEAR FROM YOU
+    </div>
+
+    <h1>
+        Contact <span>Us</span>
+    </h1>
+
+    <p>
+        Have a question, suggestion or need help?
+        Send us a message and we'll be happy to hear
+        from you.
+    </p>
+
+</section>
+
+
+<div class="contact-container">
+
+<div class="contact-grid">
+
+
+<div class="info-card">
+
+    <h2>
+        Get In <span>Touch</span> ❤️
+    </h2>
+
+    <div class="contact-item">
+
+        <div class="contact-icon">
+            📧
+        </div>
+
+        <div>
+
+            <h4>Email</h4>
+
+            <p>
+                support@festivalwishes.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <div class="contact-icon">
+            💬
+        </div>
+
+        <div>
+
+            <h4>Support</h4>
+
+            <p>
+                Contact us for website-related
+                questions and technical issues.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="contact-item">
+
+        <div class="contact-icon">
+            💡
+        </div>
+
+        <div>
+
+            <h4>Suggestions</h4>
+
+            <p>
+                Have an idea for a new festival
+                feature? Let us know!
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="info-card">
+
+    <h2>
+        Send Us a <span>Message</span> 📩
+    </h2>
+
+    <form method="POST"
+          action="/contact/">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+
+            <label>
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Subject
+            </label>
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="What is this about?"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Message
+            </label>
+
+            <textarea
+                name="message"
+                placeholder="Write your message..."
+                required></textarea>
+
+        </div>
+
+
+        <button type="submit"
+                class="submit-btn">
+
+            📩 Send Message
+
+        </button>
+
+    </form>
+
+</div>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="desi-footer">
+
+
+    <div class="footer-top-decoration">
+
+        🪔 ✨ 🪔 ✨ 🪔 ✨ 🪔
+
+    </div>
+
+
+    <div class="container py-5">
+
+
+        <div class="row gy-4">
+
+
+            <!-- BRAND -->
+
+            <div class="col-lg-4 col-md-6">
+
+
+                <div class="footer-brand">
+
+
+                    <a
+                        href="/"
+                        class="footer-logo">
+
+
+                        <img
+                            src="{% static 'main_logo.png' %}"
+                            alt="Festival Wishes">
+
+                    </a>
+
+
+                    <h4>
+
+                        🪔 Festival Wishes
+
+                    </h4>
+
+
+                    <p>
+
+                        Apno ko bhejiye pyaar bhari
+                        festival wishes ❤️
+
+                    </p>
+
+
+                    <p class="footer-hindi">
+
+                        हर त्योहार की खुशी,
+                        अपनों के साथ बाँटें। ✨
+
+                    </p>
+
+
+                    <div class="made-india">
+
+                        🇮🇳 Made with ❤️ in India
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-lg-2 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🔗 Quick Links
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="/">
+
+                            🏠 Home
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪔 All Festivals
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'festival_calendar' %}">
+
+                            📅 Festival Calendar
+
+                        </a>
+
+                    </li>
+
+
+                    {% if trending_festivals %}
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' trending_festivals.0.slug %}">
+
+                            ✨ Create Wish
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- POPULAR -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🌸 Popular Festivals
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival' %}">
+
+                            🪔 Diwali Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival' %}">
+
+                            🎨 Holi Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival' %}">
+
+                            🐘 Ganesh Chaturthi
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival' %}">
+
+                            🚩 Gudi Padwa
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival' %}">
+
+                            🪢 Raksha Bandhan
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- INFORMATION -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    📜 Information
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="{% url 'about' %}">
+
+                            ❤️ About Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'contact' %}">
+
+                            📩 Contact Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'privacy_policy' %}">
+
+                            🔐 Privacy Policy
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'terms' %}">
+
+                            📃 Terms & Conditions
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'disclaimer' %}">
+
+                            ⚠️ Disclaimer
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="footer-divider">
+
+            <span>🪷</span>
+
+            <span>ॐ</span>
+
+            <span>🪔</span>
+
+            <span>शुभ</span>
+
+            <span>🪔</span>
+
+            <span>ॐ</span>
+
+            <span>🪷</span>
+
+        </div>
+
+
+
+        <!-- SOCIAL -->
+
+        <div class="footer-social text-center">
+
+
+            <h6>
+
+                ❤️ Apno ke saath share karein
+
+            </h6>
+
+
+            <div class="social-buttons">
+
+
+                <a
+                    href="#"
+                    aria-label="Facebook">
+
+                    <i
+                        class="fab fa-facebook-f">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="Instagram">
+
+                    <i
+                        class="fab fa-instagram">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="WhatsApp">
+
+                    <i
+                        class="fab fa-whatsapp">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="X">
+
+                    <i
+                        class="fab fa-x-twitter">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="YouTube">
+
+                    <i
+                        class="fab fa-youtube">
+                    </i>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- COPYRIGHT -->
+
+    <div class="footer-bottom">
+
+
+        <div class="container text-center">
+
+
+            <p class="mb-1">
+
+                © {% now "Y" %}
+
+                <strong>
+                    Festival Wishes
+                </strong>
+
+                — All Rights Reserved.
+
+            </p>
+
+
+            <p class="mb-0 footer-small">
+
+                🪔 शुभकामनाएं बाँटते रहें •
+
+                खुशियाँ फैलाते रहें •
+
+                ❤️ जुड़े रहें
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+<script>
+
+function toggleMenu() {
+
+    document
+        .getElementById("festivalNav")
+        .classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>

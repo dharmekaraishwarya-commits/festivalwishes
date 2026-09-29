@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Festival Wishing{% endblock %}</title>
+
+    <!-- Common CSS -->
+    <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/fontawesome.css' %}" rel="stylesheet">
+    <link href="static/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="static/favicon.webp">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="static/assets/css/main.css">
+    <link rel="stylesheet" href="static/assets/css/owl.css">
+    <link rel="stylesheet" href="static/assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+
+    <!-- Page Specific CSS -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- 🔥 Common Navbar -->
+    <nav class="navbar navbar-dark bg-dark px-3">
+        <a class="navbar-brand text-white" href="/">Festival Wishes 🎉</a>
+    </nav>
+
+    <!-- 🔥 Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Common JS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+    <!-- Page Specific JS -->
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

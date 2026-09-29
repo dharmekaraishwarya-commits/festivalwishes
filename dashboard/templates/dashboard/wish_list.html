@@ -1,0 +1,2096 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wishes | Festival Wishes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+    rel="stylesheet"
+    href="{% static 'dashboard/css/festival-toast.css' %}"
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(255,153,0,.08),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(106,20,52,.08),
+            transparent 25%
+        ),
+        #faf7f2;
+
+    color:#32104f;
+
+}
+
+
+/* =========================================================
+   FESTIVE BACKGROUND
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.035;
+
+    background-image:
+        radial-gradient(
+            circle,
+            #7b2cbf 1px,
+            transparent 1px
+        );
+
+    background-size:22px 22px;
+
+    z-index:-1;
+
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    width:270px;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(255,184,77,.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #210842 0%,
+            #35105f 45%,
+            #4d116b 100%
+        );
+
+    color:white;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    padding:25px 16px;
+
+    overflow-y:auto;
+
+    box-shadow:
+        8px 0 35px rgba(42,8,65,.18);
+
+    z-index:100;
+
+}
+
+
+/* =========================================================
+   SIDEBAR BORDER
+========================================================= */
+
+.sidebar::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-1px;
+
+    top:0;
+    bottom:0;
+
+    width:3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #ffb347,
+            #ff7a00,
+            #ffb347,
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:8px 10px 25px;
+
+    margin-bottom:20px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.12);
+
+}
+
+
+.logo-icon{
+
+    width:50px;
+    height:50px;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff7a00
+        );
+
+    box-shadow:
+        0 8px 22px rgba(255,122,0,.28);
+
+    position:relative;
+
+}
+
+
+.logo-icon::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-4px;
+
+    border-radius:20px;
+
+    border:
+        1px solid rgba(255,190,80,.4);
+
+}
+
+
+.logo h2{
+
+    font-family:'Libre Baskerville',serif;
+
+    font-size:15px;
+
+    line-height:1.3;
+
+    color:#fff;
+
+}
+
+
+.logo small{
+
+    display:block;
+
+    margin-top:3px;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#ffcf83;
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+
+    list-style:none;
+
+    margin-top:15px;
+
+}
+
+
+.menu-label{
+
+    color:#c7a9d9;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    padding:10px 14px;
+
+    margin-top:10px;
+
+}
+
+
+.menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.menu a{
+
+    color:#e9dff0;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-size:13px;
+
+    font-weight:500;
+
+    transition:.25s ease;
+
+    position:relative;
+
+}
+
+
+.menu a span{
+
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.07);
+
+    font-size:17px;
+
+    transition:.25s ease;
+
+}
+
+
+.menu a:hover{
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    transform:translateX(3px);
+
+}
+
+
+.menu a:hover span{
+
+    background:
+        rgba(255,179,71,.18);
+
+}
+
+
+/* =========================================================
+   ACTIVE MENU
+========================================================= */
+
+.menu .active{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,151,31,.20),
+            rgba(255,255,255,.08)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,185,82,.16);
+
+}
+
+
+.menu .active::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:10px;
+    bottom:10px;
+
+    width:4px;
+
+    border-radius:
+        0 5px 5px 0;
+
+    background:#ffb347;
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout{
+
+    position:absolute;
+
+    bottom:22px;
+
+    left:16px;
+    right:16px;
+
+    border-top:
+        1px solid rgba(255,255,255,.1);
+
+    padding-top:15px;
+
+}
+
+
+.logout a:hover{
+
+    background:
+        rgba(234,47,20,.18);
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    padding:
+        30px 35px 50px;
+
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.topbar h1{
+
+    font-family:'Libre Baskerville',serif;
+
+    font-size:27px;
+
+    color:#32104f;
+
+    margin-bottom:5px;
+
+}
+
+
+.topbar h1 span{
+
+    color:#e87508;
+
+}
+
+
+.topbar p{
+
+    color:#8a7892;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:white;
+
+    padding:
+        8px 15px 8px 9px;
+
+    border-radius:30px;
+
+    box-shadow:
+        0 8px 25px rgba(65,25,90,.07);
+
+    border:
+        1px solid #eee5f1;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#4b2164;
+
+}
+
+
+.profile-icon{
+
+    width:35px;
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #f36b21
+        );
+
+    font-size:16px;
+
+}
+
+
+/* =========================================================
+   FESTIVE LINE
+========================================================= */
+
+.festive-line{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    margin-top:12px;
+
+}
+
+
+.festive-line::before,
+.festive-line::after{
+
+    content:"";
+
+    height:1px;
+
+    width:45px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #e8a13b
+        );
+
+}
+
+
+.festive-line::after{
+
+    background:
+        linear-gradient(
+            90deg,
+            #e8a13b,
+            transparent
+        );
+
+}
+
+
+.festive-line span{
+
+    color:#d58b25;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    border:
+        1px solid #eee4f1;
+
+    box-shadow:
+        0 10px 35px rgba(56,19,77,.055);
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:22px;
+
+}
+
+
+.search-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff9d2e,
+            #6a1434
+        );
+
+}
+
+
+.search-title{
+
+    font-family:'Libre Baskerville',serif;
+
+    color:#32104f;
+
+    font-size:17px;
+
+    margin-bottom:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+.search-form{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.search-input-wrapper{
+
+    position:relative;
+
+    flex:1;
+
+}
+
+
+.search-icon{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:14px;
+
+    opacity:.55;
+
+}
+
+
+.search-input{
+
+    width:100%;
+
+    padding:
+        13px 15px 13px 42px;
+
+    border:
+        1px solid #eadfea;
+
+    border-radius:12px;
+
+    background:#fffaf5;
+
+    color:#32104f;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:12px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+
+.search-input:focus{
+
+    border-color:#d58b25;
+
+    background:white;
+
+    box-shadow:
+        0 0 0 4px rgba(213,139,37,.08);
+
+}
+
+
+.search-input::placeholder{
+
+    color:#a18fa7;
+
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+.search-btn{
+
+    border:0;
+
+    padding:
+        13px 22px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #4d116b
+        );
+
+    color:white;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 7px 18px rgba(106,20,52,.16);
+
+    transition:.25s;
+
+}
+
+
+.search-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 23px rgba(106,20,52,.24);
+
+}
+
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:8px;
+
+    border:
+        1px solid #eee4f1;
+
+    box-shadow:
+        0 10px 35px rgba(56,19,77,.055);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff9d2e,
+            #6a1434
+        );
+
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+table{
+
+    width:100%;
+
+    min-width:760px;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+}
+
+
+thead th{
+
+    text-align:left;
+
+    padding:15px 14px;
+
+    background:#fffaf5;
+
+    color:#7a5b7e;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    border-bottom:
+        1px solid #eadfea;
+
+}
+
+
+thead th:first-child{
+
+    border-radius:
+        14px 0 0 0;
+
+}
+
+
+thead th:last-child{
+
+    border-radius:
+        0 14px 0 0;
+
+}
+
+
+tbody td{
+
+    padding:15px 14px;
+
+    border-bottom:
+        1px dashed #eadfea;
+
+    font-size:12px;
+
+    color:#8a7892;
+
+    vertical-align:middle;
+
+}
+
+
+tbody tr{
+
+    transition:.2s ease;
+
+}
+
+
+tbody tr:hover{
+
+    background:#fffaf5;
+
+}
+
+
+tbody tr:last-child td{
+
+    border-bottom:0;
+
+}
+
+
+/* =========================================================
+   SENDER
+========================================================= */
+
+.sender{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.sender-avatar{
+
+    width:38px;
+    height:38px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5e7,
+            #fff0d5
+        );
+
+    border:
+        1px solid #f6dfbd;
+
+    font-size:17px;
+
+    flex-shrink:0;
+
+}
+
+
+.sender-name{
+
+    color:#48205f;
+
+    font-weight:600;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   RECEIVER
+========================================================= */
+
+.receiver-name{
+
+    color:#65536e;
+
+    font-size:12px;
+
+    font-weight:500;
+
+}
+
+
+/* =========================================================
+   FESTIVAL BADGE
+========================================================= */
+
+.festival-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+        6px 10px;
+
+    border-radius:20px;
+
+    background:#fff3df;
+
+    color:#d96b00;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    border:
+        1px solid #f8dfb9;
+
+}
+
+
+.festival-dot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#ff8a00;
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date{
+
+    font-size:10px;
+
+    color:#96849b;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+}
+
+
+.action-btn{
+
+    border:0;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    padding:
+        8px 11px;
+
+    border-radius:10px;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.view{
+
+    background:#f3eafa;
+
+    color:#6a1434;
+
+    border:
+        1px solid #ead8ed;
+
+}
+
+
+.view:hover{
+
+    background:#6a1434;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+
+.delete{
+
+    background:#fff0eb;
+
+    color:#d9472b;
+
+    border:
+        1px solid #f7d9d0;
+
+}
+
+
+.delete:hover{
+
+    background:#ea2f14;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+
+.actions form{
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:
+        50px 20px;
+
+}
+
+
+.empty-icon{
+
+    width:60px;
+    height:60px;
+
+    border-radius:18px;
+
+    margin:
+        0 auto 12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5e7,
+            #fff0d5
+        );
+
+    border:
+        1px solid #f6dfbd;
+
+    font-size:28px;
+
+}
+
+
+.empty-state h3{
+
+    font-family:'Libre Baskerville',serif;
+
+    color:#32104f;
+
+    font-size:17px;
+
+    margin-bottom:6px;
+
+}
+
+
+.empty-state p{
+
+    color:#a18fa7;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   CARD ORNAMENT
+========================================================= */
+
+.card-ornament{
+
+    text-align:center;
+
+    margin:
+        14px 0 7px;
+
+    color:#d99a3b;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+
+    opacity:.7;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer-decoration{
+
+    text-align:center;
+
+    margin-top:22px;
+
+    color:#a18fa7;
+
+    font-family:'Kalam',cursive;
+
+    font-size:13px;
+
+}
+
+
+.footer-decoration strong{
+
+    color:#d58b25;
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.table-wrapper::-webkit-scrollbar{
+
+    height:6px;
+
+}
+
+
+.table-wrapper::-webkit-scrollbar-track{
+
+    background:#f6f0f5;
+
+}
+
+
+.table-wrapper::-webkit-scrollbar-thumb{
+
+    background:#d8c4d7;
+
+    border-radius:10px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 1100
+========================================================= */
+
+@media(max-width:1100px){
+
+    .main{
+
+        padding:
+            25px 25px 45px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 800
+========================================================= */
+
+@media(max-width:800px){
+
+    .sidebar{
+
+        width:220px;
+
+    }
+
+    .main{
+
+        margin-left:220px;
+
+        width:
+            calc(100% - 220px);
+
+        padding:
+            22px;
+
+    }
+
+    .logo h2{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .layout{
+
+        display:block;
+
+    }
+
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+        min-height:auto;
+
+        padding:15px;
+
+    }
+
+
+    .sidebar::after{
+
+        display:none;
+
+    }
+
+
+    .logo{
+
+        margin-bottom:8px;
+
+        padding-bottom:15px;
+
+    }
+
+
+    .menu{
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap:5px;
+
+    }
+
+
+    .menu-label{
+
+        display:none;
+
+    }
+
+
+    .menu li{
+
+        margin:0;
+
+    }
+
+
+    .menu a{
+
+        flex-direction:column;
+
+        gap:5px;
+
+        padding:9px 5px;
+
+        text-align:center;
+
+        font-size:10px;
+
+    }
+
+
+    .menu a span{
+
+        width:30px;
+        height:30px;
+
+        font-size:15px;
+
+    }
+
+
+    .logout{
+
+        position:relative;
+
+        left:auto;
+        right:auto;
+        bottom:auto;
+
+        border-top:0;
+
+        padding-top:0;
+
+    }
+
+
+    .main{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:
+            20px 14px 40px;
+
+    }
+
+
+    .topbar{
+
+        margin-bottom:22px;
+
+    }
+
+
+    .topbar h1{
+
+        font-size:21px;
+
+    }
+
+
+    .profile{
+
+        display:none;
+
+    }
+
+
+    .search-card{
+
+        padding:18px;
+
+        border-radius:18px;
+
+    }
+
+
+    .search-form{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+
+    .search-btn{
+
+        width:100%;
+
+    }
+
+
+    .card{
+
+        padding:8px;
+
+        border-radius:18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:390px){
+
+    .menu a{
+
+        font-size:9px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+    <div class="logo-icon">
+        🪔
+    </div>
+
+    <div>
+
+        <h2>
+            Festival Wishes
+        </h2>
+
+        <small>
+            ADMIN DASHBOARD
+        </small>
+
+    </div>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li class="menu-label">
+    Management
+</li>
+
+
+<li>
+
+<a href="{% url 'dashboard:home' %}">
+
+    <span>📊</span>
+
+    Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="{% url 'dashboard:festival_list' %}">
+
+    <span>🎉</span>
+
+    Festivals
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="{% url 'dashboard:wish_list' %}"
+   class="active">
+
+    <span>💌</span>
+
+    Wishes
+
+</a>
+
+</li>
+
+
+<li class="menu-label">
+    Account
+</li>
+
+
+<li class="logout">
+
+<a href="{% url 'dashboard:logout' %}">
+
+    <span>🚪</span>
+
+    Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
+<div class="topbar">
+
+
+<div>
+
+<h1>
+    Wishes <span>ॐ</span>
+</h1>
+
+<p>
+    View and manage wishes created by your visitors ✨
+</p>
+
+
+<div class="festive-line">
+
+    <span>✦</span>
+
+    <span>शुभ • मंगल • उत्सव</span>
+
+    <span>✦</span>
+
+</div>
+
+</div>
+
+
+
+<a href="{% url 'dashboard:admin_profile' %}" class="profile">
+
+    <div class="profile-icon">
+        👤
+    </div>
+
+    <div class="profile-info">
+        <strong>{{ username }}</strong>
+        <small>Admin</small>
+    </div>
+
+</a>
+
+</div>
+
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-card">
+
+
+<div class="search-title">
+
+    🔎
+
+    Search Wishes
+
+</div>
+
+
+<form method="GET"
+      class="search-form">
+
+
+<div class="search-input-wrapper">
+
+<span class="search-icon">
+    🔍
+</span>
+
+
+<input
+    type="text"
+    name="search"
+    value="{{ search }}"
+    placeholder="Search sender, receiver or festival..."
+    class="search-input"
+>
+
+
+</div>
+
+
+<button
+    class="search-btn"
+    type="submit"
+>
+
+    Search
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     WISHES
+===================================================== -->
+
+<div class="card">
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+<th>
+    Sender
+</th>
+
+<th>
+    Receiver
+</th>
+
+<th>
+    Festival
+</th>
+
+<th>
+    Created
+</th>
+
+<th>
+    Actions
+</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody>
+
+
+{% for wish in wishes %}
+
+
+<tr>
+
+
+<!-- SENDER -->
+
+<td>
+
+
+<div class="sender">
+
+
+<div class="sender-avatar">
+
+    👤
+
+</div>
+
+
+<div class="sender-name">
+
+    {{ wish.sender_name }}
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+
+<!-- RECEIVER -->
+
+<td>
+
+<span class="receiver-name">
+
+    {{ wish.receiver_name|default:"—" }}
+
+</span>
+
+</td>
+
+
+
+<!-- FESTIVAL -->
+
+<td>
+
+
+<span class="festival-badge">
+
+<span class="festival-dot"></span>
+
+{{ wish.festival.name|default:"Unknown" }}
+
+</span>
+
+
+</td>
+
+
+
+<!-- CREATED -->
+
+<td>
+
+<span class="date">
+
+    🕐
+
+    {{ wish.created_at|date:"d M Y H:i" }}
+
+</span>
+
+</td>
+
+
+
+<!-- ACTIONS -->
+
+<td>
+
+
+<div class="actions">
+
+
+<a
+    href="{% url 'dashboard:wish_detail' wish.id %}"
+    class="action-btn view"
+>
+
+    👁 View
+
+</a>
+
+
+<form
+    method="POST"
+    action="{% url 'dashboard:wish_delete' wish.id %}"
+    onsubmit="return confirm('Delete this wish?')"
+>
+
+
+{% csrf_token %}
+
+
+<button
+    class="action-btn delete"
+    type="submit"
+>
+
+    🗑 Delete
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+{% empty %}
+
+
+<tr>
+
+<td colspan="5">
+
+
+<div class="empty-state">
+
+
+<div class="empty-icon">
+
+    💌
+
+</div>
+
+
+<h3>
+
+    No Wishes Found
+
+</h3>
+
+
+<p>
+
+    There are no wishes matching your search.
+
+</p>
+
+
+</div>
+
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+<div class="card-ornament">
+    • • ✦ • •
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer-decoration">
+
+    🪔
+
+    <strong>Festival Wishes</strong>
+
+    &nbsp;•&nbsp;
+
+    खुशियाँ बाँटते रहिए
+
+    &nbsp;•&nbsp;
+
+    🪷
+
+</div>
+
+
+</main>
+
+
+</div>
+
+<script
+    src="{% static 'dashboard/js/festival-toast.js' %}"
+></script>
+
+
+</body>
+
+</html>

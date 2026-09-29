@@ -1,0 +1,1091 @@
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    color: #32104f;
+
+    padding: 8px 12px;
+    border-radius: 14px;
+
+    transition: .25s ease;
+}
+
+.profile:hover {
+    background: rgba(106, 20, 52, 0.06);
+    transform: translateY(-1px);
+}
+
+.profile-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff8a00
+        );
+
+    font-size: 21px;
+
+    box-shadow:
+        0 6px 16px rgba(255, 138, 0, .20);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.profile-info strong {
+    font-size: 14px;
+    color: #32104f;
+}
+
+.profile-info small {
+    margin-top: 3px;
+    font-size: 11px;
+    color: #8a7892;
+}
+
+
+
+/* =========================================================
+   BULK ACTION BAR
+========================================================= */
+
+.bulk-bar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:15px 18px;
+
+    margin-bottom:18px;
+
+    background:white;
+
+    border:
+
+        1px solid #eee4f1;
+
+    border-radius:18px;
+
+    box-shadow:
+
+        0 8px 30px
+        rgba(56,19,77,.05);
+
+}
+
+
+.bulk-left{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+.bulk-count{
+
+    font-size:11px;
+
+    color:#745d7e;
+
+    font-weight:600;
+
+}
+
+
+.bulk-count span{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:28px;
+
+    height:28px;
+
+    margin-right:7px;
+
+    border-radius:50%;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #ff8a00
+        );
+
+}
+
+
+.bulk-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.bulk-actions select{
+
+    height:40px;
+
+    padding:0 12px;
+
+    border:
+
+        1px solid #e5ddea;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:10px;
+
+    color:#5d4a67;
+
+    background:#fffdfb;
+
+}
+
+
+.btn-bulk{
+
+    height:40px;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #ff8a00
+        );
+
+}
+
+
+/* CHECKBOX */
+
+.checkbox-column{
+
+    width:45px;
+
+    text-align:center;
+
+}
+
+
+.checkbox-column input{
+
+    width:17px;
+
+    height:17px;
+
+    cursor:pointer;
+
+    accent-color:#6a1434;
+
+}
+
+
+/* WISH COUNT */
+
+.wishes-count{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#fff4f8;
+
+    color:#a23d66;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+
+/* =====================================================
+   FESTIVAL TOAST
+===================================================== */
+
+.festival-toast {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+
+    min-width: 320px;
+    max-width: 420px;
+
+    padding: 16px 18px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px rgba(50, 16, 79, 0.18),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    z-index: 99999;
+
+    animation:
+        festivalToastIn 0.4s ease forwards;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+}
+
+
+/* ICON */
+
+.festival-toast-icon {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+
+/* CONTENT */
+
+.festival-toast-content {
+    flex: 1;
+}
+
+.festival-toast-title {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #32104f;
+
+    margin-bottom: 3px;
+}
+
+.festival-toast-message {
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color: #76677e;
+}
+
+
+/* CLOSE */
+
+.festival-toast-close {
+
+    border: none;
+
+    background: transparent;
+
+    color: #a28ea7;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    padding: 2px 5px;
+
+    transition: 0.2s;
+}
+
+.festival-toast-close:hover {
+    color: #6a1434;
+}
+
+
+/* SUCCESS */
+
+.festival-toast.success
+.festival-toast-icon {
+
+    background: #fff1dc;
+    color: #ff8a00;
+}
+
+
+/* ERROR */
+
+.festival-toast.error
+.festival-toast-icon {
+
+    background: #fde8ed;
+    color: #b4234d;
+}
+
+
+/* WARNING */
+
+.festival-toast.warning
+.festival-toast-icon {
+
+    background: #fff7d6;
+    color: #b77a00;
+}
+
+
+/* INFO */
+
+.festival-toast.info
+.festival-toast-icon {
+
+    background: #eee6f7;
+    color: #6a1434;
+}
+
+
+/* PROGRESS */
+
+.festival-toast-progress {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    height: 3px;
+
+    width: 100%;
+
+    border-radius: 0 0 16px 16px;
+
+    transform-origin: left;
+
+    animation: festivalToastProgress
+        var(--toast-duration)
+        linear forwards;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes festivalToastIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(50px)
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+
+@keyframes festivalToastOut {
+
+    from {
+        opacity: 1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translateX(50px)
+            scale(0.95);
+    }
+}
+
+
+@keyframes festivalToastProgress {
+
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 576px) {
+
+    .festival-toast {
+
+        top: 15px;
+        left: 15px;
+        right: 15px;
+
+        min-width: auto;
+        max-width: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   TIME STATISTICS
+========================================================= */
+
+.time-statistics{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================================================
+   TIME CARD
+========================================================= */
+
+.time-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    border:
+        1px solid #eee4f1;
+
+    box-shadow:
+        0 10px 35px rgba(56,19,77,.06);
+
+    transition:
+        .3s ease;
+}
+
+
+.time-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 16px 40px rgba(56,19,77,.11);
+}
+
+
+/* TOP DECORATION */
+
+.time-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff8a00
+        );
+}
+
+
+/* GLOW */
+
+.time-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    right:-55px;
+    top:-55px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,179,71,.17),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.time-card-top{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+}
+
+
+/* ICON */
+
+.time-icon{
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5e7,
+            #fff0d5
+        );
+
+    border:
+        1px solid #f6dfbd;
+
+    font-size:20px;
+}
+
+
+/* LABEL */
+
+.time-label{
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#fff5e7;
+
+    color:#d96b00;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    border:
+        1px solid #f4dfbd;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.time-card h2{
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:30px;
+
+    color:#32104f;
+
+    margin-bottom:4px;
+}
+
+
+.time-card p{
+
+    font-size:11px;
+
+    color:#8b7a91;
+
+    font-weight:500;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.time-footer{
+
+    margin-top:18px;
+
+    padding-top:12px;
+
+    border-top:
+        1px dashed #eadfea;
+
+    color:#9a849f;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   DIFFERENT CARD ACCENTS
+========================================================= */
+
+.today-card::before{
+
+    background:
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff8a00
+        );
+}
+
+
+.week-card::before{
+
+    background:
+        linear-gradient(
+            90deg,
+            #32104f,
+            #9b4dcc
+        );
+}
+
+
+.month-card::before{
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b3a14,
+            #ffb347
+        );
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .time-statistics{
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .time-statistics{
+
+        grid-template-columns:1fr;
+
+        gap:12px;
+
+    }
+
+    .time-card{
+
+        padding:18px;
+
+        border-radius:18px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   FESTIVAL STATUS
+========================================================= */
+
+.status-active{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#ecfaf1;
+
+    border:1px solid #d4f0df;
+
+    color:#21874d;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+.status-active::before{
+
+    content:"";
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:#28a85c;
+
+    box-shadow:
+        0 0 0 3px rgba(40,168,92,.10);
+
+}
+
+
+.status-inactive{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#f4f2f4;
+
+    border:1px solid #e5e0e6;
+
+    color:#8b818e;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+.status-inactive::before{
+
+    content:"";
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:#999;
+
+}
+
+
+/* =========================================================
+   PAST FESTIVAL
+========================================================= */
+
+.status-past{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#fff5e9;
+
+    border:1px solid #f3dfc2;
+
+    color:#b86a17;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   TODAY
+========================================================= */
+
+.status-today{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#fff0f5;
+
+    border:1px solid #f4d4df;
+
+    color:#a42c58;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   PREVIEW BUTTON
+========================================================= */
+
+.btn-preview{
+
+    color:#6a1434;
+
+    background:#fff5e7;
+
+    border:1px solid #f3dfc1;
+
+}
+
+
+.btn-preview:hover{
+
+    background:#ffedd2;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   ACTIVATE
+========================================================= */
+
+.btn-activate{
+
+    color:#168247;
+
+    background:#ecfaf1;
+
+    border:1px solid #d4efdf;
+
+}
+
+
+.btn-activate:hover{
+
+    background:#ddf5e7;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   DEACTIVATE
+========================================================= */
+
+.btn-deactivate{
+
+    color:#a24b5d;
+
+    background:#fff1f4;
+
+    border:1px solid #f3d7df;
+
+}
+
+
+.btn-deactivate:hover{
+
+    background:#ffe5eb;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   PAST ROW
+========================================================= */
+
+.past-row{
+
+    background:#fcfafc;
+
+}
+
+
+.past-row .festival-info strong{
+
+    color:#766b79;
+
+}
+
+
+
+.status-active{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    background:#edfff3;
+
+    color:#248447;
+
+    border:1px solid #ccefd8;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+.status-inactive{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    background:#f4f4f5;
+
+    color:#85858b;
+
+    border:1px solid #e4e4e6;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+.status-expired{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    background:#fff0f0;
+
+    color:#c63131;
+
+    border:1px solid #f4cccc;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}

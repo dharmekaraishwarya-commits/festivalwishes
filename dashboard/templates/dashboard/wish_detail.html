@@ -1,0 +1,2086 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+
+<meta charset="UTF-8">
+
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+
+<title>
+Wish Link Management | Festival Wishes
+</title>
+
+
+<!-- =====================================================
+     GOOGLE FONTS
+===================================================== -->
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+>
+
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+>
+
+
+<link
+href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
+
+
+<style>
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+body{
+
+    font-family:
+    'Poppins',
+    sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(250,129,18,.08),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(59,21,209,.08),
+            transparent 25%
+        ),
+
+        #faf7f2;
+
+    color:#32104f;
+
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    width:270px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #210842,
+            #35105f,
+            #4d116b
+        );
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    padding:25px 16px;
+
+    color:white;
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:
+    8px
+    10px
+    25px;
+
+    margin-bottom:20px;
+
+    border-bottom:
+
+    1px solid
+    rgba(255,255,255,.12);
+
+}
+
+
+.logo-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff7a00
+        );
+
+}
+
+
+.logo h2{
+
+    font-family:
+    'Libre Baskerville',
+    serif;
+
+    font-size:15px;
+
+}
+
+
+.logo small{
+
+    display:block;
+
+    margin-top:3px;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#ffcf83;
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu{
+
+    list-style:none;
+
+}
+
+
+.menu-label{
+
+    color:#c7a9d9;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    padding:10px 14px;
+
+    margin-top:10px;
+
+}
+
+
+.menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.menu a{
+
+    color:#e9dff0;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-size:13px;
+
+}
+
+
+.menu a span{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+
+        rgba(255,255,255,.07);
+
+}
+
+
+.menu a:hover{
+
+    background:
+
+        rgba(255,255,255,.10);
+
+}
+
+
+.menu .active{
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,151,31,.25),
+            rgba(255,255,255,.08)
+        );
+
+}
+
+
+.logout{
+
+    margin-top:20px;
+
+    border-top:
+
+        1px solid
+        rgba(255,255,255,.1);
+
+    padding-top:15px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+    margin-left:270px;
+
+    width:
+
+    calc(
+        100% - 270px
+    );
+
+    padding:
+    30px
+    35px
+    50px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.header h1{
+
+    font-family:
+    'Libre Baskerville',
+    serif;
+
+    font-size:27px;
+
+    color:#32104f;
+
+}
+
+
+.header p{
+
+    margin-top:6px;
+
+    font-size:12px;
+
+    color:#8a7892;
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+        4,
+        1fr
+    );
+
+    gap:16px;
+
+    margin-bottom:22px;
+
+}
+
+
+.stat-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    border:
+
+    1px solid
+    #eee4f1;
+
+}
+
+
+.stat-icon{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+
+.stat-number{
+
+    display:block;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#32104f;
+
+}
+
+
+.stat-label{
+
+    font-size:10px;
+
+    color:#9a899f;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    margin-bottom:18px;
+
+    border:
+
+        1px solid
+        #eee4f1;
+
+}
+
+
+.search form{
+
+    display:grid;
+
+    grid-template-columns:
+
+        2fr
+        1fr
+        1fr
+        1fr
+        auto
+        auto;
+
+    gap:10px;
+
+}
+
+
+.search input,
+.search select{
+
+    width:100%;
+
+    height:46px;
+
+    padding:0 13px;
+
+    border:
+
+        1px solid
+        #e5ddea;
+
+    border-radius:12px;
+
+    font-family:
+    'Poppins',
+    sans-serif;
+
+    font-size:10px;
+
+}
+
+
+.btn{
+
+    border:0;
+
+    padding:
+    10px
+    15px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-family:
+    'Poppins',
+    sans-serif;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+
+.btn-search{
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #4d116b,
+            #6a1434
+        );
+
+}
+
+
+.btn-reset{
+
+    color:#6a1434;
+
+    background:#f5edf2;
+
+}
+
+
+/* =====================================================
+   TABLE CARD
+===================================================== */
+
+.card{
+
+    background:white;
+
+    padding:8px;
+
+    border-radius:22px;
+
+    border:
+
+        1px solid
+        #eee4f1;
+
+    overflow:hidden;
+
+}
+
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+
+table{
+
+    width:100%;
+
+    min-width:1450px;
+
+    border-collapse:collapse;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+thead th{
+
+    padding:
+    17px
+    14px;
+
+    text-align:left;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #fffaf4,
+            #fdf9ff
+        );
+
+    color:#745d7e;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+tbody td{
+
+    padding:
+    15px
+    14px;
+
+    border-bottom:
+
+        1px dashed
+        #eadfea;
+
+    font-size:11px;
+
+    color:#5d4a67;
+
+}
+
+
+tbody tr:hover{
+
+    background:#fffaf5;
+
+}
+
+
+/* =====================================================
+   TOKEN
+===================================================== */
+
+.token{
+
+    max-width:160px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    padding:
+
+        7px
+        10px;
+
+    border-radius:8px;
+
+    background:#f3eff9;
+
+    color:#5425a9;
+
+    font-size:9px;
+
+    font-family:monospace;
+
+}
+
+
+/* =====================================================
+   FESTIVAL
+===================================================== */
+
+.festival{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+
+.festival-icon{
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fff1df;
+
+    font-size:17px;
+
+}
+
+
+.festival-name{
+
+    font-weight:700;
+
+    color:#432052;
+
+}
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+.user-name{
+
+    font-weight:600;
+
+    color:#432052;
+
+}
+
+
+.empty-name{
+
+    color:#aaa;
+
+}
+
+
+/* =====================================================
+   VIEWS
+===================================================== */
+
+.views{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+
+        6px
+        10px;
+
+    border-radius:20px;
+
+    background:#f8f3fb;
+
+    color:#704d7e;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-active{
+
+    display:inline-flex;
+
+    padding:
+
+        6px
+        10px;
+
+    border-radius:20px;
+
+    background:#edfff3;
+
+    color:#248447;
+
+    border:
+
+        1px solid
+        #ccefd8;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+.status-inactive{
+
+    display:inline-flex;
+
+    padding:
+
+        6px
+        10px;
+
+    border-radius:20px;
+
+    background:#f4f4f5;
+
+    color:#85858b;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+.status-expired{
+
+    display:inline-flex;
+
+    padding:
+
+        6px
+        10px;
+
+    border-radius:20px;
+
+    background:#fff0f0;
+
+    color:#c63131;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+
+.btn-open{
+
+    color:#147a91;
+
+    background:#e8f9fc;
+
+}
+
+
+.btn-copy{
+
+    color:#5425a9;
+
+    background:#eee9ff;
+
+}
+
+
+.btn-status{
+
+    color:#b06b00;
+
+    background:#fff3d9;
+
+}
+
+
+.btn-delete{
+
+    color:#c63131;
+
+    background:#fff0f0;
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.table-footer{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:center;
+
+    padding:
+
+        16px
+        18px;
+
+}
+
+
+.pagination{
+
+    display:flex;
+
+    gap:5px;
+
+}
+
+
+.pagination a,
+.pagination span{
+
+    min-width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+}
+
+
+.pagination a{
+
+    background:#f5eff9;
+
+    color:#603c72;
+
+}
+
+
+.pagination .current{
+
+    background:#6a1434;
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+}
+
+
+.empty-icon{
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(
+max-width:1100px
+){
+
+    .sidebar{
+
+        width:230px;
+
+    }
+
+
+    .main{
+
+        margin-left:230px;
+
+        width:
+
+        calc(
+            100% - 230px
+        );
+
+        padding:25px;
+
+    }
+
+
+    .stats{
+
+        grid-template-columns:
+
+        repeat(
+            2,
+            1fr
+        );
+
+    }
+
+}
+
+
+@media(
+max-width:700px
+){
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+    }
+
+
+    .main{
+
+        margin-left:0;
+
+        width:100%;
+
+        padding:18px 13px;
+
+    }
+
+
+    .layout{
+
+        display:block;
+
+    }
+
+
+    .stats{
+
+        grid-template-columns:
+
+        1fr
+        1fr;
+
+    }
+
+
+    .search form{
+
+        display:block;
+
+    }
+
+
+    .search input,
+    .search select,
+    .search .btn{
+
+        margin-bottom:10px;
+
+        width:100%;
+
+    }
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+
+<div class="logo-icon">
+
+🪔
+
+</div>
+
+
+<div>
+
+<h2>
+Festival Wishes
+</h2>
+
+
+<small>
+ADMIN DASHBOARD
+</small>
+
+</div>
+
+
+</div>
+
+
+<ul class="menu">
+
+
+<li class="menu-label">
+
+Management
+
+</li>
+
+
+<li>
+
+<a href="{% url 'dashboard:home' %}">
+
+<span>
+📊
+</span>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="{% url 'dashboard:festival_list' %}">
+
+<span>
+🎉
+</span>
+
+Festivals
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+href="{% url 'dashboard:wish_list' %}"
+class="active"
+>
+
+<span>
+💌
+</span>
+
+Wish Links
+
+</a>
+
+</li>
+
+
+<li class="menu-label">
+
+Account
+
+</li>
+
+
+<li class="logout">
+
+<a href="{% url 'dashboard:logout' %}">
+
+<span>
+🚪
+</span>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <div class="header">
+
+        <div>
+            <h1>
+                💌 Wish Link Management
+            </h1>
+
+            <p>
+                Manage all generated Festival Wishes links
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATISTICS
+    ===================================================== -->
+
+    <div class="stats">
+
+        <!-- TOTAL LINKS -->
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💌
+            </div>
+
+            <span class="stat-number">
+                {{ total_wishes|default:"0" }}
+            </span>
+
+            <span class="stat-label">
+                All Generated Links
+            </span>
+
+        </div>
+
+
+        <!-- ACTIVE LINKS -->
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🟢
+            </div>
+
+            <span class="stat-number">
+                {{ active_wishes|default:"0" }}
+            </span>
+
+            <span class="stat-label">
+                Active Links
+            </span>
+
+        </div>
+
+
+        <!-- EXPIRED LINKS -->
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <span class="stat-number">
+                {{ expired_wishes|default:"0" }}
+            </span>
+
+            <span class="stat-label">
+                Expired Links
+            </span>
+
+        </div>
+
+
+        <!-- TOTAL VIEWS -->
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👁
+            </div>
+
+            <span class="stat-number">
+                {{ total_views|default:"0" }}
+            </span>
+
+            <span class="stat-label">
+                Total Link Views
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SEARCH / FILTER
+    ===================================================== -->
+
+    <div class="search">
+
+        <form method="GET">
+
+            <!-- SEARCH -->
+            <input
+                type="text"
+                name="search"
+                placeholder="🔍 Search token, sender, receiver or festival..."
+                value="{{ search|default:'' }}"
+            >
+
+
+            <!-- FESTIVAL -->
+            <select name="festival">
+
+                <option value="">
+                    🎉 All Festivals
+                </option>
+
+                {% for festival in festivals %}
+
+                    <option
+                        value="{{ festival.id }}"
+                        {% if selected_festival == festival.id|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ festival.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <!-- STATUS -->
+            <select name="status">
+
+                <option value="">
+                    📊 All Status
+                </option>
+
+                <option
+                    value="active"
+                    {% if status == "active" %}
+                        selected
+                    {% endif %}
+                >
+                    🟢 Active
+                </option>
+
+                <option
+                    value="inactive"
+                    {% if status == "inactive" %}
+                        selected
+                    {% endif %}
+                >
+                    ⚪ Inactive
+                </option>
+
+                <option
+                    value="expired"
+                    {% if status == "expired" %}
+                        selected
+                    {% endif %}
+                >
+                    ⏳ Expired
+                </option>
+
+            </select>
+
+
+            <!-- SORT -->
+            <select name="sort">
+
+                <option
+                    value="newest"
+                    {% if sort == "newest" %}
+                        selected
+                    {% endif %}
+                >
+                    🆕 Newest
+                </option>
+
+                <option
+                    value="oldest"
+                    {% if sort == "oldest" %}
+                        selected
+                    {% endif %}
+                >
+                    📅 Oldest
+                </option>
+
+                <option
+                    value="views"
+                    {% if sort == "views" %}
+                        selected
+                    {% endif %}
+                >
+                    👁 Most Views
+                </option>
+
+                <option
+                    value="sender"
+                    {% if sort == "sender" %}
+                        selected
+                    {% endif %}
+                >
+                    👤 Sender A-Z
+                </option>
+
+                <option
+                    value="festival"
+                    {% if sort == "festival" %}
+                        selected
+                    {% endif %}
+                >
+                    🎉 Festival A-Z
+                </option>
+
+            </select>
+
+
+            <!-- APPLY -->
+            <button
+                type="submit"
+                class="btn btn-search"
+            >
+                Apply
+            </button>
+
+
+            <!-- RESET -->
+            <a
+                href="{% url 'dashboard:wish_list' %}"
+                class="btn btn-reset"
+            >
+                Reset
+            </a>
+
+        </form>
+
+    </div>
+
+
+    <!-- =====================================================
+         TABLE
+    ===================================================== -->
+
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Wish Token
+                        </th>
+
+                        <th>
+                            Festival
+                        </th>
+
+                        <th>
+                            Sender
+                        </th>
+
+                        <th>
+                            Receiver
+                        </th>
+
+                        <th>
+                            Creation Date
+                        </th>
+
+                        <th>
+                            Link Views
+                        </th>
+
+                        <th>
+                            Link Status
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for wish in wishes %}
+
+                    <tr>
+
+                        <!-- =================================================
+                             TOKEN
+                        ================================================= -->
+
+                        <td>
+
+                            <div
+                                class="token"
+                                title="{{ wish.wish_token }}"
+                            >
+
+                                {{ wish.wish_token|stringformat:"s"|slice:":12" }}...
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- =================================================
+                             FESTIVAL
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.festival %}
+
+                                <div class="festival">
+
+                                    <div class="festival-icon">
+                                        🎉
+                                    </div>
+
+                                    <div class="festival-name">
+                                        {{ wish.festival.name }}
+                                    </div>
+
+                                </div>
+
+                            {% else %}
+
+                                <span class="empty-name">
+                                    Unknown Festival
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- =================================================
+                             SENDER
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.sender_name %}
+
+                                <span class="user-name">
+                                    {{ wish.sender_name }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="empty-name">
+                                    —
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- =================================================
+                             RECEIVER
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.receiver_name %}
+
+                                <span class="user-name">
+                                    {{ wish.receiver_name }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="empty-name">
+                                    —
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- =================================================
+                             CREATED
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.created_at %}
+
+                                📅
+                                {{ wish.created_at|date:"d M Y" }}
+
+                                <br>
+
+                                <small>
+                                    {{ wish.created_at|date:"H:i" }}
+                                </small>
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- =================================================
+                             VIEWS
+                        ================================================= -->
+
+                        <td>
+
+                            <span class="views">
+
+                                👁
+
+                                {{ wish.views|default:"0" }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- =================================================
+                             STATUS
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.expires_at %}
+
+                                {% if wish.expires_at < now %}
+
+                                    <span class="status-expired">
+                                        ⏳ Expired
+                                    </span>
+
+                                {% elif not wish.is_active %}
+
+                                    <span class="status-inactive">
+                                        ⚪ Inactive
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status-active">
+                                        🟢 Active
+                                    </span>
+
+                                {% endif %}
+
+                            {% elif wish.is_active %}
+
+                                <span class="status-active">
+                                    🟢 Active
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-inactive">
+                                    ⚪ Inactive
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- =================================================
+                             ACTIONS
+                        ================================================= -->
+
+                        <td>
+
+                            {% if wish.festival %}
+
+                                <div class="actions">
+
+
+                                    <!-- =====================================
+                                         OPEN WISH
+                                    ====================================== -->
+
+                                    <a
+                                        href="{% url 'festival_wish' wish.festival.slug %}?wish={{ wish.wish_token }}"
+                                        target="_blank"
+                                        class="btn btn-open"
+                                        title="Open Wish"
+                                    >
+                                        🔗 Open
+                                    </a>
+
+
+                                    <!-- =====================================
+                                         COPY LINK
+                                    ====================================== -->
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-copy copy-link"
+                                        data-link="{{ request.scheme }}://{{ request.get_host }}{% url 'festival_wish' wish.festival.slug %}?wish={{ wish.wish_token }}"
+                                        title="Copy Wish Link"
+                                    >
+                                        📋 Copy
+                                    </button>
+
+
+                                    <!-- =====================================
+                                         STATUS
+                                    ====================================== -->
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'dashboard:wish_toggle_status' wish.id %}"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-status"
+                                        >
+
+                                            {% if wish.is_active %}
+
+                                                ⏸ Disable
+
+                                            {% else %}
+
+                                                ▶ Enable
+
+                                            {% endif %}
+
+                                        </button>
+
+                                    </form>
+
+
+                                    <!-- =====================================
+                                         DELETE
+                                    ====================================== -->
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'dashboard:wish_delete' wish.id %}"
+                                        onsubmit="return confirm('Delete this wish link permanently?')"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-delete"
+                                        >
+                                            🗑 Delete
+                                        </button>
+
+                                    </form>
+
+
+                                </div>
+
+                            {% else %}
+
+                                <span class="empty-name">
+                                    No Festival
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% empty %}
+
+                    <!-- =====================================================
+                         EMPTY STATE
+                    ====================================================== -->
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+                                    💌
+                                </div>
+
+                                <h3>
+                                    No Wish Links Found
+                                </h3>
+
+                                <p>
+                                    No generated wish links match your filters.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =====================================================
+             PAGINATION
+        ===================================================== -->
+
+        {% if page_obj.paginator.num_pages > 1 %}
+
+        <div class="table-footer">
+
+
+            <!-- PAGE INFORMATION -->
+
+            <div>
+
+                Page
+
+                <strong>
+                    {{ page_obj.number }}
+                </strong>
+
+                of
+
+                <strong>
+                    {{ page_obj.paginator.num_pages }}
+                </strong>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+
+            <div class="pagination">
+
+
+                <!-- PREVIOUS -->
+
+                {% if page_obj.has_previous %}
+
+                    <a
+                        href="?page={{ page_obj.previous_page_number }}&search={{ search|urlencode }}&festival={{ selected_festival }}&status={{ status }}&sort={{ sort }}"
+                    >
+                        ‹
+                    </a>
+
+                {% endif %}
+
+
+                <!-- PAGE NUMBERS -->
+
+                {% for num in page_obj.paginator.page_range %}
+
+                    {% if page_obj.number == num %}
+
+                        <span class="current">
+                            {{ num }}
+                        </span>
+
+                    {% else %}
+
+                        <a
+                            href="?page={{ num }}&search={{ search|urlencode }}&festival={{ selected_festival }}&status={{ status }}&sort={{ sort }}"
+                        >
+                            {{ num }}
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
+
+
+                <!-- NEXT -->
+
+                {% if page_obj.has_next %}
+
+                    <a
+                        href="?page={{ page_obj.next_page_number }}&search={{ search|urlencode }}&festival={{ selected_festival }}&status={{ status }}&sort={{ sort }}"
+                    >
+                        ›
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+
+
+
+
+</div>
+
+
+
+<!-- =========================================================
+     COPY LINK JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const copyButtons = document.querySelectorAll(".copy-link");
+
+
+    copyButtons.forEach(function (button) {
+
+        button.addEventListener("click", async function () {
+
+            const link = this.dataset.link;
+
+            try {
+
+                await navigator.clipboard.writeText(link);
+
+                /*
+                 * Use your existing Festival Toast system
+                 */
+
+                if (typeof festivalToast === "function") {
+
+                    festivalToast(
+                        "success",
+                        "Link Copied",
+                        "Festival wish link copied successfully."
+                    );
+
+                } else {
+
+                    alert("Wish link copied successfully.");
+
+                }
+
+            } catch (error) {
+
+                /*
+                 * Fallback for browsers where clipboard API
+                 * is unavailable.
+                 */
+
+                const textarea = document.createElement("textarea");
+
+                textarea.value = link;
+
+                textarea.style.position = "fixed";
+                textarea.style.opacity = "0";
+
+                document.body.appendChild(textarea);
+
+                textarea.select();
+
+                document.execCommand("copy");
+
+                textarea.remove();
+
+
+                if (typeof festivalToast === "function") {
+
+                    festivalToast(
+                        "success",
+                        "Link Copied",
+                        "Festival wish link copied successfully."
+                    );
+
+                } else {
+
+                    alert("Wish link copied successfully.");
+
+                }
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+</body>
+
+
+</html>

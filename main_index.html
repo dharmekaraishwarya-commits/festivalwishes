@@ -1,0 +1,1266 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Festival Wishes </title>
+
+    <link rel="shortcut icon"
+          type="image/webp"
+          href="{% static 'favicon.webp' %}">
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+<style>
+
+    .main-banner {
+
+    position: relative;
+
+    min-height: 380px;
+
+    border-radius: 23px;
+
+    overflow: hidden;
+
+    padding: 80px 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16,2,71,.85),
+            rgba(76, 43, 206, 0.65)
+        ),
+        url("{% static 'main-banner.jpg' %}");
+
+    background-position: center;
+
+    background-size: cover;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+}
+
+.main-banner::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(250,129,18,.35),
+            transparent 35%
+        );
+
+    pointer-events: none;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PRELOADER
+===================================================== -->
+
+<div id="js-preloader">
+
+    <div class="preloader-inner">
+
+        <span class="dot"></span>
+
+        <div class="dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LIVE COUNTER
+===================================================== -->
+
+<div class="live-counter-wrapper text-center">
+
+    <div class="live-counter-badge">
+
+        <span class="live-dot"></span>
+
+        <span id="userCount">342</span>
+
+         लोग अभी शुभकामनाएं भेज रहे हैं 
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="main-nav">
+
+
+    <!-- LOGO -->
+
+    <a href="/" class="logo">
+
+        <img
+            src="{% static 'main_logo.png' %}"
+            alt="Festival Wishes">
+
+    </a>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-input">
+
+        <form
+            id="search"
+            action="#"
+            onsubmit="return false;">
+
+            <input
+                type="text"
+                id="searchInput"
+                name="searchKeyword"
+                placeholder="त्योहार खोजें..."
+                autocomplete="off">
+
+            <i class="fa fa-search"></i>
+
+        </form>
+
+
+        <div
+            id="suggestions"
+            class="list-group">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MOBILE MENU -->
+
+    <a
+        class="menu-trigger"
+        onclick="toggleMenu()">
+
+        <i class="fa fa-bars"></i>
+
+        Menu
+
+    </a>
+
+
+
+    <!-- NAVIGATION -->
+
+   <ul class="festival-nav" id="festivalNav">
+
+    <li>
+        <a href="/">
+            🏠 Home
+        </a>
+    </li>
+
+    <li>
+        <a href="{% url 'list_festival' %}">
+            🪔 सभी त्योहार 
+        </a>
+    </li>
+
+    {% if trending_festivals %}
+    <li>
+        <a href="{% url 'list_festival' %}">
+            💌 शुभकामना बनाएं
+        </a>
+    </li>
+    {% endif %}
+
+    <li>
+        <a
+            href="{% url 'festival_calendar' %}"
+            class="create-wish-nav active"
+        >
+            📅 त्योहार कैलेंडर
+
+            <span class="new-badge">
+                NEW
+            </span>
+        </a>
+    </li>
+
+</ul>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="home-container">
+
+
+    <!-- =================================================
+         HERO BANNER
+    ================================================= -->
+
+    <div class="main-banner">
+
+        <div class="banner-content">
+
+            <div class="banner-small">
+
+                🪔 Welcome to Festival Wishes
+
+            </div>
+
+
+            <h1>
+
+               अपने अपनों के लिए
+    <span>खास शुभकामनाएं</span>
+    बनाएं
+            </h1>
+
+
+            <p>
+
+               दिवाली, होली, गणेश चतुर्थी और भारत के
+    सभी प्रमुख त्योहारों पर अपने दोस्तों,
+    परिवार और प्रियजनों के लिए व्यक्तिगत
+    शुभकामनाएं बनाएं। नाम और फोटो जोड़ें,
+    अपनी शुभकामना तैयार करें और खुशियां
+    सभी के साथ साझा करें ❤️
+
+            </p>
+
+
+            <div class="main-button">
+
+                <a
+                    href="{% url 'list_festival' %}">
+
+                    💌 अभी शुभकामना भेजें
+
+                    <i class="fa fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         TRENDING FESTIVALS
+    ================================================= -->
+
+    <section class="content-section">
+
+
+        <div class="heading-section">
+
+            <h4>
+
+                🔥 Trending Now
+
+            </h4>
+
+
+            <!-- <a
+                href="{% url 'list_festival' %}"
+                class="text-decoration-none fw-bold"
+                style="color:#3b15d1;font-size:13px;">
+
+                View All →
+
+            </a> -->
+
+        </div>
+
+
+
+        <div class="row g-4">
+
+
+            {% for f in trending_festivals %}
+
+
+            <div
+                class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+
+                <a
+                    href="{% url 'generate_page' f.slug %}"
+                    class="text-decoration-none">
+
+<div class="card festival-card shadow-sm">
+
+   
+
+    <!-- SMALL COUNTDOWN STRIP -->
+    <div class="countdown-badge-container">
+
+        <div class="countdown-status">
+            <span class="pulse-icon"></span>
+            Starts In
+        </div>
+
+        <div
+            class="festival-timer"
+            data-date="{{ f.date|date:'Y-m-d H:i:s' }}"
+            data-id="{{ f.id }}"
+        >
+
+            <div class="timer-unit">
+                <span id="days-{{ f.id }}">00</span>
+                <label>d</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit">
+                <span id="hours-{{ f.id }}">00</span>
+                <label>h</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit">
+                <span id="minutes-{{ f.id }}">00</span>
+                <label>m</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit-sec">
+                <span id="seconds-{{ f.id }}">00</span>
+                <label>s</label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+     <!-- TRENDING -->
+    {% if f.views > 100 or f.is_trending %}
+        <div class="ribbon-wrapper">
+            <div class="ribbon-trending">
+                🔥 Trending
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+    <!-- IMAGE -->
+    {% if f.card_image %}
+
+        <div class="card-image-wrapper">
+
+            <img
+                src="{{ f.card_image.url }}"
+                alt="{{ f.name }}"
+            >
+
+        </div>
+
+    {% else %}
+
+        <div
+            class="card-image-wrapper d-flex align-items-center justify-content-center"
+            style="
+                background: linear-gradient(
+                    135deg,
+                    #FA8112,
+                    #3b15d1
+                );
+            "
+        >
+
+            <span style="font-size:60px;">
+                🪔
+            </span>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- BODY -->
+    <div class="card-body text-center p-3">
+
+        <h6 class="card-title fw-bold mb-2">
+            {{ f.name }}
+        </h6>
+
+        <div class="d-flex justify-content-center gap-3 card-info">
+
+            <span class="text-dark">
+
+                <i class="fa fa-star text-warning"></i>
+
+                4.{{ f.id|stringformat:"s"|slice:"-1:"|add:"5"|slice:":1" }}
+
+            </span>
+
+            <span class="text-dark">
+
+                🎁 {{ f.wish_count }} wishes
+
+            </span>
+
+        </div>
+
+       <div class="mt-2">
+
+    <span
+        class="badge rounded-pill create-wish-badge"
+    >
+        अपनी विश बनाएं
+        <i
+                        class="fa fa-arrow-right ms-2">
+                    </i>
+    </span>
+
+</div>
+
+    </div>
+
+</div>
+
+                </a>
+
+            </div>
+
+
+            {% empty %}
+
+
+            <div class="col-12">
+
+                <div
+                    class="text-center p-5"
+                    style="
+                        color:#555;
+                        background:white;
+                        border-radius:15px;
+                    ">
+
+                    <div style="font-size:50px;">
+                        🪔
+                    </div>
+
+                    <h5>
+                        No trending festivals right now.
+                    </h5>
+
+                </div>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+
+        <!-- VIEW ALL -->
+
+        <div class="text-center mt-4">
+
+            <a
+                href="{% url 'list_festival' %}"
+                class="main-button"
+                style="margin:0;">
+
+                <span
+                    style="
+                        display:inline-flex;
+                        background:
+                        linear-gradient(
+                            135deg,
+                            #FA8112,
+                            #EA2F14
+                        );
+                        color:white;
+                        padding:11px 25px;
+                        border-radius:30px;
+                        font-size:13px;
+                        font-weight:700;
+                    ">
+
+                   और देखो
+
+                    <i
+                        class="fa fa-arrow-right ms-2">
+                    </i>
+
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         LIVE ACTIVITY
+    ================================================= -->
+
+    <section class="activity-section">
+
+
+        <div class="heading-section mb-4">
+
+
+            <h4>
+
+                <i class="fa fa-bolt"></i>
+
+                Live Activity Feed
+
+            </h4>
+
+
+            <div class="live-status-badge">
+
+                <span class="pulse-dot"></span>
+
+                <span>
+                    LIVE
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        {% for wish in recent_wishes %}
+
+
+        <div class="activity-item">
+
+
+            <div
+                class="d-flex align-items-center">
+
+
+                <!-- FESTIVAL IMAGE -->
+
+                <div
+                    class="flex-shrink-0">
+
+                    {% if wish.festival.card_image %}
+
+                    <img
+                        src="{{ wish.festival.card_image.url }}"
+                        alt="{{ wish.festival.name }}"
+                        class="activity-image">
+
+                    {% else %}
+
+                    <div
+                        class="activity-image d-flex align-items-center justify-content-center"
+                        style="
+                            background:
+                            linear-gradient(
+                                135deg,
+                                #FA8112,
+                                #3b15d1
+                            );
+                            font-size:24px;
+                        ">
+
+                        🪔
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- CONTENT -->
+
+                <div
+                    class="flex-grow-1 ps-3">
+
+
+                    <h5 class="activity-name">
+
+                        {{ wish.sender_name }}
+
+                    </h5>
+
+
+                    <span class="activity-text">
+
+                     
+                        ने  
+
+                        <b>
+                            {{ wish.festival.name }}
+                        </b>
+
+                         की शुभकामनाएं बनाईं ✨
+
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- ACTION -->
+
+                <div
+                    class="text-end ms-2 d-none d-md-block">
+
+
+                    <span class="activity-time">
+
+                        {{ wish.created_at|timesince }}
+                        ago
+
+                    </span>
+
+
+                    <br>
+
+
+                    <a
+                        href="{% url 'generate_page' wish.festival.slug %}"
+                        class="try-button">
+
+                    Click kare
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% empty %}
+
+
+        <div class="text-center p-4">
+
+            <div style="font-size:45px;">
+                🎉
+            </div>
+
+            <p
+                class="text-muted mb-0">
+
+                No wishes created yet.
+                Be the first! 🚀
+
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+
+        <div class="text-center mt-4">
+
+            <a
+                href="{% url 'list_festival' %}"
+                class="main-button"
+                style="margin:0;">
+
+                <span
+                    style="
+                        display:inline-flex;
+                        align-items:center;
+                        gap:8px;
+                        background:
+                        linear-gradient(
+                            135deg,
+                            #FA8112,
+                            #EA2F14
+                        );
+                        color:white;
+                        padding:10px 20px;
+                        border-radius:25px;
+                        font-size:12px;
+                        font-weight:700;
+                    ">
+
+                    View All Festivals
+
+                    <i class="fa fa-arrow-right"></i>
+
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="desi-footer">
+
+
+    <div class="footer-top-decoration">
+
+        🪔 ✨ 🪔 ✨ 🪔 ✨ 🪔
+
+    </div>
+
+
+    <div class="container py-5">
+
+
+        <div class="row gy-4">
+
+
+            <!-- BRAND -->
+
+            <div class="col-lg-4 col-md-6">
+
+
+                <div class="footer-brand">
+
+
+                    <a
+                        href="/"
+                        class="footer-logo">
+
+
+                        <img
+                            src="{% static 'main_logo.png' %}"
+                            alt="Festival Wishes">
+
+                    </a>
+
+
+                    <h4>
+
+                        🪔 Festival Wishes
+
+                    </h4>
+
+
+                    <p>
+
+                        Apno ko bhejiye pyaar bhari
+                        festival wishes ❤️
+
+                    </p>
+
+
+                    <p class="footer-hindi">
+
+                        हर त्योहार की खुशी,
+                        अपनों के साथ बाँटें। ✨
+
+                    </p>
+
+
+                    <div class="made-india">
+
+                        🇮🇳 Made with ❤️ in India
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-lg-2 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🔗 Quick Links
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="/">
+
+                            🏠 Home
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪔 All Festivals
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'festival_calendar' %}">
+
+                            📅 Festival Calendar
+
+                        </a>
+
+                    </li>
+
+
+                    {% if trending_festivals %}
+
+                    <li>
+
+                        <a
+                            href="{% url 'list_festival'  %}">
+
+                            ✨ Create Wish
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- POPULAR -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🌸 Popular Festivals
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' 'diwali' %}">
+
+                            🪔 Diwali Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' 'karwa-chauth' %}">
+
+                            🪔 Karwa-Chauth Wishes
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' 'ganeshchaturthi' %}">
+
+                            🐘 Ganesh Chaturthi
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' 'navratri' %}">
+
+                            🚩 Navratri Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' 'bhai-dooj' %}">
+
+                            🪢 Bhai-Dooj Wishes
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- INFORMATION -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    📜 Information
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="{% url 'about' %}">
+
+                            ❤️ About Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'contact' %}">
+
+                            📩 Contact Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'privacy_policy' %}">
+
+                            🔐 Privacy Policy
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'terms' %}">
+
+                            📃 Terms & Conditions
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'disclaimer' %}">
+
+                            ⚠️ Disclaimer
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="footer-divider">
+
+            <span>🪷</span>
+
+            <span>ॐ</span>
+
+            <span>🪔</span>
+
+            <span>शुभ</span>
+
+            <span>🪔</span>
+
+            <span>ॐ</span>
+
+            <span>🪷</span>
+
+        </div>
+
+
+
+        <!-- SOCIAL -->
+
+        <div class="footer-social text-center">
+
+
+            <h6>
+
+                ❤️ Apno ke saath share karein
+
+            </h6>
+
+
+            <div class="social-buttons">
+
+
+                <a
+                    href="#"
+                    aria-label="Facebook">
+
+                    <i
+                        class="fab fa-facebook-f">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="Instagram">
+
+                    <i
+                        class="fab fa-instagram">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="WhatsApp">
+
+                    <i
+                        class="fab fa-whatsapp">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="X">
+
+                    <i
+                        class="fab fa-x-twitter">
+                    </i>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    aria-label="YouTube">
+
+                    <i
+                        class="fab fa-youtube">
+                    </i>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- COPYRIGHT -->
+
+    <div class="footer-bottom">
+
+
+        <div class="container text-center">
+
+
+            <p class="mb-1">
+
+                © {% now "Y" %}
+
+                <strong>
+                    Festival Wishes
+                </strong>
+
+                — All Rights Reserved.
+
+            </p>
+
+
+            <p class="mb-0 footer-small">
+
+                🪔 शुभकामनाएं बाँटते रहें •
+
+                खुशियाँ फैलाते रहें •
+
+                ❤️ जुड़े रहें
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     THEME BUTTON
+===================================================== -->
+
+<button
+    class="theme-btn"
+    onclick="toggleTheme()"
+    title="Toggle Dark/Light Mode">
+
+    <span id="theme-icon">
+        🌙
+    </span>
+
+</button>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2450 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    My Profile | Festival Wishes
+</title>
+
+<!-- =========================================================
+     GOOGLE FONTS
+========================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =========================================================
+     FESTIVAL TOAST
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="{% static 'dashboard/css/festival-toast.css' %}"
+>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255,179,71,.18),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(106,20,52,.14),
+            transparent 30%
+        ),
+
+        #faf7f2;
+
+    color:#32104f;
+
+}
+
+
+/* =========================================================
+   BACKGROUND DOTS
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.035;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            #6a1434 1px,
+            transparent 1px
+        );
+
+    background-size:24px 24px;
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.profile-page{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:42% 58%;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* =========================================================
+   LEFT FESTIVAL SIDE
+========================================================= */
+
+.festival-side{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,179,71,.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            160deg,
+            #210842,
+            #35105f 50%,
+            #4d116b
+        );
+
+    color:white;
+
+}
+
+
+/* DECORATION */
+
+.festival-side::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    top:-150px;
+
+    left:-120px;
+
+    border:
+        1px solid
+        rgba(255,179,71,.15);
+
+    box-shadow:
+
+        0 0 0 40px
+        rgba(255,179,71,.03),
+
+        0 0 0 80px
+        rgba(255,179,71,.02);
+
+}
+
+
+.festival-side::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    right:-120px;
+
+    bottom:-100px;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,122,0,.16),
+            transparent 70%
+        );
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+
+    position:absolute;
+
+    top:35px;
+
+    left:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    z-index:2;
+
+}
+
+
+.brand-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ffb347,
+            #ff7a00
+        );
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(255,122,0,.25);
+
+}
+
+
+.brand-text h2{
+
+    margin:0;
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:16px;
+
+}
+
+
+.brand-text small{
+
+    color:#ffcf83;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.festival-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:470px;
+
+}
+
+
+.welcome-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:#ffd08b;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.10);
+
+    margin-bottom:25px;
+
+}
+
+
+.festival-content h1{
+
+    margin:0;
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:38px;
+
+    line-height:1.4;
+
+}
+
+
+.festival-content h1 span{
+
+    color:#ffb347;
+
+}
+
+
+.festival-content p{
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size:13px;
+
+    line-height:1.9;
+
+    margin:
+        20px 0 28px;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:
+        rgba(255,255,255,.8);
+
+    font-size:12px;
+
+}
+
+
+.feature-icon{
+
+    width:38px;
+
+    height:38px;
+
+    flex-shrink:0;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.festival-quote{
+
+    margin-top:35px;
+
+    padding:15px 18px;
+
+    border-left:
+        3px solid #ffb347;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border-radius:
+        0 12px 12px 0;
+
+}
+
+
+.festival-quote strong{
+
+    display:block;
+
+    color:#ffcf83;
+
+    font-family:
+        'Kalam',
+        cursive;
+
+    font-size:15px;
+
+}
+
+
+.festival-quote small{
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.profile-side{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:40px 25px;
+
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.profile-card-main{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    padding:38px;
+
+    border-radius:28px;
+
+    border:
+        1px solid #eee4f1;
+
+    box-shadow:
+        0 25px 70px
+        rgba(56,19,77,.10);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* TOP LINE */
+
+.profile-card-main::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6a1434,
+            #ff8a00,
+            #ffb347,
+            #6a1434
+        );
+
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+========================================================= */
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:28px;
+
+}
+
+
+.profile-title h1{
+
+    margin:0 0 8px;
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:25px;
+
+    color:#32104f;
+
+}
+
+
+.profile-title p{
+
+    margin:0;
+
+    color:#8a7892;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   DASHBOARD BUTTON
+========================================================= */
+
+.dashboard-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #a23a50
+        );
+
+    padding:
+        10px 15px;
+
+    border-radius:11px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    box-shadow:
+        0 8px 20px
+        rgba(106,20,52,.15);
+
+    transition:.25s;
+
+}
+
+
+.dashboard-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(106,20,52,.22);
+
+}
+
+
+/* =========================================================
+   PROFILE SUMMARY
+========================================================= */
+
+.profile-summary{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #fff9f1,
+            #fff
+        );
+
+    border:
+        1px solid #f0e5ed;
+
+}
+
+
+.avatar{
+
+    width:70px;
+
+    height:70px;
+
+    flex-shrink:0;
+
+    border-radius:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #a23a50,
+            #ff8a00
+        );
+
+    box-shadow:
+
+        0 10px 25px
+        rgba(106,20,52,.18);
+
+}
+
+
+.summary-info h2{
+
+    margin:0 0 3px;
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:18px;
+
+    color:#32104f;
+
+}
+
+
+.summary-info p{
+
+    margin:0;
+
+    font-size:11px;
+
+    color:#8d7b92;
+
+}
+
+
+.summary-badge{
+
+    display:inline-block;
+
+    margin-top:7px;
+
+    padding:
+        4px 9px;
+
+    border-radius:20px;
+
+    background:#fff0df;
+
+    color:#d96e08;
+
+    font-size:8px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   ACCOUNT INFORMATION
+========================================================= */
+
+.account-info{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+.info-item{
+
+    padding:14px;
+
+    border-radius:13px;
+
+    background:#fffdfb;
+
+    border:
+        1px solid #eee5eb;
+
+}
+
+
+.info-label{
+
+    display:block;
+
+    color:#9b8ca1;
+
+    font-size:9px;
+
+    margin-bottom:5px;
+
+}
+
+
+.info-value{
+
+    display:block;
+
+    color:#43205b;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.form-section{
+
+    border-top:
+        1px solid #eee5eb;
+
+    padding-top:25px;
+
+    margin-top:25px;
+
+}
+
+
+.section-heading{
+
+    margin-bottom:18px;
+
+}
+
+
+.section-heading h3{
+
+    margin:0 0 5px;
+
+    font-family:
+        'Libre Baskerville',
+        serif;
+
+    font-size:17px;
+
+    color:#32104f;
+
+}
+
+
+.section-heading p{
+
+    margin:0;
+
+    color:#97869d;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.group{
+
+    margin-bottom:16px;
+
+}
+
+
+.group label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+
+    color:#4b2164;
+
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-wrapper{
+
+    position:relative;
+
+}
+
+
+.input-icon{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size:14px;
+
+    opacity:.55;
+
+}
+
+
+.form-input{
+
+    width:100%;
+
+    height:46px;
+
+    padding:
+        0 42px;
+
+    border:
+        1px solid #eadfea;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size:11px;
+
+    color:#32104f;
+
+    background:#fffdfb;
+
+    transition:.25s;
+
+}
+
+
+.form-input:focus{
+
+    border-color:#ff8a00;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255,138,0,.08);
+
+}
+
+
+.form-input::placeholder{
+
+    color:#b7a8bc;
+
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+.password-toggle{
+
+    position:absolute;
+
+    right:10px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    border:0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    opacity:.55;
+
+    padding:5px;
+
+}
+
+
+.password-toggle:hover{
+
+    opacity:1;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.submit-btn{
+
+    width:100%;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6a1434,
+            #a23a50,
+            #ff8a00
+        );
+
+    box-shadow:
+
+        0 10px 25px
+        rgba(106,20,52,.18);
+
+    transition:.3s;
+
+}
+
+
+.submit-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(106,20,52,.25);
+
+}
+
+
+.submit-btn:active{
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.security-note{
+
+    margin-top:22px;
+
+    text-align:center;
+
+    font-size:9px;
+
+    color:#b0a1b5;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .profile-page{
+
+        grid-template-columns:
+            1fr 1.3fr;
+
+    }
+
+    .festival-side{
+
+        padding:35px;
+
+    }
+
+    .festival-content h1{
+
+        font-size:30px;
+
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .profile-page{
+
+        display:block;
+
+    }
+
+
+    .festival-side{
+
+        display:none;
+
+    }
+
+
+    .profile-side{
+
+        min-height:100vh;
+
+        padding:25px 15px;
+
+    }
+
+
+    .profile-card-main{
+
+        padding:28px 20px;
+
+        border-radius:23px;
+
+    }
+
+
+    .profile-header{
+
+        align-items:flex-start;
+
+    }
+
+
+    .profile-title h1{
+
+        font-size:21px;
+
+    }
+
+
+    .account-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:430px){
+
+    .profile-card-main{
+
+        padding:25px 16px;
+
+    }
+
+
+    .profile-header{
+
+        flex-direction:column;
+
+    }
+
+
+    .dashboard-btn{
+
+        align-self:flex-start;
+
+    }
+
+
+    .profile-summary{
+
+        padding:16px;
+
+    }
+
+
+    .avatar{
+
+        width:58px;
+
+        height:58px;
+
+        border-radius:18px;
+
+        font-size:21px;
+
+    }
+
+
+    .summary-info h2{
+
+        font-size:16px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PROFILE TOAST
+========================================================= */
+
+.profile-toast-container{
+
+    position:fixed;
+
+    top:22px;
+
+    right:22px;
+
+    z-index:99999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    width:320px;
+
+    max-width:calc(100vw - 30px);
+
+}
+
+
+.profile-toast{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+    border:1px solid #eee3ed;
+
+    box-shadow:
+        0 15px 40px
+        rgba(50,16,79,.16);
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:11px;
+
+    color:#43205b;
+
+    animation:
+        profileToastIn .35s ease forwards;
+
+}
+
+
+.profile-toast.success{
+
+    border-left:
+        4px solid #2e9b5f;
+
+}
+
+
+.profile-toast.error{
+
+    border-left:
+        4px solid #d9534f;
+
+}
+
+
+.profile-toast-icon{
+
+    width:32px;
+
+    height:32px;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+}
+
+
+.profile-toast.success
+.profile-toast-icon{
+
+    background:#eaf8ef;
+
+}
+
+
+.profile-toast.error
+.profile-toast-icon{
+
+    background:#fff0f0;
+
+}
+
+
+.profile-toast-content{
+
+    flex:1;
+
+    line-height:1.5;
+
+}
+
+
+.profile-toast-title{
+
+    display:block;
+
+    font-weight:700;
+
+    color:#32104f;
+
+    margin-bottom:2px;
+
+}
+
+
+.profile-toast-message{
+
+    color:#8a7892;
+
+    font-size:10px;
+
+}
+
+
+.profile-toast-close{
+
+    border:0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    color:#aa9aaa;
+
+    font-size:14px;
+
+    padding:3px;
+
+}
+
+
+.profile-toast-close:hover{
+
+    color:#6a1434;
+
+}
+
+
+.profile-toast.hide{
+
+    animation:
+        profileToastOut .3s ease forwards;
+
+}
+
+
+@keyframes profileToastIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+@keyframes profileToastOut{
+
+    from{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+            translateX(30px);
+
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .profile-toast-container{
+
+        top:15px;
+
+        left:15px;
+
+        right:15px;
+
+        width:auto;
+
+        max-width:none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="profile-page">
+
+
+<!-- =====================================================
+     LEFT FESTIVAL SIDE
+===================================================== -->
+
+<section class="festival-side">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🪔
+        </div>
+
+        <div class="brand-text">
+
+            <h2>
+                Festival Wishes
+            </h2>
+
+            <small>
+                ADMIN DASHBOARD
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="festival-content">
+
+
+        <div class="welcome-badge">
+
+            ✨ ADMIN PROFILE
+
+        </div>
+
+
+        <h1>
+
+            Your
+
+            <span>
+                Festival
+            </span>
+
+            Dashboard
+
+        </h1>
+
+
+        <p>
+
+            Manage your administrator account, update your
+            profile information and keep your dashboard
+            credentials secure.
+
+        </p>
+
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Profile Management
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Keep your account information updated
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <div>
+
+                    <strong>
+                        Secure Password
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Change your dashboard password anytime
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎉
+                </div>
+
+                <div>
+
+                    <strong>
+                        Festival Wishes
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Manage your complete festival website
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="festival-quote">
+
+            <strong>
+
+                खुशियाँ बाँटने का सफर जारी रखें ✨
+
+            </strong>
+
+            <small>
+
+                Festival Wishes Dashboard
+
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     RIGHT PROFILE SIDE
+===================================================== -->
+
+<section class="profile-side">
+
+
+<div class="profile-card-main">
+
+
+    <!-- HEADER -->
+
+    <div class="profile-header">
+
+        <div class="profile-title">
+
+            <h1>
+                My Profile ✨
+            </h1>
+
+            <p>
+                Manage your dashboard account and security.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'dashboard:home' %}"
+            class="dashboard-btn"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- PROFILE SUMMARY -->
+
+    <div class="profile-summary">
+
+
+        <div class="avatar">
+
+            {{ admin_user.username|first|upper }}
+
+        </div>
+
+
+        <div class="summary-info">
+
+            <h2>
+                {{ admin_user.username }}
+            </h2>
+
+            <p>
+                {{ admin_user.email }}
+            </p>
+
+            <span class="summary-badge">
+
+                ADMINISTRATOR
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="account-info">
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Username
+            </span>
+
+            <span class="info-value">
+                {{ admin_user.username }}
+            </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Email Address
+            </span>
+
+            <span class="info-value">
+                {{ admin_user.email }}
+            </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Account Created
+            </span>
+
+            <span class="info-value">
+                {{ admin_user.created_at|date:"d M Y" }}
+            </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Account Status
+            </span>
+
+            <span class="info-value">
+                🟢 Active
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         PROFILE INFORMATION
+    ================================================== -->
+
+    <div class="form-section">
+
+
+        <div class="section-heading">
+
+            <h3>
+                👤 Profile Information
+            </h3>
+
+            <p>
+                Update your username and email address.
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{% url 'dashboard:update_admin_profile' %}"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- USERNAME -->
+
+            <div class="group">
+
+                <label>
+
+                    👤
+
+                    Username
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+
+                    <input
+                        type="text"
+                        name="username"
+                        class="form-input"
+                        value="{{ admin_user.username }}"
+                        placeholder="Enter username"
+                        required
+                        minlength="3"
+                        maxlength="30"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="group">
+
+                <label>
+
+                    📧
+
+                    Email Address
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        📧
+                    </span>
+
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-input"
+                        value="{{ admin_user.email }}"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+
+                <i class="fa-solid fa-check"></i>
+
+                Save Profile Changes
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+    <!-- =================================================
+         CHANGE PASSWORD
+    ================================================== -->
+
+    <div class="form-section">
+
+
+        <div class="section-heading">
+
+            <h3>
+                🔐 Change Password
+            </h3>
+
+            <p>
+                Update your dashboard login password.
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{% url 'dashboard:change_admin_password' %}"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- CURRENT PASSWORD -->
+
+            <div class="group">
+
+                <label>
+
+                    🔑
+
+                    Current Password
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔑
+                    </span>
+
+
+                    <input
+                        type="password"
+                        name="current_password"
+                        id="currentPassword"
+                        class="form-input"
+                        placeholder="Enter current password"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'currentPassword',
+                            this
+                        )"
+                    >
+
+                        👁
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- NEW PASSWORD -->
+
+            <div class="group">
+
+                <label>
+
+                    🔒
+
+                    New Password
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+
+                    <input
+                        type="password"
+                        name="new_password"
+                        id="newPassword"
+                        class="form-input"
+                        placeholder="Enter new password"
+                        minlength="6"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'newPassword',
+                            this
+                        )"
+                    >
+
+                        👁
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM -->
+
+            <div class="group">
+
+                <label>
+
+                    🔐
+
+                    Confirm New Password
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔐
+                    </span>
+
+
+                    <input
+                        type="password"
+                        name="confirm_password"
+                        id="confirmPassword"
+                        class="form-input"
+                        placeholder="Repeat new password"
+                        minlength="6"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'confirmPassword',
+                            this
+                        )"
+                    >
+
+                        👁
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="passwordMatch"
+                    style="
+                        font-size:9px;
+                        margin-top:6px;
+                    "
+                ></div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+
+                <i class="fa-solid fa-key"></i>
+
+                Change Password
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="security-note">
+
+        🔒 Your account information is securely stored.
+
+    </div>
+
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =====================================================
+     PASSWORD JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function togglePassword(inputId, button){
+
+    const input =
+        document.getElementById(inputId);
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        button.innerHTML = "🙈";
+
+    }
+    else{
+
+        input.type = "password";
+
+        button.innerHTML = "👁";
+
+    }
+
+}
+
+
+/* =========================================================
+   PASSWORD MATCH
+========================================================= */
+
+const newPassword =
+    document.getElementById("newPassword");
+
+const confirmPassword =
+    document.getElementById("confirmPassword");
+
+const passwordMatch =
+    document.getElementById("passwordMatch");
+
+
+confirmPassword.addEventListener(
+    "input",
+    function(){
+
+        if(!this.value){
+
+            passwordMatch.innerHTML = "";
+
+            return;
+
+        }
+
+
+        if(
+            this.value === newPassword.value
+        ){
+
+            passwordMatch.innerHTML =
+                "✓ Passwords match";
+
+            passwordMatch.style.color =
+                "#228b55";
+
+        }
+        else{
+
+            passwordMatch.innerHTML =
+                "✕ Passwords do not match";
+
+            passwordMatch.style.color =
+                "#d9534f";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PASSWORD VALIDATION
+========================================================= */
+
+document
+    .querySelector(
+        'form[action*="change_admin_password"]'
+    )
+    .addEventListener(
+        "submit",
+        function(event){
+
+            if(
+                newPassword.value !==
+                confirmPassword.value
+            ){
+
+                event.preventDefault();
+
+                passwordMatch.innerHTML =
+                    "✕ Passwords do not match";
+
+                passwordMatch.style.color =
+                    "#d9534f";
+
+                confirmPassword.focus();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+<!-- =====================================================
+     FESTIVAL TOAST
+===================================================== -->
+
+<script
+    src="{% static 'dashboard/js/festival-toast.js' %}"
+></script>
+
+
+<!-- =====================================================
+     DJANGO MESSAGE → TOAST
+===================================================== -->
+
+{% if messages %}
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        {% for message in messages %}
+
+        if(
+            typeof showToast === "function"
+        ){
+
+            showToast(
+                "{{ message|escapejs }}",
+                "{{ message.tags|default:'success' }}"
+            );
+
+        }
+
+        {% endfor %}
+
+    }
+);
+
+</script>
+
+<script>
+
+/* =========================================================
+   PROFILE TOAST
+========================================================= */
+
+function closeProfileToast(button){
+
+    const toast =
+        button.closest(".profile-toast");
+
+    if(!toast){
+        return;
+    }
+
+    toast.classList.add("hide");
+
+    setTimeout(function(){
+
+        toast.remove();
+
+    }, 300);
+
+}
+
+
+/* =========================================================
+   AUTO HIDE TOAST
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const toasts =
+            document.querySelectorAll(
+                ".profile-toast"
+            );
+
+
+        toasts.forEach(function(toast){
+
+            setTimeout(function(){
+
+                toast.classList.add("hide");
+
+                setTimeout(function(){
+
+                    toast.remove();
+
+                }, 300);
+
+            }, 4000);
+
+        });
+
+    }
+);
+
+</script>
+
+{% endif %}
+
+<!-- =====================================================
+     PROFILE TOAST CONTAINER
+===================================================== -->
+
+<div
+    class="profile-toast-container"
+    id="profileToastContainer"
+>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div
+                class="profile-toast
+                {% if message.tags == 'error' %}
+                    error
+                {% else %}
+                    success
+                {% endif %}"
+            >
+
+                <div class="profile-toast-icon">
+
+                    {% if message.tags == 'error' %}
+                        ❌
+                    {% else %}
+                        ✓
+                    {% endif %}
+
+                </div>
+
+
+                <div class="profile-toast-content">
+
+                    <span class="profile-toast-title">
+
+                        {% if message.tags == 'error' %}
+                            Something went wrong
+                        {% else %}
+                            Success
+                        {% endif %}
+
+                    </span>
+
+                    <span class="profile-toast-message">
+
+                        {{ message }}
+
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="profile-toast-close"
+                    onclick="closeProfileToast(this)"
+                >
+
+                    ×
+
+                </button>
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+</div>
+</body>
+
+</html>

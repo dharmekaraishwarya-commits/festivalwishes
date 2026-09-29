@@ -1,0 +1,881 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Disclaimer | Festival Wishes</title>
+
+ <link rel="shortcut icon"
+          type="image/webp"
+          href="{% static 'favicon.webp' %}">    
+
+<link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+
+           <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+ 
+
+    
+    <!-- MAIN CSS -->
+
+    <link rel="stylesheet"
+          href="{% static 'assets/css/main.css' %}">
+
+
+
+<style>
+
+.disclaimer-page {
+    position:relative;
+    z-index:2;
+    padding-bottom:60px;
+}
+
+.disclaimer-hero {
+    text-align:center;
+    color:white;
+    padding:60px 20px 40px;
+}
+
+.disclaimer-badge {
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:50px;
+    background:rgba(255,255,255,.1);
+    color:#FA8112;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.disclaimer-hero h1 {
+    font-size:clamp(30px,5vw,48px);
+    font-weight:800;
+}
+
+.disclaimer-hero h1 span {
+    color:#FA8112;
+}
+
+.disclaimer-hero p {
+    color:rgba(255,255,255,.75);
+    font-size:13px;
+}
+
+.disclaimer-container {
+    width:92%;
+    max-width:1000px;
+    margin:auto;
+}
+
+.disclaimer-card {
+    background:rgba(255,255,255,.97);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.warning-box {
+    background:linear-gradient(
+        135deg,
+        #fff4e8,
+        #fff8f5
+    );
+    border-left:5px solid #FA8112;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:25px;
+}
+
+.warning-box strong {
+    color:#EA2F14;
+}
+
+.warning-box p {
+    margin:5px 0 0;
+}
+
+.disclaimer-card h2 {
+    color:#24105f;
+    font-size:21px;
+    font-weight:800;
+    margin-top:30px;
+    margin-bottom:12px;
+}
+
+.disclaimer-card h2:first-of-type {
+    margin-top:0;
+}
+
+.disclaimer-card h2 span {
+    color:#FA8112;
+}
+
+.disclaimer-card p,
+.disclaimer-card li {
+    color:#555;
+    font-size:13px;
+    line-height:1.9;
+}
+
+.disclaimer-card ul {
+    padding-left:22px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="festive-background">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+</div>
+
+
+<nav class="main-nav">
+
+<a href="/" class="logo">
+
+ <img src="{% static 'main_logo.png' %}"
+             alt="Festival Wishes">
+
+
+</a>
+
+<a class="menu-trigger"
+   onclick="toggleMenu()">
+    ☰ Menu
+</a>
+
+<ul class="festival-nav" id="festivalNav">
+
+<li>
+<a href="/" class="nav-link-custom">
+🏠 Home
+</a>
+</li>
+
+<li>
+<a href="/festivals/" class="nav-link-custom">
+🎉 Festivals
+</a>
+</li>
+
+<li>
+<a href="/create-wish/" class="nav-link-custom">
+✨ Create Wish
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<main class="disclaimer-page">
+
+
+<section class="disclaimer-hero">
+
+<div class="disclaimer-badge">
+⚠️ IMPORTANT INFORMATION
+</div>
+
+<h1>
+<span>Disclaimer</span>
+</h1>
+
+<p>
+Important information about the use of
+Festival Wishes.
+</p>
+
+</section>
+
+
+<div class="disclaimer-container">
+
+<div class="disclaimer-card">
+
+
+<div class="warning-box">
+
+<strong>
+⚠️ Please Read
+</strong>
+
+<p>
+The information and features provided by
+Festival Wishes are intended for general
+informational and entertainment purposes.
+</p>
+
+</div>
+
+
+<h2>
+1. <span>General Information</span>
+</h2>
+
+<p>
+The content provided on Festival Wishes is
+created for general informational,
+celebratory and entertainment purposes.
+</p>
+
+
+<h2>
+2. <span>Accuracy</span>
+</h2>
+
+<p>
+We make reasonable efforts to provide useful
+and accurate information. However, we do not
+guarantee that all information on the website
+will always be complete, current or error-free.
+</p>
+
+
+<h2>
+3. <span>Festival Dates</span>
+</h2>
+
+<p>
+Festival dates and event information may vary
+depending on region, calendar systems and
+official announcements. Users should verify
+important dates from appropriate official
+sources.
+</p>
+
+
+<h2>
+4. <span>AI-Generated Content</span>
+</h2>
+
+<p>
+Some features of the website may use artificial
+intelligence to generate scripts, images,
+audio or videos.
+</p>
+
+<p>
+AI-generated content can contain inaccuracies,
+unexpected results or errors. Users should
+review generated content before sharing it.
+</p>
+
+
+<h2>
+5. <span>Third-Party Services</span>
+</h2>
+
+<p>
+Festival Wishes may use third-party services
+for certain functionality such as hosting,
+analytics, advertising, AI processing or
+other website features.
+</p>
+
+<p>
+Those services may have their own terms,
+privacy policies and limitations.
+</p>
+
+
+<h2>
+6. <span>External Links</span>
+</h2>
+
+<p>
+Our website may contain links to external
+websites. We do not control and are not
+responsible for the content, availability
+or policies of external websites.
+</p>
+
+
+<h2>
+7. <span>Personal Responsibility</span>
+</h2>
+
+<p>
+Users are responsible for how they use,
+modify and share content generated through
+the website.
+</p>
+
+
+<h2>
+8. <span>Limitation of Liability</span>
+</h2>
+
+<p>
+To the extent permitted by applicable law,
+Festival Wishes is not responsible for losses
+or damages resulting from reliance on website
+content or generated content.
+</p>
+
+
+<h2>
+9. <span>Changes</span>
+</h2>
+
+<p>
+We may update this Disclaimer whenever
+necessary. Changes will be published on
+this page.
+</p>
+
+
+<h2>
+10. <span>Contact Us</span>
+</h2>
+
+<p>
+If you have questions about this Disclaimer,
+please contact us through our
+<a href="/contact/"
+   style="color:#FA8112;font-weight:700;">
+Contact Us
+</a>
+page.
+</p>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer class="desi-footer">
+
+
+    <!-- TOP DECORATION -->
+
+    <div class="footer-top-decoration">
+
+        🪔 ✨ 🪔 ✨ 🪔 ✨ 🪔
+
+    </div>
+
+
+
+    <div class="container py-5">
+
+
+        <div class="row gy-4">
+
+
+            <!-- =================================================
+                 BRAND
+            ================================================== -->
+
+            <div class="col-lg-4 col-md-6">
+
+
+                <div class="footer-brand">
+
+
+                    <a
+                        href="/"
+                        class="footer-logo"
+                        aria-label="Festival Wishes Home">
+
+
+                        <img
+                            src="{% static 'main_logo.png' %}"
+                            alt="Festival Wishes"
+                            loading="lazy">
+
+                    </a>
+
+
+                    <h4>
+
+                        🪔 Festival Wishes
+
+                    </h4>
+
+
+                    <p>
+
+                        Apno ko bhejiye pyaar bhari
+                        festival wishes ❤️
+
+                    </p>
+
+
+                    <p class="footer-hindi">
+
+                        हर त्योहार की खुशी,
+                        अपनों के साथ बाँटें। ✨
+
+                    </p>
+
+
+                    <div class="made-india">
+
+                        🇮🇳 Made with ❤️ in India
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUICK LINKS
+            ================================================== -->
+
+            <div class="col-lg-2 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🔗 Quick Links
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="/">
+
+                            🏠 Home
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪔 All Festivals
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'festival_calendar' %}">
+
+                            📅 Festival Calendar
+
+                        </a>
+
+                    </li>
+
+
+                    {% if trending_festivals %}
+
+                    <li>
+
+                        <a
+                            href="{% url 'generate_page' trending_festivals.0.slug %}">
+
+                            ✨ Create Wish
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 POPULAR FESTIVALS
+            ================================================== -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    🌸 Popular Festivals
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪔 Diwali Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🎨 Holi Wishes
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🐘 Ganesh Chaturthi
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🚩 Gudi Padwa
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪢 Raksha Bandhan
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 INFORMATION
+            ================================================== -->
+
+            <div class="col-lg-3 col-md-6">
+
+
+                <h5 class="footer-title">
+
+                    📜 Information
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+
+                    <li>
+
+                        <a href="{% url 'about' %}">
+
+                            ❤️ About Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'contact' %}">
+
+                            📩 Contact Us
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'privacy_policy' %}">
+
+                            🔐 Privacy Policy
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'terms' %}">
+
+                            📃 Terms & Conditions
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'disclaimer' %}">
+
+                            ⚠️ Disclaimer
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             DIVIDER
+        ================================================== -->
+
+        <div class="footer-divider">
+
+            <span>🪷</span>
+            <span>ॐ</span>
+            <span>🪔</span>
+            <span>शुभ</span>
+            <span>🪔</span>
+            <span>ॐ</span>
+            <span>🪷</span>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SOCIAL
+        ================================================== -->
+
+        <div class="footer-social text-center">
+
+
+            <h6>
+
+                ❤️ Apno ke saath share karein
+
+            </h6>
+
+
+            <div class="social-buttons">
+
+
+                <!-- FACEBOOK -->
+
+                <a
+                    href="#"
+                    aria-label="Facebook"
+                    title="Facebook">
+
+                    <i class="fab fa-facebook-f"
+                       aria-hidden="true">
+                    </i>
+
+                </a>
+
+
+
+                <!-- INSTAGRAM -->
+
+                <a
+                    href="#"
+                    aria-label="Instagram"
+                    title="Instagram">
+
+                    <i class="fab fa-instagram"
+                       aria-hidden="true">
+                    </i>
+
+                </a>
+
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    href="#"
+                    aria-label="WhatsApp"
+                    title="WhatsApp">
+
+                    <i class="fab fa-whatsapp"
+                       aria-hidden="true">
+                    </i>
+
+                </a>
+
+
+
+                <!-- X -->
+
+                <a
+                    href="#"
+                    aria-label="X"
+                    title="X">
+
+                    <i class="fab fa-x-twitter"
+                       aria-hidden="true">
+                    </i>
+
+                </a>
+
+
+
+                <!-- YOUTUBE -->
+
+                <a
+                    href="#"
+                    aria-label="YouTube"
+                    title="YouTube">
+
+                    <i class="fab fa-youtube"
+                       aria-hidden="true">
+                    </i>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         COPYRIGHT
+    ================================================== -->
+
+    <div class="footer-bottom">
+
+
+        <div class="container text-center">
+
+
+            <p class="mb-1">
+
+                © {% now "Y" %}
+
+                <strong>
+                    Festival Wishes
+                </strong>
+
+                — All Rights Reserved.
+
+            </p>
+
+
+            <p class="mb-0 footer-small">
+
+                🪔 शुभकामनाएं बाँटते रहें •
+
+                खुशियाँ फैलाते रहें •
+
+                ❤️ जुड़े रहें
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+<script>
+
+function toggleMenu() {
+
+document
+.getElementById("festivalNav")
+.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+
+</html>

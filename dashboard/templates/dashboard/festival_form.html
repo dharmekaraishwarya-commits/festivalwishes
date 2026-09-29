@@ -1,0 +1,1727 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+{% if festival %}Edit Festival{% else %}Add Festival{% endif %}
+</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+<link
+    rel="stylesheet"
+    href="{% static 'dashboard/css/festival-toast.css' %}"
+>
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    color:#24105f;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at 10% 10%,rgba(250,129,18,.08),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(59,21,209,.08),transparent 25%),
+        #f8f6ff;
+
+    position:relative;
+
+}
+
+
+/* =========================================================
+   FESTIVE BACKGROUND
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.35;
+
+    background-image:
+        radial-gradient(#3b15d1 1px,transparent 1px);
+
+    background-size:28px 28px;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    width:100%;
+
+    max-width:1180px;
+
+    margin:auto;
+
+    padding:35px 22px 70px;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+    padding:22px 25px;
+
+    background:rgba(255,255,255,.92);
+
+    border:1px solid rgba(59,21,209,.10);
+
+    border-radius:22px;
+
+    box-shadow:
+        0 15px 40px rgba(36,16,95,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.header::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3b15d1,
+            #FA8112,
+            #EA2F14,
+            #3b15d1
+        );
+
+}
+
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.logo{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:27px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b15d1,
+            #24105f
+        );
+
+    box-shadow:
+        0 8px 18px rgba(59,21,209,.25);
+
+}
+
+
+.header h1{
+
+    font-family:'Libre Baskerville',serif;
+
+    font-size:26px;
+
+    color:#24105f;
+
+}
+
+
+.header-subtitle{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    color:#8a83a5;
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    background:#f0ecff;
+
+    color:#3b15d1;
+
+    padding:11px 17px;
+
+    border-radius:12px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border:1px solid rgba(59,21,209,.10);
+
+    transition:.25s;
+
+}
+
+
+.back-btn:hover{
+
+    background:#3b15d1;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(59,21,209,.20);
+
+}
+
+
+/* =========================================================
+   FESTIVE TITLE
+========================================================= */
+
+.festive-title{
+
+    text-align:center;
+
+    margin:5px 0 25px;
+
+}
+
+
+.festive-title .small{
+
+    font-family:'Kalam',cursive;
+
+    font-size:17px;
+
+    color:#FA8112;
+
+    font-weight:700;
+
+}
+
+
+.festive-title h2{
+
+    font-family:'Libre Baskerville',serif;
+
+    font-size:22px;
+
+    color:#24105f;
+
+    margin-top:3px;
+
+}
+
+
+.festive-line{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:10px;
+
+}
+
+
+.festive-line span{
+
+    width:55px;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #FA8112
+        );
+
+}
+
+
+.festive-line span:last-child{
+
+    background:
+        linear-gradient(
+            90deg,
+            #FA8112,
+            transparent
+        );
+
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+
+    background:rgba(255,255,255,.96);
+
+    border-radius:22px;
+
+    padding:27px;
+
+    margin-bottom:22px;
+
+    border:1px solid rgba(59,21,209,.08);
+
+    box-shadow:
+        0 12px 35px rgba(36,16,95,.06);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-50px;
+
+    top:-50px;
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(250,129,18,.07),
+            transparent 70%
+        );
+
+    pointer-events:none;
+
+}
+
+
+.card h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:0 0 22px;
+
+    padding-bottom:15px;
+
+    border-bottom:1px solid #eeeaf8;
+
+    color:#3b15d1;
+
+    font-size:16px;
+
+    font-weight:800;
+
+}
+
+
+.card h3::after{
+
+    content:"";
+
+    width:45px;
+
+    height:3px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #FA8112,
+            #EA2F14
+        );
+
+    margin-left:auto;
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:20px;
+
+}
+
+
+.group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+
+}
+
+
+.full{
+
+    grid-column:1/-1;
+
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+label{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#514a70;
+
+    margin-bottom:8px;
+
+}
+
+
+label::first-letter{
+
+    color:#3b15d1;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    padding:13px 14px;
+
+    border:1px solid #e1ddef;
+
+    border-radius:12px;
+
+    background:#fcfbff;
+
+    color:#24105f;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:13px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#aaa4bc;
+
+}
+
+
+input:hover,
+textarea:hover,
+select:hover{
+
+    border-color:#bcb2df;
+
+}
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:#3b15d1;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 0 4px rgba(59,21,209,.08);
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+input[type="datetime-local"]{
+
+    color:#514a70;
+
+}
+
+
+/* =========================================================
+   COLOR PICKER
+========================================================= */
+
+input[type="color"]{
+
+    height:48px;
+
+    padding:5px;
+
+    cursor:pointer;
+
+    background:#fff;
+
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea{
+
+    min-height:125px;
+
+    resize:vertical;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.checkbox{
+
+    flex-direction:row;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding-top:25px;
+
+}
+
+
+.checkbox input{
+
+    appearance:none;
+
+    width:21px;
+
+    height:21px;
+
+    padding:0;
+
+    border:2px solid #cfc7e5;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    position:relative;
+
+    background:#fff;
+
+}
+
+
+.checkbox input:checked{
+
+    background:#FA8112;
+
+    border-color:#FA8112;
+
+}
+
+
+.checkbox input:checked::after{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:3px;
+
+    top:-2px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:800;
+
+}
+
+
+.checkbox label{
+
+    margin:0;
+
+    cursor:pointer;
+
+    color:#3b15d1;
+
+}
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+input[type="file"]{
+
+    padding:9px;
+
+    background:#faf9ff;
+
+    cursor:pointer;
+
+}
+
+
+input[type="file"]::file-selector-button{
+
+    border:0;
+
+    padding:8px 12px;
+
+    margin-right:10px;
+
+    border-radius:8px;
+
+    background:#eee9ff;
+
+    color:#3b15d1;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.preview{
+
+    width:120px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:13px;
+
+    margin-top:12px;
+
+    border:3px solid white;
+
+    outline:1px solid #e2dcf4;
+
+    box-shadow:
+        0 8px 20px rgba(36,16,95,.10);
+
+    transition:.25s;
+
+}
+
+
+.preview:hover{
+
+    transform:scale(1.04);
+
+}
+
+
+/* =========================================================
+   CODE AREAS
+========================================================= */
+
+textarea[name="custom_css"],
+textarea[name="custom_js"]{
+
+    min-height:190px;
+
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    background:#20164a;
+
+    color:#eeeaff;
+
+    border-color:#33276b;
+
+}
+
+
+textarea[name="custom_css"]:focus,
+textarea[name="custom_js"]:focus{
+
+    border-color:#FA8112;
+
+    box-shadow:
+        0 0 0 4px rgba(250,129,18,.10);
+
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.submit-area{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:8px;
+
+    padding:20px 0 5px;
+
+}
+
+
+.submit{
+
+    border:0;
+
+    padding:14px 28px;
+
+    border-radius:13px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FA8112,
+            #EA2F14
+        );
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(234,47,20,.20);
+
+    transition:.25s;
+
+}
+
+
+.submit:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 13px 28px rgba(234,47,20,.28);
+
+}
+
+
+.submit:active{
+
+    transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   DECORATIVE BOTTOM
+========================================================= */
+
+.bottom-decoration{
+
+    text-align:center;
+
+    margin-top:28px;
+
+    font-family:'Kalam',cursive;
+
+    color:#9b94b5;
+
+    font-size:14px;
+
+}
+
+
+.bottom-decoration strong{
+
+    color:#FA8112;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px){
+
+    .main{
+
+        padding:20px 14px 50px;
+
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .full{
+
+        grid-column:auto;
+
+    }
+
+    .header{
+
+        padding:20px;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:16px;
+
+    }
+
+
+    .header-left{
+
+        width:100%;
+
+    }
+
+
+    .header h1{
+
+        font-size:21px;
+
+    }
+
+
+    .back-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+
+    .card{
+
+        padding:20px 16px;
+
+        border-radius:18px;
+
+    }
+
+
+    .card h3{
+
+        font-size:14px;
+
+    }
+
+
+    .submit-area{
+
+        justify-content:stretch;
+
+    }
+
+
+    .submit{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="main">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="header-left">
+
+<div class="logo">
+
+🪔
+
+</div>
+
+<div>
+
+<h1>
+
+{% if festival %}
+
+Edit Festival
+
+{% else %}
+
+Add Festival
+
+{% endif %}
+
+</h1>
+
+<div class="header-subtitle">
+
+Festival Wishes • Dashboard Management
+
+</div>
+
+</div>
+
+</div>
+
+
+<a
+href="{% url 'dashboard:festival_list' %}"
+class="back-btn"
+>
+
+← Back to Festivals
+
+</a>
+
+</div>
+
+
+<!-- FESTIVE TITLE -->
+
+<div class="festive-title">
+
+<div class="small">
+
+शुभ • मंगल • उत्सव
+
+</div>
+
+<h2>
+
+{% if festival %}
+
+Update Your Festival
+
+{% else %}
+
+Create a New Festival
+
+{% endif %}
+
+</h2>
+
+<div class="festive-line">
+
+<span></span>
+
+🪷
+
+<span></span>
+
+</div>
+
+</div>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+
+<!-- =====================================================
+     BASIC INFORMATION
+====================================================== -->
+
+<div class="card">
+
+<h3>
+
+📌
+
+Basic Information
+
+</h3>
+
+
+<div class="grid">
+
+
+<div class="group">
+
+<label>
+
+Festival Name
+
+</label>
+
+<input
+type="text"
+name="name"
+value="{{ festival.name|default:'' }}"
+placeholder="Example: Navratri"
+required
+>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Slug
+
+</label>
+
+<input
+type="text"
+name="slug"
+value="{{ festival.slug|default:'' }}"
+placeholder="navratri-wishes"
+>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Date
+
+</label>
+
+<input
+type="datetime-local"
+name="date"
+value="{% if festival %}{{ festival.date|date:'Y-m-d\\TH:i' }}{% endif %}"
+required
+>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Theme Color
+
+</label>
+
+<input
+type="color"
+name="theme_color"
+value="{{ festival.theme_color|default:'#ff9800' }}"
+>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Animation
+
+</label>
+
+<select name="animation">
+
+<option
+value="confetti"
+{% if festival.animation == "confetti" %}
+selected
+{% endif %}
+>
+
+🎊 Confetti
+
+</option>
+
+
+<option
+value="glitter"
+{% if festival.animation == "glitter" %}
+selected
+{% endif %}
+>
+
+✨ Glitter
+
+</option>
+
+
+<option
+value="fireworks"
+{% if festival.animation == "fireworks" %}
+selected
+{% endif %}
+>
+
+🎆 Fireworks
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="group checkbox">
+
+<input
+type="checkbox"
+name="is_trending"
+id="trending"
+{% if festival.is_trending %}
+checked
+{% endif %}
+>
+
+<label for="trending">
+
+🔥 Trending Festival
+
+</label>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FESTIVAL CONTENT
+====================================================== -->
+
+<div class="card">
+
+<h3>
+
+✍️
+
+Festival Content
+
+</h3>
+
+
+<div class="grid">
+
+
+<div class="group full">
+
+<label>
+
+Festival Heading
+
+</label>
+
+<input
+type="text"
+name="heading"
+value="{{ festival.heading|default:'' }}"
+placeholder="Happy Navratri Wishes"
+>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Message 1
+
+</label>
+
+<textarea
+name="message_1"
+placeholder="Write your first festival wishing message..."
+>{{ festival.message_1|default:'' }}</textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Message 2
+
+</label>
+
+<textarea
+name="message_2"
+placeholder="Write your second festival wishing message..."
+>{{ festival.message_2|default:'' }}</textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Message 3
+
+</label>
+
+<textarea
+name="message_3"
+placeholder="Write your third festival wishing message..."
+>{{ festival.message_3|default:'' }}</textarea>
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Message 4
+
+</label>
+
+<textarea
+name="message_4"
+placeholder="Write your fourth festival wishing message..."
+>{{ festival.message_4|default:'' }}</textarea>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FESTIVAL IMAGES
+====================================================== -->
+
+<div class="card">
+
+<h3>
+
+🖼️
+
+Festival Images & Media
+
+</h3>
+
+
+<div class="grid">
+
+
+<div class="group">
+
+<label>
+
+Card Image
+
+</label>
+
+<input
+type="file"
+name="card_image"
+accept="image/*"
+{% if not festival %}
+required
+{% endif %}
+>
+
+
+{% if festival.card_image %}
+
+<img
+src="{{ festival.card_image.url }}"
+class="preview"
+alt="Card Image"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Background Image
+
+</label>
+
+<input
+type="file"
+name="background_image"
+accept="image/*"
+>
+
+
+{% if festival.background_image %}
+
+<img
+src="{{ festival.background_image.url }}"
+class="preview"
+alt="Background Image"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Image 1
+
+</label>
+
+<input
+type="file"
+name="image1"
+accept="image/*"
+>
+
+{% if festival.image1 %}
+
+<img
+src="{{ festival.image1.url }}"
+class="preview"
+alt="Festival Image 1"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Image 2
+
+</label>
+
+<input
+type="file"
+name="image2"
+accept="image/*"
+>
+
+{% if festival.image2 %}
+
+<img
+src="{{ festival.image2.url }}"
+class="preview"
+alt="Festival Image 2"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Image 3
+
+</label>
+
+<input
+type="file"
+name="image3"
+accept="image/*"
+>
+
+{% if festival.image3 %}
+
+<img
+src="{{ festival.image3.url }}"
+class="preview"
+alt="Festival Image 3"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Image 4
+
+</label>
+
+<input
+type="file"
+name="image4"
+accept="image/*"
+>
+
+{% if festival.image4 %}
+
+<img
+src="{{ festival.image4.url }}"
+class="preview"
+alt="Festival Image 4"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+Festival Image 5
+
+</label>
+
+<input
+type="file"
+name="image5"
+accept="image/*"
+>
+
+{% if festival.image5 %}
+
+<img
+src="{{ festival.image5.url }}"
+class="preview"
+alt="Festival Image 5"
+>
+
+{% endif %}
+
+</div>
+
+
+<div class="group">
+
+<label>
+
+🎵 Festival Music
+
+</label>
+
+<input
+type="file"
+name="music"
+accept="audio/*"
+>
+
+
+{% if festival.music %}
+
+<audio
+controls
+style="
+width:100%;
+margin-top:12px;
+"
+>
+
+<source
+src="{{ festival.music.url }}"
+>
+
+</audio>
+
+{% endif %}
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     CUSTOM CODE
+====================================================== -->
+
+<div class="card">
+
+<h3>
+
+🎨
+
+Custom Code
+
+</h3>
+
+
+<div class="grid">
+
+
+<div class="group full">
+
+<label>
+
+Custom CSS
+
+</label>
+
+<textarea
+name="custom_css"
+placeholder="/* Festival custom CSS */"
+>{{ festival.custom_css|default:'' }}</textarea>
+
+</div>
+
+
+<div class="group full">
+
+<label>
+
+Custom JavaScript
+
+</label>
+
+<textarea
+name="custom_js"
+placeholder="// Festival custom JavaScript"
+>{{ festival.custom_js|default:'' }}</textarea>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<div class="submit-area">
+
+<button
+class="submit"
+type="submit"
+>
+
+{% if festival %}
+
+💾 Update Festival
+
+{% else %}
+
+🚀 Create Festival
+
+{% endif %}
+
+</button>
+
+</div>
+
+
+</form>
+
+
+<div class="bottom-decoration">
+
+🪔 <strong>Festival Wishes</strong> • शुभ अवसर • मंगलमय भव 🪔
+
+</div>
+
+
+</main>
+
+<script
+    src="{% static 'dashboard/js/festival-toast.js' %}"
+></script>
+
+
+</body>
+
+</html>

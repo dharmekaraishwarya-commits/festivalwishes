@@ -1,0 +1,213 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Wish Link Inactive
+</title>
+
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet"
+>
+
+
+<style>
+
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            #ffd7a8,
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #210842,
+            #4d116b
+        );
+
+    padding:20px;
+
+}
+
+
+.container{
+
+    width:100%;
+
+    max-width:500px;
+
+    text-align:center;
+
+    background:white;
+
+    padding:45px 30px;
+
+    border-radius:28px;
+
+    box-shadow:
+
+        0 25px 80px
+        rgba(0,0,0,.25);
+
+}
+
+
+.icon{
+
+    width:100px;
+
+    height:100px;
+
+    margin:auto auto 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:45px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #fff1f1,
+            #ffe0e0
+        );
+
+}
+
+
+h1{
+
+    color:#432052;
+
+    font-size:25px;
+
+    margin-bottom:12px;
+
+}
+
+
+p{
+
+    color:#89788f;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+
+.festival{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:#fff4e5;
+
+    color:#d27600;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="icon">
+
+🚫
+
+</div>
+
+
+<h1>
+
+This Wish Link Is Inactive
+
+</h1>
+
+
+<p>
+
+This personalized festival wish link
+is currently unavailable.
+
+The owner may have deactivated it.
+
+</p>
+
+
+<div class="festival">
+
+🎉 {{ festival.name }}
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

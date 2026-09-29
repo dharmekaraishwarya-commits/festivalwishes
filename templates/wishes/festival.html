@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ festival|title }} {{ name }}</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Festival CSS -->
+    <link rel="stylesheet" href="{% static 'css/' %}{{ festival }}.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="{{ festival }}-theme">
+
+<div class="fireworks"></div>
+<div class="glitter-container"></div>
+
+<!-- Heading -->
+<h1 class="main-title">
+     🕉️{{ festival|title }} 🕉️
+</h1>
+
+<h1 class="name-heading">
+    <span id="previewNameBox">{{ name }}</span>
+</h1>
+
+<!-- Images -->
+<img src="{% static 'images/diwali/family.jpg' %}" class="main-img">
+<img src="{% static 'images/diwali/rangoli.png' %}" class="main-img">
+
+<!-- Message -->
+<div class="message">
+    🪔 May your life be filled with happiness, prosperity & light 🪔
+</div>
+
+<!-- Music -->
+<audio controls loop>
+    <source src="{% static 'music/diwali.mp3' %}">
+</audio><br>
+<img src="{% static 'finger-gun-emoji.gif' %}" alt="emo" class="img-fluid"><br><br>
+
+<hr>
+
+
+
+<!-- Left auto-scroll border -->
+<div class="scroll-border scroll-left">
+    <div class="scroll-content">
+
+        <img src="{% static 'diya.png' %}" class="scroll-icon">
+        <img src="{% static 'lanterns.png' %}" class="scroll-icon">
+        <img src="{% static 'om.png' %}" class="scroll-icon">
+        <img src="{% static 'kalash.png' %}" class="scroll-icon">
+        <img src="{% static 'diya2.png' %}" class="scroll-icon">
+
+        <!-- Duplicate once for seamless animation -->
+        <img src="{% static 'diya.png' %}" class="scroll-icon">
+        <img src="{% static 'lanterns.png' %}" class="scroll-icon">
+        <img src="{% static 'om.png' %}" class="scroll-icon">
+        <img src="{% static 'kalash.png' %}" class="scroll-icon">
+        <img src="{% static 'diya2.png' %}" class="scroll-icon">
+
+    </div>
+</div>
+
+
+<!-- Right auto-scroll border -->
+<div class="scroll-border scroll-right">
+    <div class="scroll-content">
+
+        <img src="{% static 'diya.png' %}" class="scroll-icon">
+        <img src="{% static 'lanterns.png' %}" class="scroll-icon">
+        <img src="{% static 'om.png' %}" class="scroll-icon">
+        <img src="{% static 'kalash.png' %}" class="scroll-icon">
+        <img src="{% static 'diya2.png' %}" class="scroll-icon">
+
+        <!-- Duplicate once for seamless animation -->
+        <img src="{% static 'diya.png' %}" class="scroll-icon">
+        <img src="{% static 'lanterns.png' %}" class="scroll-icon">
+        <img src="{% static 'om.png' %}" class="scroll-icon">
+        <img src="{% static 'kalash.png' %}" class="scroll-icon">
+        <img src="{% static 'diya2.png' %}" class="scroll-icon">
+
+    </div>
+</div>
+
+<!-- Sticky Input
+<div class="sticky-toolbar">
+  <form onsubmit="generateLink(event)">
+    <input type="text" id="nameInput" placeholder="Enter your name" required>
+
+    <button type="submit">Generate Link</button>
+
+    <a id="whatsappBtn" target="_blank" class="d-none">
+      Share on WhatsApp
+    </a>
+  </form>
+</div> -->
+
+<!-- JS -->
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/diwali.js' %}"></script>
+
+<script>
+const festival = "{{ festival }}";
+</script>
+
+</body>
+</html>

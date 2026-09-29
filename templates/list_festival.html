@@ -1,0 +1,1065 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>All Festivals | Festival Wishes</title>
+
+    <link rel="shortcut icon"
+          type="image/webp"
+          href="{% static 'favicon.webp' %}">
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+        <link rel="stylesheet"
+          href="{% static 'assets/css/main.css' %}">
+
+
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+     PRELOADER
+===================================================== -->
+
+<div id="js-preloader">
+
+    <div class="preloader-inner">
+
+        <span class="dot"></span>
+
+        <div class="dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LIVE COUNTER
+===================================================== -->
+
+<div class="live-counter-wrapper text-center">
+
+    <div class="live-counter-badge">
+
+        <span class="live-dot"></span>
+
+        <span id="userCount">342</span>
+
+         लोग अभी शुभकामनाएं भेज रहे हैं 
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="main-nav">
+
+
+    <!-- LOGO -->
+
+    <a href="/" class="logo">
+
+        <img
+            src="{% static 'main_logo.png' %}"
+            alt="Festival Wishes">
+
+    </a>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-input">
+
+        <form
+            id="search"
+            action="#"
+            onsubmit="return false;">
+
+            <input
+                type="text"
+                id="searchInput"
+                name="searchKeyword"
+                placeholder="त्योहार खोजें..."
+                autocomplete="off">
+
+            <i class="fa fa-search"></i>
+
+        </form>
+
+
+        <div
+            id="suggestions"
+            class="list-group">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MOBILE MENU -->
+
+    <a
+        class="menu-trigger"
+        onclick="toggleMenu()">
+
+        <i class="fa fa-bars"></i>
+
+        Menu
+
+    </a>
+
+
+
+    <!-- NAVIGATION -->
+
+   <ul class="festival-nav" id="festivalNav">
+
+    <li>
+        <a href="/">
+            🏠 Home
+        </a>
+    </li>
+
+    <li>
+        <a href="{% url 'list_festival' %}">
+            🪔 सभी त्योहार 
+        </a>
+    </li>
+
+    {% if trending_festivals %}
+    <li>
+        <a href="{% url 'generate_page' trending_festivals.0.slug %}">
+            💌 शुभकामना बनाएं
+        </a>
+    </li>
+    {% endif %}
+
+    <li>
+        <a
+            href="{% url 'festival_calendar' %}"
+            class="create-wish-nav active"
+        >
+            📅 त्योहार कैलेंडर
+
+            <span class="new-badge">
+                NEW
+            </span>
+        </a>
+    </li>
+
+</ul>
+
+</nav>
+
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <h1>
+        🪔 All Indian Festivals 🪔
+    </h1>
+
+    <p>
+        Discover festivals, create beautiful personalized
+        wishes and share them with your loved ones ❤️
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     FESTIVAL CARDS
+===================================================== -->
+
+<div class="festival-container">
+
+    <div class="row">
+
+
+        {% for f in page_obj %}
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+
+
+            <a
+                href="{% url 'generate_page' f.slug %}"
+                class="text-decoration-none">
+
+
+                <div
+                    class="card h-100 shadow-sm festival-card">
+
+
+                    
+
+
+    <!-- SMALL COUNTDOWN STRIP -->
+    <div class="countdown-badge-container">
+
+        <div class="countdown-status">
+            <span class="pulse-icon"></span>
+            Starts In
+        </div>
+
+        <div
+            class="festival-timer"
+            data-date="{{ f.date|date:'Y-m-d H:i:s' }}"
+            data-id="{{ f.id }}"
+        >
+
+            <div class="timer-unit">
+                <span id="days-{{ f.id }}">00</span>
+                <label>d</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit">
+                <span id="hours-{{ f.id }}">00</span>
+                <label>h</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit">
+                <span id="minutes-{{ f.id }}">00</span>
+                <label>m</label>
+            </div>
+
+            <div class="timer-sep">:</div>
+
+            <div class="timer-unit-sec">
+                <span id="seconds-{{ f.id }}">00</span>
+                <label>s</label>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TRENDING -->
+
+                    {% if f.is_trending %}
+
+                    <div class="ribbon-wrapper">
+
+                        <div class="ribbon-trending">
+
+                            🔥 Trending
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+
+                    <!-- IMAGE -->
+
+                    {% if f.card_image %}
+
+                    <div class="card-image-wrapper">
+
+                        <img
+                            src="{{ f.card_image.url }}"
+                            alt="{{ f.name }}">
+
+                    </div>
+
+                    {% else %}
+
+                    <div
+                        class="card-image-wrapper d-flex align-items-center justify-content-center"
+                        style="
+                            background:linear-gradient(
+                                135deg,
+                                #FA8112,
+                                #3b15d1
+                            );
+                        ">
+
+                        <span
+                            style="
+                                font-size:60px;
+                            ">
+
+                            🪔
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- CARD BODY -->
+
+                    <div
+                        class="card-body text-center p-3">
+
+
+                        <h6
+                            class="card-title fw-bold text-dark mb-2">
+
+                            {{ f.name }}
+
+                        </h6>
+
+
+                        <div
+                            class="d-flex justify-content-center gap-3 card-info">
+
+
+                            <!-- VIEWS -->
+
+                             <span class="text-dark">
+
+                <i class="fa fa-star text-warning"></i>
+
+                4.{{ f.id|stringformat:"s"|slice:"-1:"|add:"5"|slice:":1" }}
+
+            </span>
+
+
+                            <!-- DATE -->
+
+                            <span class="text-dark">
+
+                               
+
+                                {{ f.date|date:"d M Y" }}
+
+                            </span>
+
+
+                        </div>
+
+
+                            <div class="mt-2">
+
+                                <span
+                                    class="badge rounded-pill create-wish-badge"
+                                >
+                                    अपनी विश बनाएं
+                                    <i
+                                                    class="fa fa-arrow-right ms-2">
+                                                </i>
+                                </span>
+
+                            </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        {% empty %}
+
+
+        <!-- NO FESTIVALS -->
+
+        <div class="col-12">
+
+            <div class="no-result">
+
+                <div
+                    style="font-size:60px;">
+
+                    🪔
+
+                </div>
+
+                <h3
+                    class="fw-bold">
+
+                    No Festivals Found
+
+                </h3>
+
+                {% if query %}
+
+                <p class="text-muted">
+
+                    We couldn't find a festival
+                    matching
+
+                    <strong>
+                        "{{ query }}"
+                    </strong>
+
+                </p>
+
+                {% else %}
+
+                <p class="text-muted">
+
+                    No festivals are available
+                    right now.
+
+                </p>
+
+                {% endif %}
+
+
+                <a
+                    href="{% url 'list_festival' %}"
+                    class="btn btn-warning fw-bold">
+
+                    View All Festivals
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         PAGINATION
+    ================================================= -->
+
+    {% if page_obj.has_other_pages %}
+
+    <div
+        class="pagination-container">
+
+        <nav
+            aria-label="Festival pagination">
+
+            <ul
+                class="pagination justify-content-center flex-wrap">
+
+
+                <!-- PREVIOUS -->
+
+                {% if page_obj.has_previous %}
+
+                <li class="page-item">
+
+                    <a
+                        class="page-link"
+                        href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query|urlencode }}{% endif %}">
+
+                        ←
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+
+
+                <!-- PAGE NUMBERS -->
+
+                {% for num in page_obj.paginator.page_range %}
+
+                    {% if page_obj.number == num %}
+
+                    <li class="page-item active">
+
+                        <span class="page-link">
+
+                            {{ num }}
+
+                        </span>
+
+                    </li>
+
+
+                    <!-- {% elif num > page_obj.number|add:'-3'
+                          and num < page_obj.number|add:'3' %} -->
+
+                    <li class="page-item">
+
+                        <a
+                            class="page-link"
+                            href="?page={{ num }}{% if query %}&q={{ query|urlencode }}{% endif %}">
+
+                            {{ num }}
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+                {% endfor %}
+
+
+
+                <!-- NEXT -->
+
+                {% if page_obj.has_next %}
+
+                <li class="page-item">
+
+                    <a
+                        class="page-link"
+                        href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query|urlencode }}{% endif %}">
+
+                        →
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="deshi-footer">
+
+
+    <div class="footer-main">
+
+        <div class="row g-4">
+
+
+            <!-- ABOUT -->
+
+            <div class="col-12 col-md-5">
+
+                <div class="footer-logo">
+
+                    <img
+                        src="{% static 'main_logo.png' %}"
+                        alt="Festival Wishes">
+
+                </div>
+
+
+                <p class="footer-description">
+
+                    🪔 Apne parivaar aur doston ke saath
+                    har Indian festival ki khushiyan share
+                    karein.
+
+                    <br><br>
+
+                    ❤️ Personalized wishes banayein,
+                    photo add karein aur apne loved ones
+                    ko special feel karayein.
+
+                </p>
+
+
+                <!-- SOCIAL -->
+
+                <div class="social-links">
+
+                    <a href="#"
+                       aria-label="Facebook">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="Instagram">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="X">
+
+                        <i class="fab fa-x-twitter"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="YouTube">
+
+                        <i class="fab fa-youtube"></i>
+
+                    </a>
+
+                    <a href="#"
+                       aria-label="WhatsApp">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="col-6 col-md-3">
+
+                <h5 class="footer-title">
+
+                    🔗 Quick Links
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+                    <li>
+
+                        <a href="/">
+
+                            🏠 Home
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            🪔 All Festivals
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'festival_calendar' %}">
+
+                            📅 Festival Calendar
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="{% url 'list_festival' %}">
+
+                            💌 Create Wish
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- FESTIVALS -->
+
+            <div class="col-6 col-md-4">
+
+                <h5 class="footer-title">
+
+                    🪔 Popular Festivals
+
+                </h5>
+
+
+                <ul class="footer-links">
+
+                    <li>
+
+                        <a href="#">
+
+                            🪔 Diwali Wishes
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">
+
+                            🙏 Ganesh Chaturthi
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">
+
+                            🌈 Holi Wishes
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">
+
+                            🌸 Gudi Padwa
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">
+
+                            🇮🇳 Independence Day
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <div>
+
+                © {% now "Y" %}
+
+                <strong>
+                    Festival Wishes
+                </strong>
+
+                — Made with ❤️ in India 🇮🇳
+
+            </div>
+
+            <div class="mt-2">
+
+                Celebrate • Wish • Share 🎉
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById(
+            "festivalNav"
+        );
+
+    menu.classList.toggle("show");
+
+}
+
+
+
+/* =====================================================
+   COUNTDOWN TIMERS
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        function updateAllTimers() {
+
+
+            const now =
+                new Date().getTime();
+
+
+            document
+                .querySelectorAll(
+                    ".festival-timer"
+                )
+                .forEach(function(timer) {
+
+
+                    const targetDateStr =
+                        timer.getAttribute(
+                            "data-date"
+                        );
+
+
+                    const fid =
+                        timer.getAttribute(
+                            "data-id"
+                        );
+
+
+                    const targetDate =
+                        new Date(
+                            targetDateStr
+                        ).getTime();
+
+
+                    const distance =
+                        targetDate - now;
+
+
+                    const container =
+                        timer.closest(
+                            ".countdown-badge-container"
+                        );
+
+
+                    if (distance < 0) {
+
+                        if (container) {
+
+                            container.innerHTML = `
+
+                                <div
+                                    style="
+                                        background:#25D366;
+                                        color:white;
+                                        font-size:10px;
+                                        font-weight:800;
+                                        text-align:center;
+                                        border-radius:8px;
+                                        padding:5px;
+                                    ">
+
+                                    ✨ FESTIVAL IS LIVE NOW!
+
+                                </div>
+
+                            `;
+
+                        }
+
+                        return;
+
+                    }
+
+
+                    const d =
+                        Math.floor(
+                            distance /
+                            (1000 * 60 * 60 * 24)
+                        );
+
+
+                    const h =
+                        Math.floor(
+                            (
+                                distance %
+                                (1000 * 60 * 60 * 24)
+                            ) /
+                            (1000 * 60 * 60)
+                        );
+
+
+                    const m =
+                        Math.floor(
+                            (
+                                distance %
+                                (1000 * 60 * 60)
+                            ) /
+                            (1000 * 60)
+                        );
+
+
+                    const s =
+                        Math.floor(
+                            (
+                                distance %
+                                (1000 * 60)
+                            ) /
+                            1000
+                        );
+
+
+                    const days =
+                        document.getElementById(
+                            `days-${fid}`
+                        );
+
+
+                    const hours =
+                        document.getElementById(
+                            `hours-${fid}`
+                        );
+
+
+                    const minutes =
+                        document.getElementById(
+                            `minutes-${fid}`
+                        );
+
+
+                    const seconds =
+                        document.getElementById(
+                            `seconds-${fid}`
+                        );
+
+
+                    if (days) {
+
+                        days.innerText =
+                            d < 10
+                            ? "0" + d
+                            : d;
+
+                    }
+
+
+                    if (hours) {
+
+                        hours.innerText =
+                            h < 10
+                            ? "0" + h
+                            : h;
+
+                    }
+
+
+                    if (minutes) {
+
+                        minutes.innerText =
+                            m < 10
+                            ? "0" + m
+                            : m;
+
+                    }
+
+
+                    if (seconds) {
+
+                        seconds.innerText =
+                            s < 10
+                            ? "0" + s
+                            : s;
+
+                    }
+
+                });
+
+        }
+
+
+        updateAllTimers();
+
+
+        setInterval(
+            updateAllTimers,
+            1000
+        );
+
+    }
+);
+
+
+</script>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

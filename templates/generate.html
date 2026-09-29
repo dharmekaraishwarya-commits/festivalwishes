@@ -1,0 +1,3131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ festival.name }} Wish</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <link
+        rel="shortcut icon"
+        type="image/webp"
+        href="{% static 'favicon.webp' %}"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    >
+
+
+<style>
+/* =========================================================
+   BABY TEMPLATE SELECTOR
+========================================================= */
+
+.baby-video-section {
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59,21,209,.05),
+            rgba(250,129,18,.06)
+        );
+
+    border:
+        1px solid
+        rgba(59,21,209,.10);
+
+}
+
+
+.baby-section-title {
+
+    color: var(--purple);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+
+}
+
+
+.baby-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.baby-option {
+
+    position: relative;
+
+    cursor: pointer;
+
+    padding: 5px;
+
+    border-radius: 14px;
+
+    border:
+        2px solid
+        transparent;
+
+    background: white;
+
+    transition:
+        all .25s ease;
+
+}
+
+
+.baby-option:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--orange);
+
+}
+
+
+.baby-option.selected {
+
+    border-color:
+        var(--bright-purple);
+
+    box-shadow:
+        0 5px 18px
+        rgba(59,21,209,.20);
+
+}
+
+
+.baby-option img {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    display: block;
+
+}
+
+
+.baby-name {
+
+    text-align: center;
+
+    color:
+        var(--deep-purple);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.baby-check {
+
+    position: absolute;
+
+    top: 4px;
+
+    right: 4px;
+
+    width: 21px;
+
+    height: 21px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        var(--bright-purple);
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .baby-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+/* =========================================================
+   FESTIVAL BRAND COLORS
+========================================================= */
+
+:root {
+
+    --deep-purple: #100247;
+    --purple: #24105f;
+    --bright-purple: #3b15d1;
+
+    --orange: #FA8112;
+    --red-orange: #EA2F14;
+
+    --whatsapp: #25D366;
+
+    --white: #ffffff;
+
+    --light-bg: #fff8f0;
+
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    color: var(--deep-purple);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(59,21,209,0.40),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(250,129,18,0.25),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(234,47,20,0.20),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--deep-purple),
+            var(--purple),
+            var(--deep-purple)
+        );
+
+}
+
+
+/* =========================================================
+   FESTIVE BACKGROUND
+========================================================= */
+
+.festive-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.sparkle {
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    box-shadow:
+        0 0 8px var(--orange),
+        0 0 18px var(--orange);
+
+    animation:
+        sparkleMove 6s infinite ease-in-out;
+
+    opacity: .7;
+}
+
+
+.sparkle:nth-child(1) {
+    left: 7%;
+    top: 20%;
+}
+
+.sparkle:nth-child(2) {
+    left: 18%;
+    top: 70%;
+    animation-delay: 1s;
+}
+
+.sparkle:nth-child(3) {
+    left: 31%;
+    top: 13%;
+    animation-delay: 2s;
+}
+
+.sparkle:nth-child(4) {
+    left: 48%;
+    top: 80%;
+    animation-delay: 3s;
+}
+
+.sparkle:nth-child(5) {
+    left: 64%;
+    top: 25%;
+    animation-delay: 1.5s;
+}
+
+.sparkle:nth-child(6) {
+    left: 78%;
+    top: 65%;
+    animation-delay: 2.5s;
+}
+
+.sparkle:nth-child(7) {
+    left: 90%;
+    top: 15%;
+    animation-delay: 3.5s;
+}
+
+.sparkle:nth-child(8) {
+    left: 95%;
+    top: 85%;
+    animation-delay: 4s;
+}
+
+
+@keyframes sparkleMove {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: .3;
+    }
+
+    50% {
+
+        transform:
+            translateY(-25px)
+            scale(1.8);
+
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page-wrapper {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    padding:
+        35px
+        15px
+        60px;
+
+}
+
+
+/* =========================================================
+   TOP BRAND
+========================================================= */
+
+.brand-top {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.brand-pill {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px
+        18px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
+    backdrop-filter:
+        blur(12px);
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: .4px;
+
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.wish-card {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    margin: auto;
+
+    border: none;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background: white;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.35),
+
+        0 0 0 1px
+        rgba(255,255,255,.15);
+
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header-custom {
+
+    position: relative;
+
+    padding:
+        32px
+        25px
+        28px;
+
+    text-align: center;
+
+    color: white;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.12),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--bright-purple),
+            var(--purple)
+        );
+
+    border-bottom:
+        5px solid
+        var(--orange);
+
+}
+
+
+/* header decorative glow */
+
+.card-header-custom::before {
+
+    content: "✦";
+
+    position: absolute;
+
+    left: 25px;
+
+    top: 20px;
+
+    font-size: 28px;
+
+    color: var(--orange);
+
+    animation:
+        headerSparkle 2s infinite alternate;
+}
+
+
+.card-header-custom::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    right: 25px;
+
+    bottom: 15px;
+
+    font-size: 24px;
+
+    color: var(--orange);
+
+    animation:
+        headerSparkle 2s infinite alternate-reverse;
+}
+
+
+@keyframes headerSparkle {
+
+    from {
+
+        opacity: .4;
+
+        transform:
+            scale(.8)
+            rotate(0deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1.2)
+            rotate(20deg);
+    }
+
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.card-header-custom h3 {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    margin: 0;
+
+    text-shadow:
+        0 4px 15px
+        rgba(0,0,0,.20);
+
+}
+
+
+.festival-title {
+
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding:
+        6px
+        15px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.card-body {
+
+    padding: 28px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fffaf5
+        );
+
+}
+
+
+/* =========================================================
+   FORM LABEL
+========================================================= */
+
+.form-label {
+
+    color:
+        var(--purple) !important;
+
+    font-size: 11px;
+
+    font-weight: 700 !important;
+
+    letter-spacing: .3px;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.form-control-custom {
+
+    background:
+        var(--deep-purple) !important;
+
+    color:
+        white !important;
+
+    border:
+        2px solid
+        rgba(59,21,209,.25) !important;
+
+    border-radius: 12px;
+
+    padding:
+        12px
+        14px;
+
+    font-size: 13px;
+
+    transition:
+        all .25s ease;
+
+}
+
+
+.form-control-custom:focus {
+
+    border-color:
+        var(--orange) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(250,129,18,.12) !important;
+
+}
+
+
+.form-control-custom::placeholder {
+
+    color:
+        rgba(255,255,255,.65);
+
+}
+
+
+/* Select */
+
+select.form-control-custom {
+
+    cursor: pointer;
+
+}
+
+
+select.form-control-custom option {
+
+    color:
+        var(--deep-purple);
+
+    background:
+        white;
+
+}
+
+
+/* =========================================================
+   PHOTO UPLOAD
+========================================================= */
+
+.photo-upload-box {
+
+    border:
+        2px dashed
+        rgba(59,21,209,.25);
+
+    border-radius: 15px;
+
+    padding: 14px;
+
+    background:
+        rgba(59,21,209,.025);
+
+    transition:
+        all .25s ease;
+
+}
+
+
+.photo-upload-box:hover {
+
+    border-color:
+        var(--orange);
+
+    background:
+        rgba(250,129,18,.04);
+
+}
+
+
+.photo-upload-box input {
+
+    border-radius: 10px;
+
+}
+
+
+/* =========================================================
+   PHOTO PREVIEW
+========================================================= */
+
+#photoPreviewContainer {
+
+    padding:
+        15px;
+
+    border-radius:
+        18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8ef,
+            #f7f2ff
+        );
+
+    border:
+        1px solid
+        rgba(250,129,18,.15);
+
+}
+
+
+#photoPreview {
+
+    width: 125px;
+
+    height: 125px;
+
+    object-fit: cover;
+
+    border:
+        5px solid
+        var(--orange) !important;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(250,129,18,.25),
+
+        0 0 0 5px
+        rgba(250,129,18,.08);
+
+}
+
+
+/* =========================================================
+   AI SECTION
+========================================================= */
+
+.ai-section {
+
+    padding:
+        16px;
+
+    border-radius:
+        18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59,21,209,.05),
+            rgba(250,129,18,.06)
+        );
+
+    border:
+        1px solid
+        rgba(59,21,209,.10);
+
+}
+
+
+.ai-title {
+
+    color:
+        var(--purple);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* AI button */
+
+#aiWishBtn {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--bright-purple),
+            #6d35ff
+        ) !important;
+
+    border: none !important;
+
+    border-radius:
+        12px !important;
+
+    padding:
+        13px !important;
+
+    color: white !important;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px
+        rgba(59,21,209,.25);
+
+    transition:
+        all .25s ease;
+
+}
+
+
+#aiWishBtn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(59,21,209,.35);
+
+}
+
+
+#aiWishBtn:disabled {
+
+    opacity: .75;
+
+    transform: none;
+
+}
+
+
+/* AI textarea */
+
+#aiWishText {
+
+    border:
+        2px solid
+        rgba(59,21,209,.12);
+
+    border-radius:
+        12px;
+
+    color:
+        var(--deep-purple);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+
+    resize:
+        vertical;
+
+}
+
+
+#aiWishText:focus {
+
+    border-color:
+        var(--bright-purple);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(59,21,209,.08);
+
+}
+
+
+/* =========================================================
+   GENERATE BUTTON
+========================================================= */
+
+.btn-generate {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--orange),
+            var(--red-orange)
+        );
+
+    border: none;
+
+    color: white !important;
+
+    font-weight: 800;
+
+    padding:
+        14px;
+
+    border-radius:
+        13px;
+
+    font-size:
+        14px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(234,47,20,.25);
+
+    transition:
+        all .3s ease;
+
+}
+
+
+.btn-generate:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 32px
+        rgba(234,47,20,.35);
+
+}
+
+
+/* =========================================================
+   SUCCESS RESULT
+========================================================= */
+
+#success-toast {
+
+    position:
+        relative;
+
+    display:
+        none;
+
+    padding:
+        18px !important;
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4fff7,
+            #ffffff
+        );
+
+    border:
+        2px solid
+        rgba(37,211,102,.30);
+
+    box-shadow:
+        0 10px 30px
+        rgba(37,211,102,.10);
+
+}
+
+
+.success-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin:
+        0 auto
+        10px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--orange),
+            var(--red-orange)
+        );
+
+    font-size:
+        28px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(250,129,18,.25);
+
+}
+
+
+.success-title {
+
+    color:
+        #168642;
+
+    font-weight:
+        800;
+
+    font-size:
+        15px;
+
+}
+
+
+/* =========================================================
+   GENERATED LINK
+========================================================= */
+
+.result-link-input {
+
+    background:
+        white !important;
+
+    color:
+        var(--deep-purple) !important;
+
+    border:
+        2px solid
+        rgba(36,16,95,.12) !important;
+
+    border-radius:
+        11px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =========================================================
+   COPY TOAST
+========================================================= */
+
+.copy-toast-pop {
+
+    position:
+        absolute;
+
+    top:
+        -15px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        var(--deep-purple);
+
+    color:
+        white;
+
+    padding:
+        6px 15px;
+
+    border-radius:
+        50px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        600;
+
+    display:
+        none;
+
+    z-index:
+        100;
+
+}
+
+
+.show-pop {
+
+    display:
+        block !important;
+
+    animation:
+        popUp 2s ease-in-out forwards;
+
+}
+
+
+@keyframes popUp {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%,10px);
+
+    }
+
+    20% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%,0);
+
+    }
+
+    80% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%,0);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%,-10px);
+
+    }
+
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+.whatsapp-btn {
+
+    background:
+        var(--whatsapp) !important;
+
+    color:
+        white !important;
+
+    border:
+        none;
+
+    font-weight:
+        700;
+
+    border-radius:
+        11px;
+
+    padding:
+        10px;
+
+    transition:
+        all .25s ease;
+
+}
+
+
+.whatsapp-btn:hover {
+
+    background:
+        #1fba59 !important;
+
+    color:
+        white !important;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   SMART SHARE
+========================================================= */
+
+.smart-share-btn {
+
+    background:
+        var(--bright-purple);
+
+    color:
+        white;
+
+    border:
+        none;
+
+    border-radius:
+        11px;
+
+    padding:
+        10px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+}
+
+
+.smart-share-btn:hover {
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+}
+
+
+/* =========================================================
+   SOCIAL BUTTONS
+========================================================= */
+
+.btn-brand {
+
+    border:
+        none;
+
+    color:
+        white !important;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        11px 0;
+
+    border-radius:
+        12px;
+
+    transition:
+        all .3s cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+
+    font-size:
+        1.15rem;
+
+    text-decoration:
+        none;
+
+}
+
+
+.btn-brand i {
+
+    color:
+        white !important;
+
+}
+
+
+.btn-brand:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    filter:
+        brightness(1.12);
+
+}
+
+
+/* Facebook */
+
+.btn-fb {
+
+    background:
+        #1877F2;
+
+    box-shadow:
+        0 5px 15px
+        rgba(24,119,242,.25);
+
+}
+
+
+/* Instagram */
+
+.btn-ig {
+
+    background:
+        radial-gradient(
+            circle at 30% 107%,
+            #fdf497 0%,
+            #fdf497 5%,
+            #fd5949 45%,
+            #d6249f 60%,
+            #285AEB 90%
+        );
+
+    box-shadow:
+        0 5px 15px
+        rgba(214,36,159,.25);
+
+}
+
+
+/* X */
+
+.btn-x {
+
+    background:
+        #000000;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.18);
+
+}
+
+
+/* =========================================================
+   PREVIEW LINK
+========================================================= */
+
+#previewLink {
+
+    color:
+        var(--purple) !important;
+
+    font-weight:
+        600;
+
+    transition:
+        color .2s ease;
+
+}
+
+
+#previewLink:hover {
+
+    color:
+        var(--orange) !important;
+
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.share-divider {
+
+    border:
+        0;
+
+    border-top:
+        1px solid
+        rgba(36,16,95,.08);
+
+    margin:
+        20px 0;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.page-footer {
+
+    text-align:
+        center;
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:
+        10px;
+
+    margin-top:
+        25px;
+
+}
+
+
+.page-footer strong {
+
+    color:
+        rgba(255,255,255,.85);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .page-wrapper {
+
+        padding:
+            20px
+            10px
+            40px;
+
+    }
+
+
+    .brand-top {
+
+        margin-bottom:
+            15px;
+
+    }
+
+
+    .brand-pill {
+
+        font-size:
+            9px;
+
+        padding:
+            7px 13px;
+
+    }
+
+
+    .wish-card {
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .card-header-custom {
+
+        padding:
+            26px
+            18px
+            24px;
+
+    }
+
+
+    .card-header-custom h3 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .card-body {
+
+        padding:
+            20px !important;
+
+    }
+
+
+    #photoPreview {
+
+        width:
+            110px;
+
+        height:
+            110px;
+
+    }
+
+
+    .btn-brand {
+
+        font-size:
+            1rem;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     FESTIVE BACKGROUND
+===================================================== -->
+
+<div class="festive-bg">
+
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+    <span class="sparkle"></span>
+
+</div>
+
+
+<div class="page-wrapper">
+
+
+    <!-- BRAND -->
+
+    <div class="brand-top">
+
+        <div class="brand-pill">
+
+            🪔
+            Festival Wishes
+            ✨
+            Spread Happiness
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         MAIN CARD
+    ================================================== -->
+
+    <div class="card wish-card shadow-lg">
+
+
+        <!-- HEADER -->
+
+        <div class="card-header-custom">
+
+            <h3>
+
+                ✨ Create Your Wish ✨
+
+            </h3>
+
+
+            <div class="festival-title">
+
+                🪔 {{ festival.name }}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BODY -->
+
+        <div class="card-body">
+
+
+            <form
+                onsubmit="generateLink(event)"
+                id="wishForm"
+            >
+
+                <input
+                    type="hidden"
+                    id="festivalInput"
+                    value="{{ festival.slug }}"
+                >
+
+
+                <!-- =====================================
+                     SENDER
+                ====================================== -->
+
+                <div class="mb-4">
+
+                    <label
+                        class="form-label"
+                    >
+
+                        👤 AAPKA NAAM
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="senderNameInput"
+                        name="sender_name"
+                        class="form-control form-control-custom shadow-sm"
+                        placeholder="Aap ka naam likho..."
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     RECEIVER
+                ====================================== -->
+
+                <div class="mb-4">
+
+                    <label
+                        class="form-label"
+                    >
+
+                        ❤️ FRIEND'S NAME
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="receiverNameInput"
+                        name="receiver_name"
+                        class="form-control form-control-custom shadow-sm"
+                        placeholder="Apne friend ka naam likho..."
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     PHOTO
+                ====================================== -->
+
+                <div class="mb-4">
+
+                    <label
+                        class="form-label"
+                    >
+
+                        📸 FRIEND'S PHOTO
+
+                    </label>
+
+
+                    <div class="photo-upload-box">
+
+                        <input
+                            type="file"
+                            id="photoInput"
+                            class="form-control"
+                            accept="image/*"
+                            required
+                        >
+
+
+                        <small class="text-muted d-block mt-2">
+
+                            ❤️ Apne friend ki photo upload karo
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PHOTO PREVIEW -->
+
+                <div
+                    id="photoPreviewContainer"
+                    class="text-center mt-3 mb-4 d-none"
+                >
+
+                    <p class="text-dark fw-bold mb-3 small">
+
+                        👀 Photo Preview
+
+                    </p>
+
+
+                    <img
+                        id="photoPreview"
+                        src=""
+                        alt="Photo Preview"
+                    >
+
+                </div>
+
+
+
+                <!-- =====================================
+                     AI WISH
+                ====================================== -->
+
+                <div class="ai-section mb-4">
+
+
+                    <div class="ai-title">
+
+                        ✨ AI Wish Generator
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Choose Wish Style
+
+                        </label>
+
+
+                        <select
+                            id="wishStyleInput"
+                            class="form-select form-control-custom"
+                        >
+
+                            <option value="emotional">
+                                ❤️ Emotional
+                            </option>
+
+                            <option value="funny">
+                                😂 Funny
+                            </option>
+
+                            <option value="friendship">
+                                👯 Friendship
+                            </option>
+
+                            <option value="family">
+                                👨‍👩‍👧 Family
+                            </option>
+
+                            <option value="romantic">
+                                🥰 Romantic
+                            </option>
+
+                            <option value="traditional">
+                                🙏 Traditional
+                            </option>
+
+                            <option value="professional">
+                                💼 Professional
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Choose Language
+
+                        </label>
+
+
+                        <select
+                            id="wishLanguageInput"
+                            class="form-select form-control-custom"
+                        >
+
+                            <option value="hinglish">
+                                🇮🇳 Hindi + English
+                            </option>
+
+                            <option value="hindi">
+                                हिन्दी
+                            </option>
+
+                            <option value="marathi">
+                                मराठी
+                            </option>
+
+                            <option value="english">
+                                English
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="aiWishBtn"
+                        onclick="generateAIWish()"
+                        class="btn w-100"
+                    >
+
+                        ✨ Generate AI Wish
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =====================================
+                     AI RESULT
+                ====================================== -->
+
+                <div
+                    id="aiWishContainer"
+                    class="mb-4"
+                    style="display:none;"
+                >
+
+                    <label class="form-label">
+
+                        ✨ YOUR PERSONALIZED WISH
+
+                    </label>
+
+
+                    <textarea
+                        id="aiWishText"
+                        class="form-control"
+                        rows="6"
+                        placeholder="Your AI wish will appear here..."
+                    ></textarea>
+
+
+                    <small class="text-muted">
+
+                        ✏️ You can edit the message before
+                        generating the link.
+
+                    </small>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     GENERATE
+                ====================================== -->
+
+                <button
+                    type="submit"
+                    id="genBtn"
+                    class="btn btn-generate w-100"
+                >
+
+                    🚀 Generate Magic Link
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =========================================
+                 SUCCESS
+            ========================================== -->
+
+            <div
+                id="success-toast"
+                class="text-center mt-4"
+            >
+
+
+                <div
+                    id="copy-success-msg"
+                    class="copy-toast-pop"
+                >
+
+                    ✅ Link Copied!
+
+                </div>
+
+
+                <div class="success-icon">
+
+                    🎉
+
+                </div>
+
+
+                <div class="success-title mb-3">
+
+                    Magic Link Ready!
+
+                </div>
+
+
+                <input
+                    type="text"
+                    id="generatedLink"
+                    class="form-control result-link-input mb-3 text-center"
+                    readonly
+                >
+
+
+                <div class="d-grid gap-2">
+
+
+                    <button
+                        onclick="copyToClipboard()"
+                        id="copyBtn"
+                        class="btn btn-outline-dark btn-sm fw-bold"
+                    >
+
+                        🔗 Copy Link
+
+                    </button>
+
+
+                    <a
+                        href="#"
+                        id="whatsappLink"
+                        target="_blank"
+                        class="btn whatsapp-btn shadow-sm"
+                    >
+
+                        <i class="fab fa-whatsapp"></i>
+
+                        Share on WhatsApp
+
+                    </a>
+
+                </div>
+
+
+
+                <hr class="share-divider">
+
+
+
+                <!-- SOCIAL -->
+
+                <p
+                    class="text-dark small fw-bold mb-3"
+                >
+
+                    🚀 SPREAD THE MAGIC
+
+                </p>
+
+
+                <div class="d-grid gap-2">
+
+
+                    <button
+                        onclick="smartShare()"
+                        class="btn smart-share-btn"
+                    >
+
+                        📤 Share to Any App
+
+                    </button>
+
+
+                    <div
+                        class="d-flex justify-content-between gap-2 mt-2"
+                    >
+
+
+                        <a
+                            id="fbShare"
+                            target="_blank"
+                            class="btn btn-brand btn-fb flex-grow-1"
+                        >
+
+                            <i class="fab fa-facebook-f"></i>
+
+                        </a>
+
+
+                        <a
+                            id="igShare"
+                            onclick="copyToClipboard()"
+                            class="btn btn-brand btn-ig flex-grow-1"
+                        >
+
+                            <i class="fab fa-instagram"></i>
+
+                        </a>
+
+
+                        <a
+                            id="xShare"
+                            target="_blank"
+                            class="btn btn-brand btn-x flex-grow-1"
+                        >
+
+                            <i class="fa-brands fa-x-twitter"></i>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <a
+                    href="#"
+                    id="previewLink"
+                    class="btn btn-link text-decoration-none small mt-3"
+                >
+
+                    👀 View Page Preview →
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="page-footer">
+
+        Made with ❤️ for
+
+        <strong>
+            Indian Festivals & Celebrations
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+
+<script>
+
+/* =========================================================
+   AI WISH GENERATOR
+========================================================= */
+
+let generatedAIWish = "";
+
+
+async function generateAIWish() {
+
+    const senderNameInput =
+        document.getElementById(
+            'senderNameInput'
+        );
+
+    const receiverNameInput =
+        document.getElementById(
+            'receiverNameInput'
+        );
+
+    const festivalInput =
+        document.getElementById(
+            'festivalInput'
+        );
+
+    const styleInput =
+        document.getElementById(
+            'wishStyleInput'
+        );
+
+    const languageInput =
+        document.getElementById(
+            'wishLanguageInput'
+        );
+
+    const btn =
+        document.getElementById(
+            'aiWishBtn'
+        );
+
+    const container =
+        document.getElementById(
+            'aiWishContainer'
+        );
+
+    const textarea =
+        document.getElementById(
+            'aiWishText'
+        );
+
+
+    if (!senderNameInput ||
+        !receiverNameInput ||
+        !festivalInput ||
+        !styleInput ||
+        !languageInput ||
+        !btn ||
+        !textarea) {
+
+        alert(
+            "Some required fields are missing."
+        );
+
+        return;
+
+    }
+
+
+    const senderName =
+        senderNameInput.value.trim();
+
+    const receiverName =
+        receiverNameInput.value.trim();
+
+    const festival =
+        festivalInput.value.trim();
+
+    const style =
+        styleInput.value;
+
+    const language =
+        languageInput.value;
+
+
+    if (!senderName) {
+
+        alert(
+            "Please enter your name first."
+        );
+
+        senderNameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!receiverName) {
+
+        alert(
+            "Please enter your friend's name first."
+        );
+
+        receiverNameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!festival) {
+
+        alert(
+            "Festival information is missing."
+        );
+
+        return;
+
+    }
+
+
+    const oldButtonText =
+        btn.innerHTML;
+
+
+    btn.disabled = true;
+
+    btn.innerHTML =
+        '🤖 Creating your wish...';
+
+
+    generatedAIWish = "";
+
+    textarea.value = "";
+
+    container.style.display =
+        "none";
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        'sender_name',
+        senderName
+    );
+
+    formData.append(
+        'receiver_name',
+        receiverName
+    );
+
+    formData.append(
+        'festival',
+        festival
+    );
+
+    formData.append(
+        'style',
+        style
+    );
+
+    formData.append(
+        'language',
+        language
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                '/generate-ai-wish/',
+                {
+
+                    method: 'POST',
+
+                    headers: {
+
+                        'X-CSRFToken':
+                            '{{ csrf_token }}'
+
+                    },
+
+                    body: formData
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.error ||
+                'Unable to generate wish.'
+            );
+
+        }
+
+
+        if (!data.wish) {
+
+            throw new Error(
+                'Gemini returned an empty wish.'
+            );
+
+        }
+
+
+        generatedAIWish =
+            data.wish.trim();
+
+
+        textarea.value =
+            generatedAIWish;
+
+
+        container.style.display =
+            'block';
+
+
+        btn.innerHTML =
+            '✨ Generate Again';
+
+
+        textarea.scrollIntoView({
+
+            behavior:
+                'smooth',
+
+            block:
+                'center'
+
+        });
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            'Gemini error:',
+            error
+        );
+
+
+        generatedAIWish = "";
+
+
+        alert(
+            error.message ||
+            'Something went wrong while generating the AI wish.'
+        );
+
+
+        btn.innerHTML =
+            oldButtonText;
+
+    }
+
+
+    finally {
+
+        btn.disabled = false;
+
+    }
+
+}
+
+
+/* =========================================================
+   SHARE DATA
+========================================================= */
+
+let currentShareUrl = "";
+
+let currentShareText = "";
+
+
+/* =========================================================
+   GENERATE LINK
+========================================================= */
+
+function generateLink(event) {
+
+    event.preventDefault();
+
+
+    const senderNameInput =
+        document.getElementById(
+            'senderNameInput'
+        );
+
+    const receiverNameInput =
+        document.getElementById(
+            'receiverNameInput'
+        );
+
+    const festivalInput =
+        document.getElementById(
+            'festivalInput'
+        );
+
+    const photoInput =
+        document.getElementById(
+            'photoInput'
+        );
+
+    const aiWishInput =
+        document.getElementById(
+            'aiWishText'
+        );
+
+    const btn =
+        document.getElementById(
+            'genBtn'
+        );
+
+
+    const senderName =
+        senderNameInput.value.trim();
+
+    const receiverName =
+        receiverNameInput.value.trim();
+
+    const festival =
+        festivalInput.value.trim();
+
+    const photo =
+        photoInput.files[0];
+
+    const aiWish =
+        aiWishInput
+            ? aiWishInput.value.trim()
+            : "";
+
+
+    if (!senderName) {
+
+        alert(
+            "Please enter your name."
+        );
+
+        senderNameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!receiverName) {
+
+        alert(
+            "Please enter your friend's name."
+        );
+
+        receiverNameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!photo) {
+
+        alert(
+            "Please upload your friend's photo."
+        );
+
+        photoInput.focus();
+
+        return;
+
+    }
+
+
+    if (!festival) {
+
+        alert(
+            "Festival information is missing."
+        );
+
+        return;
+
+    }
+
+
+    const oldButtonText =
+        btn.innerHTML;
+
+
+    btn.innerHTML =
+        '⏳ Creating Wish...';
+
+    btn.disabled = true;
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        'sender_name',
+        senderName
+    );
+
+    formData.append(
+        'receiver_name',
+        receiverName
+    );
+
+    formData.append(
+        'festival',
+        festival
+    );
+
+    formData.append(
+        'photo',
+        photo
+    );
+
+    formData.append(
+        'ai_message',
+        aiWish
+    );
+
+
+    fetch(
+        '/generate-link/',
+        {
+
+            method: 'POST',
+
+            headers: {
+
+                'X-CSRFToken':
+                    '{{ csrf_token }}'
+
+            },
+
+            body: formData
+
+        }
+    )
+
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP error! Status: ${response.status}`
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(data => {
+
+        btn.innerHTML =
+            oldButtonText;
+
+        btn.disabled = false;
+
+
+        if (!data.link) {
+
+            alert(
+                data.error ||
+                "Something went wrong."
+            );
+
+            return;
+
+        }
+
+
+        currentShareUrl =
+            data.link;
+
+
+        if (aiWish) {
+
+            currentShareText =
+
+                `❤️ ${senderName} ne ${receiverName} ke liye ek special ${data.festival} Wish bheji hai! 🎉\n\n` +
+
+                `${aiWish}\n\n` +
+
+                `👉 Apni Wish dekhne ke liye link open kare:\n` +
+
+                `${currentShareUrl}`;
+
+        }
+
+        else {
+
+            currentShareText =
+
+                `❤️ ${senderName} ne ${receiverName} ke liye ek special ${data.festival} Wish bheji hai! 🎉\n\n` +
+
+                `👉 Apni Wish dekhne ke liye link open kare:\n` +
+
+                `${currentShareUrl}`;
+
+        }
+
+
+        const generatedLink =
+            document.getElementById(
+                'generatedLink'
+            );
+
+
+        if (generatedLink) {
+
+            generatedLink.value =
+                data.link;
+
+        }
+
+
+        const previewLink =
+            document.getElementById(
+                'previewLink'
+            );
+
+
+        if (previewLink) {
+
+            previewLink.href =
+                data.link;
+
+        }
+
+
+        const successToast =
+            document.getElementById(
+                'success-toast'
+            );
+
+
+        if (successToast) {
+
+            successToast.style.display =
+                'block';
+
+        }
+
+
+        const whatsappLink =
+            document.getElementById(
+                'whatsappLink'
+            );
+
+
+        if (whatsappLink) {
+
+            whatsappLink.href =
+                `https://wa.me/?text=${encodeURIComponent(
+                    currentShareText
+                )}`;
+
+        }
+
+
+        const fbShare =
+            document.getElementById(
+                'fbShare'
+            );
+
+
+        if (fbShare) {
+
+            fbShare.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    currentShareUrl
+                )}`;
+
+        }
+
+
+        const igShare =
+            document.getElementById(
+                'igShare'
+            );
+
+
+        if (igShare) {
+
+            igShare.href =
+                'https://www.instagram.com/direct/inbox/';
+
+        }
+
+
+        const xShare =
+            document.getElementById(
+                'xShare'
+            );
+
+
+        if (xShare) {
+
+            xShare.href =
+                `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                    currentShareText
+                )}`;
+
+        }
+
+
+        /* =====================================
+           CONFETTI
+        ===================================== */
+
+        if (
+            typeof confetti ===
+            'function'
+        ) {
+
+            const duration =
+                3000;
+
+            const end =
+                Date.now() +
+                duration;
+
+
+            (function frame() {
+
+                confetti({
+
+                    particleCount: 3,
+
+                    angle: 60,
+
+                    spread: 55,
+
+                    origin: {
+                        x: 0
+                    },
+
+                    colors: [
+                        '#FA8112',
+                        '#3b15d1',
+                        '#25D366'
+                    ]
+
+                });
+
+
+                confetti({
+
+                    particleCount: 3,
+
+                    angle: 120,
+
+                    spread: 55,
+
+                    origin: {
+                        x: 1
+                    },
+
+                    colors: [
+                        '#FA8112',
+                        '#3b15d1',
+                        '#25D366'
+                    ]
+
+                });
+
+
+                if (
+                    Date.now() <
+                    end
+                ) {
+
+                    requestAnimationFrame(
+                        frame
+                    );
+
+                }
+
+            })();
+
+        }
+
+
+        successToast.scrollIntoView({
+
+            behavior:
+                'smooth',
+
+            block:
+                'center'
+
+        });
+
+    })
+
+
+    .catch(error => {
+
+        console.error(
+            "Generate wish error:",
+            error
+        );
+
+
+        btn.innerHTML =
+            oldButtonText;
+
+        btn.disabled = false;
+
+
+        alert(
+            "Something went wrong. Please try again."
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   COPY LINK
+========================================================= */
+
+function copyToClipboard() {
+
+    const linkInput =
+        document.getElementById(
+            'generatedLink'
+        );
+
+    const copyBtn =
+        document.getElementById(
+            'copyBtn'
+        );
+
+    const popMsg =
+        document.getElementById(
+            'copy-success-msg'
+        );
+
+
+    if (!linkInput) {
+
+        return;
+
+    }
+
+
+    navigator.clipboard.writeText(
+        linkInput.value
+    )
+
+    .then(() => {
+
+        if (popMsg) {
+
+            popMsg.classList.add(
+                'show-pop'
+            );
+
+
+            setTimeout(() => {
+
+                popMsg.classList.remove(
+                    'show-pop'
+                );
+
+            }, 2000);
+
+        }
+
+
+        if (copyBtn) {
+
+            const oldText =
+                copyBtn.innerHTML;
+
+
+            copyBtn.innerHTML =
+                "✅ Copied!";
+
+
+            copyBtn.classList.add(
+                'btn-success',
+                'text-white'
+            );
+
+
+            setTimeout(() => {
+
+                copyBtn.innerHTML =
+                    oldText;
+
+                copyBtn.classList.remove(
+                    'btn-success',
+                    'text-white'
+                );
+
+            }, 2000);
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(
+            "Copy failed:",
+            error
+        );
+
+
+        linkInput.select();
+
+        document.execCommand(
+            'copy'
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   SMART SHARE
+========================================================= */
+
+window.smartShare =
+async function () {
+
+    if (!currentShareUrl) {
+
+        alert(
+            "Please generate a wish first."
+        );
+
+        return;
+
+    }
+
+
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+
+                title:
+                    '✨ Festival Magic Wish ✨',
+
+                text:
+                    currentShareText,
+
+                url:
+                    currentShareUrl
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.log(
+                'Share cancelled'
+            );
+
+        }
+
+    }
+
+    else {
+
+        copyToClipboard();
+
+    }
+
+};
+
+
+/* =========================================================
+   PHOTO PREVIEW
+========================================================= */
+
+const photoInput =
+    document.getElementById(
+        'photoInput'
+    );
+
+
+if (photoInput) {
+
+    photoInput.addEventListener(
+        'change',
+        function (event) {
+
+            const file =
+                event.target.files[0];
+
+
+            if (!file) {
+
+                return;
+
+            }
+
+
+            const preview =
+                document.getElementById(
+                    'photoPreview'
+                );
+
+
+            const container =
+                document.getElementById(
+                    'photoPreviewContainer'
+                );
+
+
+            if (preview) {
+
+                preview.src =
+                    URL.createObjectURL(
+                        file
+                    );
+
+            }
+
+
+            if (container) {
+
+                container.classList.remove(
+                    'd-none'
+                );
+
+            }
+
+        }
+    );
+
+}
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2664 @@
+{% load static %}
+{% load calendar_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Festival Calendar | Dashboard
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =====================================================
+         YOUR EXISTING TOAST
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="{% static 'dashboard/css/festival-toast.css' %}">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                "Poppins",
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #faf7f2 0%,
+                    #f5edf7 50%,
+                    #fff5e8 100%
+                );
+
+            color: #32104f;
+
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .calendar-page {
+
+            width: 100%;
+
+            max-width: 1500px;
+
+            margin: auto;
+
+            padding: 30px;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .calendar-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .calendar-title h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            color: #32104f;
+
+        }
+
+
+        .calendar-title h1 i {
+
+            color: #ff8a00;
+
+        }
+
+
+        .calendar-title p {
+
+            margin: 6px 0 0;
+
+            color: #806d88;
+
+            font-size: 14px;
+
+        }
+
+
+        .today-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background: #6a1434;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            font-weight: 600;
+
+            transition: .2s;
+
+        }
+
+
+        .today-btn:hover {
+
+            background: #4e0d27;
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           QUICK CARDS
+        ====================================================== */
+
+        .quick-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .quick-card {
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #eadfea;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(50,16,79,.06);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .quick-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            right: -25px;
+
+            top: -25px;
+
+            width: 90px;
+
+            height: 90px;
+
+            border-radius: 50%;
+
+            background: #fff0dc;
+
+        }
+
+
+        .quick-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: #fff1df;
+
+            color: #ff8a00;
+
+            font-size: 19px;
+
+            margin-bottom: 13px;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .quick-card h3 {
+
+            margin: 0 0 5px;
+
+            font-size: 17px;
+
+            color: #32104f;
+
+        }
+
+
+        .quick-card p {
+
+            margin: 0;
+
+            color: #806d88;
+
+            font-size: 12px;
+
+        }
+
+
+        .festival-mini {
+
+            margin-top: 13px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #6a1434;
+
+        }
+
+
+        .empty-mini {
+
+            margin-top: 13px;
+
+            font-size: 13px;
+
+            color: #a399a9;
+
+        }
+
+
+        /* =====================================================
+           COUNTDOWN
+        ====================================================== */
+
+        .countdown-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6a1434,
+                    #32104f
+                );
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            color: white;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .countdown-box h2 {
+
+            color: white;
+
+            margin: 0;
+
+            font-size: 21px;
+
+        }
+
+
+        .countdown-festival {
+
+            margin-top: 7px;
+
+            font-size: 15px;
+
+            opacity: .9;
+
+        }
+
+
+        .countdown-timer {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .count-box {
+
+            min-width: 85px;
+
+            background:
+                rgba(255,255,255,.1);
+
+            border:
+                1px solid rgba(255,255,255,.15);
+
+            border-radius: 13px;
+
+            padding: 12px;
+
+        }
+
+
+        .count-box strong {
+
+            display: block;
+
+            font-size: 25px;
+
+            color: #ffb347;
+
+        }
+
+
+        .count-box span {
+
+            font-size: 10px;
+
+            opacity: .75;
+
+        }
+
+
+        /* =====================================================
+           SECTION
+        ====================================================== */
+
+        .section-card {
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #eadfea;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(50,16,79,.06);
+
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .section-heading h2 {
+
+            margin: 0;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            color: #32104f;
+
+        }
+
+
+        .section-heading p {
+
+            margin: 4px 0 0;
+
+            font-size: 12px;
+
+            color: #8d8093;
+
+        }
+
+
+        /* =====================================================
+           MONTH NAVIGATION
+        ====================================================== */
+
+        .month-navigation {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #32104f,
+                    #6a1434
+                );
+
+            padding: 18px 20px;
+
+            border-radius: 16px;
+
+            color: white;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .month-navigation h2 {
+
+            margin: 0;
+
+            color: white;
+
+            font-size: 22px;
+
+        }
+
+
+        .month-subtitle {
+
+            font-size: 11px;
+
+            opacity: .75;
+
+            margin-top: 3px;
+
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        .nav-buttons a {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                rgba(255,255,255,.13);
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            color: white;
+
+            border-radius: 10px;
+
+            transition: .2s;
+
+        }
+
+
+        .nav-buttons a:hover {
+
+            background: #ff8a00;
+
+        }
+
+
+        /* =====================================================
+           CALENDAR SCROLL WRAPPER
+        ====================================================== */
+
+        .calendar-scroll {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            padding-bottom: 5px;
+
+        }
+
+
+        /* =====================================================
+           CALENDAR GRID
+        ====================================================== */
+
+        .calendar-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(7, minmax(110px, 1fr));
+
+            min-width: 770px;
+
+            border-left:
+                1px solid #eee5ef;
+
+            border-top:
+                1px solid #eee5ef;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+        }
+
+
+        .weekday {
+
+            text-align: center;
+
+            padding: 12px 5px;
+
+            background: #faf6fb;
+
+            color: #6a1434;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            border-right:
+                1px solid #eee5ef;
+
+            border-bottom:
+                1px solid #eee5ef;
+
+        }
+
+
+        .calendar-day {
+
+            min-height: 125px;
+
+            padding: 10px;
+
+            border-right:
+                1px solid #eee5ef;
+
+            border-bottom:
+                1px solid #eee5ef;
+
+            background: white;
+
+            position: relative;
+
+            transition: .2s;
+
+        }
+
+
+        .calendar-day:hover {
+
+            background: #fffaf5;
+
+        }
+
+
+        .calendar-day.other-month {
+
+            background: #fafafa;
+
+            opacity: .45;
+
+        }
+
+
+        .calendar-day.today {
+
+            background: #fffaf0;
+
+            box-shadow:
+                inset 0 0 0 2px #ff9d2e;
+
+        }
+
+
+        /* =====================================================
+           DAY TOP
+        ====================================================== */
+
+        .day-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+        }
+
+
+        .day-number {
+
+            width: 32px;
+
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #432052;
+
+        }
+
+
+        .calendar-day.today
+        .day-number {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9d2e,
+                    #ea2f14
+                );
+
+        }
+
+
+        /* =====================================================
+           EMPTY DATE CLICK
+        ====================================================== */
+
+        .add-festival-date {
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .add-festival-date:hover {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6a1434,
+                    #ff8a00
+                );
+
+        }
+
+
+        /* =====================================================
+           ADD BUTTON
+        ====================================================== */
+
+        .add-date-btn {
+
+            width: 26px;
+
+            height: 26px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+            color: #6a1434;
+
+            background: #f8edf3;
+
+            opacity: 0;
+
+            transition: .2s;
+
+        }
+
+
+        .calendar-day:hover
+        .add-date-btn {
+
+            opacity: 1;
+
+        }
+
+
+        .add-date-btn:hover {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6a1434,
+                    #ff8a00
+                );
+
+        }
+
+
+        /* =====================================================
+           FESTIVALS
+        ====================================================== */
+
+        .day-festivals {
+
+            margin-top: 8px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .calendar-festival {
+
+            display: block;
+
+            padding: 6px 7px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            color: #6a1434;
+
+            background: #fff0df;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            transition: .2s;
+
+        }
+
+
+        .calendar-festival:hover {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6a1434,
+                    #ff8a00
+                );
+
+        }
+
+
+        /* =====================================================
+           FESTIVAL LIST
+        ====================================================== */
+
+        .festival-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+
+        }
+
+
+        .festival-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 14px;
+
+            background: #fffaf5;
+
+            border:
+                1px solid #f0e4db;
+
+            border-radius: 14px;
+
+            transition: .2s;
+
+        }
+
+
+        .festival-item:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                #ffb347;
+
+        }
+
+
+        .festival-image {
+
+            width: 55px;
+
+            height: 55px;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            background: #f2e8f4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .festival-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .festival-image i {
+
+            color: #ff8a00;
+
+            font-size: 20px;
+
+        }
+
+
+        .festival-info h4 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            color: #32104f;
+
+        }
+
+
+        .festival-info span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            color: #8c7d91;
+
+        }
+
+
+        /* =====================================================
+           YEARLY
+        ====================================================== */
+
+        .year-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 15px;
+
+        }
+
+
+        .year-month {
+
+            border:
+                1px solid #eee5ef;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            background: #fff;
+
+        }
+
+
+        .year-month h3 {
+
+            margin: 0 0 10px;
+
+            color: #6a1434;
+
+            font-size: 14px;
+
+        }
+
+
+        .year-event {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 8px;
+
+            font-size: 11px;
+
+            padding: 7px 0;
+
+            border-bottom:
+                1px dashed #eadfea;
+
+        }
+
+
+        .year-event:last-child {
+
+            border-bottom: 0;
+
+        }
+
+
+        .year-event-name {
+
+            font-weight: 600;
+
+            color: #4b3b51;
+
+        }
+
+
+        .year-event-date {
+
+            color: #ff8a00;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+
+        .no-events {
+
+            font-size: 11px;
+
+            color: #aaa;
+
+        }
+
+
+        /* =====================================================
+           REMINDERS
+        ====================================================== */
+
+        .reminder-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+        .reminder-form {
+
+            background: #fffaf5;
+
+            border:
+                1px solid #f0e4db;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+        }
+
+
+        .reminder-form h3 {
+
+            margin: 0 0 15px;
+
+            font-size: 16px;
+
+            color: #32104f;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #6a1434;
+
+        }
+
+
+        .form-control {
+
+            width: 100%;
+
+            padding: 11px 13px;
+
+            border:
+                1px solid #e4d9e6;
+
+            border-radius: 10px;
+
+            background: white;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+
+        }
+
+
+        .form-control:focus {
+
+            border-color: #ff8a00;
+
+        }
+
+
+        .btn-orange {
+
+            border: 0;
+
+            background: #ff8a00;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .btn-orange:hover {
+
+            background: #e97900;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .reminder-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+
+        .reminder-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 12px;
+
+            padding: 13px;
+
+            border:
+                1px solid #eee5ef;
+
+            border-radius: 12px;
+
+            background: white;
+
+        }
+
+
+        .reminder-name {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #32104f;
+
+        }
+
+
+        .reminder-days {
+
+            margin-top: 3px;
+
+            font-size: 10px;
+
+            color: #8b7d91;
+
+        }
+
+
+        .reminder-actions {
+
+            display: flex;
+
+            gap: 6px;
+
+        }
+
+
+        .small-action {
+
+            width: 32px;
+
+            height: 32px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            border: 0;
+
+            cursor: pointer;
+
+            background: #f5edf7;
+
+            color: #6a1434;
+
+        }
+
+
+        .small-action.delete {
+
+            background: #fff0f0;
+
+            color: #c0392b;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 1100px) {
+
+            .quick-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+
+            .festival-list {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+
+            .year-grid {
+
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .calendar-page {
+
+                padding: 15px;
+
+            }
+
+
+            .calendar-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .calendar-title h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .quick-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 10px;
+
+            }
+
+
+            .quick-card {
+
+                padding: 15px;
+
+            }
+
+
+            .section-card {
+
+                padding: 15px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .month-navigation {
+
+                padding: 14px;
+
+            }
+
+
+            .month-navigation h2 {
+
+                font-size: 17px;
+
+            }
+
+
+            .festival-list {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .year-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+
+            .reminder-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .countdown-timer {
+
+                gap: 6px;
+
+            }
+
+
+            .count-box {
+
+                min-width: 65px;
+
+                padding: 9px 5px;
+
+            }
+
+
+            .count-box strong {
+
+                font-size: 19px;
+
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .quick-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .year-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .count-box {
+
+                min-width: 55px;
+
+            }
+
+
+            .count-box strong {
+
+                font-size: 17px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="calendar-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="calendar-header">
+
+        <div class="calendar-title">
+
+            <h1>
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Festival Calendar
+
+            </h1>
+
+            <p>
+
+                Manage and explore all Indian festivals
+                from your dashboard.
+
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'dashboard:calendar' %}"
+           class="today-btn">
+
+            <i class="fa-solid fa-calendar-day"></i>
+
+            Today
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         QUICK SUMMARY
+    ====================================================== -->
+
+    <div class="quick-grid">
+
+
+        <!-- TODAY -->
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-sun"></i>
+
+            </div>
+
+            <h3>
+                Today's Festival
+            </h3>
+
+            <p>
+                {{ today|date:"d F Y" }}
+            </p>
+
+
+            {% for festival in todays_festivals|slice:":2" %}
+
+                <div class="festival-mini">
+
+                    🎉 {{ festival.name }}
+
+                </div>
+
+            {% empty %}
+
+                <div class="empty-mini">
+
+                    No festival today
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- TOMORROW -->
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-calendar-plus"></i>
+
+            </div>
+
+            <h3>
+                Tomorrow's Festival
+            </h3>
+
+            <p>
+                {{ tomorrow|date:"d F Y" }}
+            </p>
+
+
+            {% for festival in tomorrows_festivals|slice:":2" %}
+
+                <div class="festival-mini">
+
+                    🎊 {{ festival.name }}
+
+                </div>
+
+            {% empty %}
+
+                <div class="empty-mini">
+
+                    No festival tomorrow
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- THIS WEEK -->
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-calendar-week"></i>
+
+            </div>
+
+            <h3>
+                This Week
+            </h3>
+
+            <p>
+
+                {{ this_week_festivals|length }}
+
+                festival{{ this_week_festivals|length|pluralize }}
+
+            </p>
+
+
+            {% for festival in this_week_festivals|slice:":2" %}
+
+                <div class="festival-mini">
+
+                    📅 {{ festival.name }}
+
+                </div>
+
+            {% empty %}
+
+                <div class="empty-mini">
+
+                    No festivals this week
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- THIS MONTH -->
+
+        <div class="quick-card">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-calendar"></i>
+
+            </div>
+
+            <h3>
+                This Month
+            </h3>
+
+            <p>
+
+                {{ this_month_festivals|length }}
+
+                festival{{ this_month_festivals|length|pluralize }}
+
+            </p>
+
+
+            {% for festival in this_month_festivals|slice:":2" %}
+
+                <div class="festival-mini">
+
+                    🪔 {{ festival.name }}
+
+                </div>
+
+            {% empty %}
+
+                <div class="empty-mini">
+
+                    No festivals this month
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         COUNTDOWN
+    ====================================================== -->
+
+    {% if next_festival %}
+
+    <div class="countdown-box">
+
+        <h2>
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+            Next Festival Countdown
+
+        </h2>
+
+
+        <div class="countdown-festival">
+
+            {{ next_festival.name }}
+
+        </div>
+
+
+        <div class="countdown-timer">
+
+
+            <div class="count-box">
+
+                <strong id="count-days">
+                    00
+                </strong>
+
+                <span>
+                    DAYS
+                </span>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <strong id="count-hours">
+                    00
+                </strong>
+
+                <span>
+                    HOURS
+                </span>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <strong id="count-minutes">
+                    00
+                </strong>
+
+                <span>
+                    MINUTES
+                </span>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <strong id="count-seconds">
+                    00
+                </strong>
+
+                <span>
+                    SECONDS
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         MONTHLY CALENDAR
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    📅 Monthly Festival Calendar
+                </h2>
+
+                <p>
+                    Click any date to create a festival.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MONTH NAVIGATION -->
+
+        <div class="month-navigation">
+
+            <div>
+
+                <h2>
+
+                    {{ month_name }}
+                    {{ selected_year }}
+
+                </h2>
+
+                <div class="month-subtitle">
+
+                    Indian Festival Calendar
+
+                </div>
+
+            </div>
+
+
+            <div class="nav-buttons">
+
+
+                <a href="?month={{ previous_month }}&year={{ previous_year }}"
+                   title="Previous Month">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </a>
+
+
+                <a href="{% url 'dashboard:calendar' %}"
+                   title="Current Month">
+
+                    <i class="fa-solid fa-circle-dot"></i>
+
+                </a>
+
+
+                <a href="?month={{ next_month }}&year={{ next_year }}"
+                   title="Next Month">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CALENDAR -->
+
+        <div class="calendar-scroll">
+
+            <div class="calendar-grid">
+
+
+                <!-- WEEKDAYS -->
+
+                <div class="weekday">
+                    Monday
+                </div>
+
+                <div class="weekday">
+                    Tuesday
+                </div>
+
+                <div class="weekday">
+                    Wednesday
+                </div>
+
+                <div class="weekday">
+                    Thursday
+                </div>
+
+                <div class="weekday">
+                    Friday
+                </div>
+
+                <div class="weekday">
+                    Saturday
+                </div>
+
+                <div class="weekday">
+                    Sunday
+                </div>
+
+
+
+                <!-- DAYS -->
+
+                {% for week in calendar_weeks %}
+
+                    {% for day in week %}
+
+
+                    <div class="calendar-day
+                        {% if not day.is_current_month %}
+                            other-month
+                        {% endif %}
+                        {% if day.is_today %}
+                            today
+                        {% endif %}
+                    ">
+
+
+                        <!-- DAY TOP -->
+
+                        <div class="day-top">
+
+
+                            {% if not day.festivals %}
+
+                                <a href="{% url 'dashboard:festival_create' %}?date={{ day.date|date:'Y-m-d' }}"
+                                   class="day-number add-festival-date"
+                                   title="Add festival">
+
+                                    {{ day.day }}
+
+                                </a>
+
+                            {% else %}
+
+                                <span class="day-number">
+
+                                    {{ day.day }}
+
+                                </span>
+
+                            {% endif %}
+
+
+
+                            <!-- ADD -->
+
+                            {% if day.is_current_month %}
+
+                                <a href="{% url 'dashboard:festival_create' %}?date={{ day.date|date:'Y-m-d' }}"
+                                   class="add-date-btn"
+                                   title="Add Festival">
+
+                                    +
+
+                                </a>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- FESTIVALS -->
+
+                        <div class="day-festivals">
+
+                            {% for festival in day.festivals %}
+
+                                <a href="{% url 'dashboard:festival_edit' festival.id %}"
+                                   class="calendar-festival"
+                                   title="Edit {{ festival.name }}">
+
+                                    🎉
+
+                                    {{ festival.name }}
+
+                                </a>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         UPCOMING
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    🔜 Upcoming Festivals
+                </h2>
+
+                <p>
+                    The next festivals coming up
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="festival-list">
+
+
+            {% for festival in upcoming_festivals %}
+
+                <div class="festival-item">
+
+
+                    <div class="festival-image">
+
+                        {% if festival.card_image %}
+
+                            <img src="{{ festival.card_image.url }}"
+                                 alt="{{ festival.name }}">
+
+                        {% else %}
+
+                            <i class="fa-solid fa-star"></i>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="festival-info">
+
+                        <h4>
+                            {{ festival.name }}
+                        </h4>
+
+                        <span>
+                            {{ festival.date|date:"d F Y" }}
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            {% empty %}
+
+                <p>
+                    No upcoming festivals found.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         YEARLY CALENDAR
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    🗓️ Yearly Festival Calendar
+                </h2>
+
+                <p>
+                    {{ selected_year }} festival overview
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="year-grid">
+
+
+            {% for month_number, month_name_value in months_list %}
+
+
+                <div class="year-month">
+
+                    <h3>
+                        {{ month_name_value }}
+                    </h3>
+
+
+                    {% for festival in yearly_by_month|get_item:month_number %}
+
+                        <div class="year-event">
+
+                            <span class="year-event-name">
+
+                                {{ festival.name }}
+
+                            </span>
+
+
+                            <span class="year-event-date">
+
+                                {{ festival.date|date:"d M" }}
+
+                            </span>
+
+                        </div>
+
+                    {% empty %}
+
+                        <div class="no-events">
+
+                            No festivals
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         REMINDERS
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    🔔 Festival Reminders
+                </h2>
+
+                <p>
+                    Configure festival reminder schedules
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="reminder-layout">
+
+
+            <!-- ADD -->
+
+            <div class="reminder-form">
+
+                <h3>
+                    Add Reminder
+                </h3>
+
+
+                <form method="POST"
+                      action="{% url 'dashboard:calendar_add_reminder' %}">
+
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Festival
+                        </label>
+
+
+                        <select name="festival"
+                                class="form-control"
+                                required>
+
+                            <option value="">
+                                Select Festival
+                            </option>
+
+
+                            {% for festival in upcoming_festivals %}
+
+                                <option value="{{ festival.id }}">
+
+                                    {{ festival.name }}
+
+                                    —
+                                    {{ festival.date|date:"d M Y" }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Reminder Time
+                        </label>
+
+
+                        <select name="reminder_days"
+                                class="form-control"
+                                required>
+
+                            <option value="30">
+                                30 days before
+                            </option>
+
+                            <option value="14">
+                                14 days before
+                            </option>
+
+                            <option value="7"
+                                    selected>
+                                7 days before
+                            </option>
+
+                            <option value="3">
+                                3 days before
+                            </option>
+
+                            <option value="1">
+                                1 day before
+                            </option>
+
+                            <option value="0">
+                                On festival day
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <button type="submit"
+                            class="btn-orange">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        Add Reminder
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- LIST -->
+
+            <div class="reminder-list">
+
+
+                {% for reminder in reminders %}
+
+
+                    <div class="reminder-row">
+
+
+                        <div>
+
+                            <div class="reminder-name">
+
+                                {{ reminder.festival.name }}
+
+                            </div>
+
+
+                            <div class="reminder-days">
+
+
+                                {% if reminder.reminder_days == 0 %}
+
+                                    On festival day
+
+                                {% else %}
+
+                                    {{ reminder.reminder_days }}
+
+                                    day{{ reminder.reminder_days|pluralize }}
+
+                                    before
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="reminder-actions">
+
+
+                            <!-- TOGGLE -->
+
+                            <form method="POST"
+                                  action="{% url 'dashboard:calendar_toggle_reminder' reminder.id %}">
+
+                                {% csrf_token %}
+
+
+                                <button type="submit"
+                                        class="small-action"
+                                        title="Toggle reminder">
+
+                                    {% if reminder.is_active %}
+
+                                        <i class="fa-solid fa-bell"></i>
+
+                                    {% else %}
+
+                                        <i class="fa-solid fa-bell-slash"></i>
+
+                                    {% endif %}
+
+                                </button>
+
+                            </form>
+
+
+
+                            <!-- DELETE -->
+
+                            <form method="POST"
+                                  action="{% url 'dashboard:calendar_delete_reminder' reminder.id %}">
+
+                                {% csrf_token %}
+
+
+                                <button type="submit"
+                                        class="small-action delete"
+                                        title="Delete reminder">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% empty %}
+
+
+                    <div class="empty-mini">
+
+                        No reminders configured yet.
+
+                    </div>
+
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     COUNTDOWN
+========================================================= -->
+
+{% if next_festival %}
+
+<script>
+
+const festivalDate =
+    new Date(
+        "{{ next_festival.date|date:'c' }}"
+    ).getTime();
+
+
+function updateCountdown() {
+
+    const now =
+        new Date().getTime();
+
+
+    const difference =
+        festivalDate - now;
+
+
+    if (difference <= 0) {
+
+        document.getElementById(
+            "count-days"
+        ).textContent = "00";
+
+        document.getElementById(
+            "count-hours"
+        ).textContent = "00";
+
+        document.getElementById(
+            "count-minutes"
+        ).textContent = "00";
+
+        document.getElementById(
+            "count-seconds"
+        ).textContent = "00";
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference %
+                (1000 * 60)
+            ) /
+            1000
+        );
+
+
+    document.getElementById(
+        "count-days"
+    ).textContent =
+        String(days).padStart(2, "0");
+
+
+    document.getElementById(
+        "count-hours"
+    ).textContent =
+        String(hours).padStart(2, "0");
+
+
+    document.getElementById(
+        "count-minutes"
+    ).textContent =
+        String(minutes).padStart(2, "0");
+
+
+    document.getElementById(
+        "count-seconds"
+    ).textContent =
+        String(seconds).padStart(2, "0");
+
+}
+
+
+updateCountdown();
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+</script>
+
+{% endif %}
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<script src="{% static 'dashboard/js/festival-toast.js' %}">
+</script>
+
+
+<script>
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const toast =
+    params.get("toast");
+
+
+if (toast === "reminder_added") {
+
+    festivalToast(
+        "success",
+        "Reminder Added",
+        "Festival reminder has been added successfully."
+    );
+
+}
+
+
+if (toast === "reminder_enabled") {
+
+    festivalToast(
+        "success",
+        "Reminder Enabled",
+        "Festival reminder is now active."
+    );
+
+}
+
+
+if (toast === "reminder_disabled") {
+
+    festivalToast(
+        "warning",
+        "Reminder Disabled",
+        "Festival reminder has been disabled."
+    );
+
+}
+
+
+if (toast === "reminder_deleted") {
+
+    festivalToast(
+        "success",
+        "Reminder Deleted",
+        "Festival reminder has been removed."
+    );
+
+}
+
+
+if (toast === "reminder_error") {
+
+    festivalToast(
+        "error",
+        "Something went wrong",
+        "Please select a valid festival and reminder time."
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

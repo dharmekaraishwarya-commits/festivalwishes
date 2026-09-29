@@ -1,0 +1,547 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Festivals Calendar</title>
+
+    <link rel="shortcut icon"
+          type="image/webp"
+          href="{% static 'favicon.webp' %}">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+<link rel="stylesheet"
+          href="{% static 'assets/css/main.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     FESTIVE BACKGROUND
+====================================================== -->
+
+<div class="festive-background">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+
+<div class="page-content">
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header class="calendar-header">
+
+    <div class="header-diya left">
+        🪔
+    </div>
+
+    <div class="header-diya right">
+        🪔
+    </div>
+
+
+    <div class="header-badge">
+
+        ✨
+        Festivals & Celebrations
+        ✨
+
+    </div>
+
+
+    <h1>
+
+    
+        <span class="highlight">
+            Festivals Calendar
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        किसी भी Festival की तारीख पर क्लिक करें
+        और अपने परिवार और दोस्तों के लिए
+        Beautiful Festival Wish बनाएं ❤️
+
+    </p>
+
+</header>
+
+
+
+<!-- ======================================================
+     CALENDAR
+====================================================== -->
+
+<div class="calendar-wrapper">
+
+    <div class="calendar-card">
+
+
+        <!-- Calendar Navigation -->
+
+        <div class="calendar-top">
+
+            <button
+                onclick="previousMonth()"
+                aria-label="Previous Month">
+
+                ‹
+
+            </button>
+
+
+            <div
+                id="monthTitle"
+                class="month-title">
+
+            </div>
+
+
+            <button
+                onclick="nextMonth()"
+                aria-label="Next Month">
+
+                ›
+
+            </button>
+
+        </div>
+
+
+
+        <!-- Week Days -->
+
+        <div class="week-days">
+
+            <div class="week-day">
+                Sun
+            </div>
+
+            <div class="week-day">
+                Mon
+            </div>
+
+            <div class="week-day">
+                Tue
+            </div>
+
+            <div class="week-day">
+                Wed
+            </div>
+
+            <div class="week-day">
+                Thu
+            </div>
+
+            <div class="week-day">
+                Fri
+            </div>
+
+            <div class="week-day">
+                Sat
+            </div>
+
+        </div>
+
+
+
+        <!-- Calendar -->
+
+        <div
+            id="calendarGrid"
+            class="calendar-grid">
+
+        </div>
+
+
+
+        <!-- Legend -->
+
+        <div class="calendar-legend">
+
+            <div class="legend-item">
+
+                <span
+                    class="legend-dot festival">
+                </span>
+
+                Festival Day
+
+            </div>
+
+
+            <div class="legend-item">
+
+                <span
+                    class="legend-dot today">
+                </span>
+
+                Today
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer CTA -->
+
+        <div class="calendar-footer">
+
+            <div class="calendar-footer-text">
+
+                🙏 Celebrate every festival with
+                your loved ones
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="site-footer">
+
+    Made with ❤️ for
+    <strong>Indian Festivals & Celebrations</strong>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- ======================================================
+     FESTIVAL DATA
+====================================================== -->
+
+<script>
+
+const festivals = [
+
+    {% for festival in festivals %}
+
+    {
+        name: "{{ festival.name|escapejs }}",
+        slug: "{{ festival.slug|escapejs }}",
+        date: "{{ festival.date|date:'Y-m-d' }}",
+        url: "{% url 'generate_page' festival.slug %}"
+    }
+
+    {% if not forloop.last %},{% endif %}
+
+    {% endfor %}
+
+];
+
+console.log("Festivals:", festivals);
+
+</script>
+
+
+
+<!-- ======================================================
+     CALENDAR JAVASCRIPT
+====================================================== -->
+
+<script>
+
+let currentDate = new Date();
+
+
+/* =========================================================
+   RENDER CALENDAR
+========================================================= */
+
+function renderCalendar() {
+
+    const year =
+        currentDate.getFullYear();
+
+    const month =
+        currentDate.getMonth();
+
+
+    const monthNames = [
+
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+
+    ];
+
+
+    document.getElementById(
+        "monthTitle"
+    ).innerText =
+        `${monthNames[month]} ${year}`;
+
+
+    const grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    /* First day */
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+
+    /* Days in month */
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    /* Empty cells */
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "calendar-day empty-day";
+
+        grid.appendChild(empty);
+
+    }
+
+
+    /* Days */
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const cell =
+            document.createElement(
+                "div"
+            );
+
+
+        cell.className =
+            "calendar-day";
+
+
+        const dateString =
+            `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+
+        /* Find festivals */
+
+        const dayFestivals =
+            festivals.filter(
+                festival =>
+                    festival.date === dateString
+            );
+
+
+        /* Day number */
+
+        cell.innerHTML = `
+
+            <div class="day-number">
+                ${day}
+            </div>
+
+        `;
+
+
+        /* Festival */
+
+        if (
+            dayFestivals.length > 0
+        ) {
+
+            cell.classList.add(
+                "festival-day"
+            );
+
+
+            dayFestivals.forEach(
+                festival => {
+
+                    const festivalElement =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    festivalElement.className =
+                        "festival-name";
+
+
+                    festivalElement.innerHTML = `
+
+                        <span
+                            class="festival-icon">
+                           🟠
+                        </span>
+
+                        ${festival.name}
+
+                    `;
+
+
+                    cell.appendChild(
+                        festivalElement
+                    );
+
+                }
+            );
+
+
+            /* Click */
+
+            cell.onclick = function () {
+
+                window.location.href =
+                    dayFestivals[0].url;
+
+            };
+
+        }
+
+
+        /* Today */
+
+        const today =
+            new Date();
+
+
+        if (
+
+            today.getFullYear() === year &&
+
+            today.getMonth() === month &&
+
+            today.getDate() === day
+
+        ) {
+
+            cell.classList.add(
+                "today"
+            );
+
+        }
+
+
+        grid.appendChild(cell);
+
+    }
+
+}
+
+
+/* =========================================================
+   PREVIOUS MONTH
+========================================================= */
+
+function previousMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() - 1
+    );
+
+    renderCalendar();
+
+}
+
+
+/* =========================================================
+   NEXT MONTH
+========================================================= */
+
+function nextMonth() {
+
+    currentDate.setMonth(
+        currentDate.getMonth() + 1
+    );
+
+    renderCalendar();
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderCalendar();
+
+</script>
+
+
+</body>
+
+</html>
