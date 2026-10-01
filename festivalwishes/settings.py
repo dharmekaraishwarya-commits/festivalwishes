@@ -1,4 +1,3 @@
-```python
 """
 Django settings for festivalwishes project.
 
@@ -24,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # ============================================================
 
-# IMPORTANT:
-# Put your real secret key in .env / Render Environment Variables.
 SECRET_KEY = os.getenv(
     "DJANGO_SECRET_KEY",
     "django-insecure-change-this-secret-key"
@@ -67,7 +64,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
 
-    # WhiteNoise serves static files in production
+    # WhiteNoise for static files
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -117,14 +114,6 @@ TEMPLATES = [
 # ============================================================
 # DATABASE
 # ============================================================
-#
-# LOCAL COMPUTER:
-#     Uses SQLite automatically.
-#
-# RENDER:
-#     If DATABASE_URL exists, Django uses PostgreSQL.
-#
-# ============================================================
 
 import dj_database_url
 
@@ -148,6 +137,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME":
         "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
         "NAME":
@@ -179,16 +172,14 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# Your development static folder
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Where collectstatic puts production static files
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-# WhiteNoise compression / caching
+# WhiteNoise
 STATICFILES_STORAGE = (
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
 )
@@ -196,15 +187,6 @@ STATICFILES_STORAGE = (
 
 # ============================================================
 # MEDIA FILES
-# ============================================================
-#
-# Uploaded files:
-#
-# media/
-#     festival/
-#         cards/
-#         backgrounds/
-#
 # ============================================================
 
 MEDIA_URL = "/media/"
@@ -223,35 +205,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # EMAIL
 # ============================================================
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+)
 
 DEFAULT_FROM_EMAIL = "noreply@festivalwishes.com"
 
 
 # ============================================================
-# OPTIONAL GMAIL SMTP
-# ============================================================
-#
-# If you later want real email sending, use environment variables.
-#
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-# ============================================================
 # CSRF
-# ============================================================
-#
-# Render domain
-#
 # ============================================================
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com",
 ]
-```
