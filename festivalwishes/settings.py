@@ -30,9 +30,18 @@ SECRET_KEY = os.getenv(
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = [
     ".onrender.com",
     "localhost",
+=======
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    
+       "localhost",
+>>>>>>> 71e446f (Fix media file serving)
     "127.0.0.1",
 ]
 
@@ -117,7 +126,16 @@ TEMPLATES = [
 
 import dj_database_url
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
+<<<<<<< HEAD
     "default": dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
@@ -128,6 +146,20 @@ DATABASES = {
 # ============================================================
 # PASSWORD VALIDATION
 # ============================================================
+=======
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "festival_wishes",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
+    }
+}
+
+# Password validation
+# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+>>>>>>> 71e446f (Fix media file serving)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
