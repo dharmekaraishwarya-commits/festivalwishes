@@ -30,18 +30,18 @@ SECRET_KEY = os.getenv(
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-<<<<<<< HEAD
+ HEAD
 ALLOWED_HOSTS = [
     ".onrender.com",
     "localhost",
-=======
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
     
        "localhost",
->>>>>>> 71e446f (Fix media file serving)
+ 71e446f (Fix media file serving)
     "127.0.0.1",
 ]
 
